@@ -39,7 +39,7 @@ extension PersistenceController {
 //            viewController.present(sharingController, animated: true)
 //        }
 //    }
-    func presentCloudSharingController(toko: Toko) {
+    func presentCloudSharingController(toko: Toko, name: String) {
         /**
          Grab the share if the photo is already shared.
          */
@@ -48,6 +48,9 @@ extension PersistenceController {
            let (_, share) = shareSet.first {
             tokoShare = share
         }
+        
+     
+        
 
         let sharingController: UICloudSharingController
         if tokoShare == nil {
@@ -55,7 +58,12 @@ extension PersistenceController {
         } else {
             sharingController = UICloudSharingController(share: tokoShare!, container: cloudKitContainer)
         }
+        
+        sharingController.title = "Bagikan toko \(toko.namaToko) kepada \(name)"
         sharingController.delegate = self
+        
+            
+        
         /**
          Setting the presentation style to .formSheet so there's no need to specify sourceView, sourceItem, or sourceRect.
          */
@@ -172,7 +180,7 @@ extension PersistenceController: UICloudSharingControllerDelegate {
     }
     
     func itemTitle(for csc: UICloudSharingController) -> String? {
-        return csc.share?.title ?? "A cool photo"
+        return csc.share?.title ?? "Bagikan toko anda"
     }
 }
 #endif

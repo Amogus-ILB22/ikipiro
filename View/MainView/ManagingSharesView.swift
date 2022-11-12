@@ -10,8 +10,8 @@ import CoreData
 import CloudKit
 
 struct ManagingSharesView: View {
-    @Binding var activeSheet: ActiveSheet?
-    @Binding var nextSheet: ActiveSheet?
+    @Binding var activeSheet: ShareSheet?
+    @Binding var nextSheet: ShareSheet?
 
     @State private var toggleProgress: Bool = false
     @State private var selection: String?

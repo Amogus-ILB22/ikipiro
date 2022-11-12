@@ -112,8 +112,7 @@ struct DetailTokoView: View {
     
     private func createNewShare(toko: Toko) {
         
-        PersistenceController.shared.presentCloudSharingController(toko: toko)
-        
+        PersistenceController.shared.presentCloudSharingController(toko: toko, name: "")
         openShare.toggle()
     }
     

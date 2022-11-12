@@ -10,13 +10,13 @@ import CoreData
 import CloudKit
 
 struct SharePickerView<ActionView: View>: View {
-    @Binding private var activeSheet: ActiveSheet?
+    @Binding private var activeSheet: ShareSheet?
     @Binding private var selection: String?
     
     private let actionView: ActionView
     @State private var shareTitles = PersistenceController.shared.shareTitles()
 
-    init(activeSheet: Binding<ActiveSheet?>, selection: Binding<String?>, @ViewBuilder actionView: () -> ActionView) {
+    init(activeSheet: Binding<ShareSheet?>, selection: Binding<String?>, @ViewBuilder actionView: () -> ActionView) {
         _activeSheet = activeSheet
         _selection = selection
         self.actionView = actionView()

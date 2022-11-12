@@ -10,6 +10,10 @@ import CoreData
 
 struct ContentView: View {
 
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.namaPemilik)],
+                  animation: .default
+    ) private var tokos: FetchedResults<Toko>
     
 
     init() {
@@ -35,31 +39,39 @@ struct ContentView: View {
 ////
         {
             
-            TabView{
-                
-                ProductListView()
-                    .tabItem{
-                         Image(systemName: "shippingbox").renderingMode(.template)
-                        Text("Produk")
-                    }
+            if tokos.count < 1 {
                 
                 
-                ScanView()
-                    .tabItem{
-                         Image(systemName: "barcode.viewfinder").renderingMode(.template)
-                        Text("Memindai")
-                    }
+                WelcomeView()
                 
-               SettingView()
-                    .tabItem{
-                         Image(systemName: "person.3").renderingMode(.template)
-                        Text("Pengaturan")
-                    }
+            }else{
+                
+                
+                TabView{
+                    
+                    ProductListView()
+                        .tabItem{
+                            Image(systemName: "shippingbox").renderingMode(.template)
+                            Text("Produk")
+                        }
+                    
+                    
+                    ScanView()
+                        .tabItem{
+                            Image(systemName: "barcode.viewfinder").renderingMode(.template)
+                            Text("Memindai")
+                        }
+                    
+                    SettingView()
+                        .tabItem{
+                            Image(systemName: "person.3").renderingMode(.template)
+                            Text("Pengaturan")
+                        }
+                    
+                }
+                .accentColor(Color("GreenButton"))
                 
             }
-            .accentColor(Color("GreenButton"))
-            
-            
         }
         else
 ////        if !isStart

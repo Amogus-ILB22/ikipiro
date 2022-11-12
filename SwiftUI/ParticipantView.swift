@@ -16,7 +16,7 @@ import CloudKit
  self-add themselves to a public share.
  */
 struct ParticipantView: View {
-    @Binding var activeSheet: ActiveSheet?
+    @Binding var activeSheet: ShareSheet?
     private let share: CKShare
 
     @State private var toggleProgress: Bool = false
@@ -25,7 +25,7 @@ struct ParticipantView: View {
     
     private let canUpdateParticipants: Bool
     
-    init(activeSheet: Binding<ActiveSheet?>, share: CKShare) {
+    init(activeSheet: Binding<ShareSheet?>, share: CKShare) {
         _activeSheet = activeSheet
         self.share = share
         participants = share.participants.filter { $0.role != .owner }.map { Participant($0) }

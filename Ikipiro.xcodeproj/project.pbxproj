@@ -61,6 +61,8 @@
 		DC2B6D34291E36F300CA6BE1 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D33291E36F300CA6BE1 /* ProductListView.swift */; };
 		DC2B6D36291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D35291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift */; };
 		DC2B6D38291EAC3E00CA6BE1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D37291EAC3E00CA6BE1 /* SettingView.swift */; };
+		DCF656F8291FEDD00053ABF5 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF656F7291FEDD00053ABF5 /* WelcomeView.swift */; };
+		DCF656FA291FF16C0053ABF5 /* CreateNewTokoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF656F9291FF16C0053ABF5 /* CreateNewTokoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -140,6 +142,8 @@
 		DC2B6D33291E36F300CA6BE1 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		DC2B6D35291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFilterByCategoryView.swift; sourceTree = "<group>"; };
 		DC2B6D37291EAC3E00CA6BE1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		DCF656F7291FEDD00053ABF5 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		DCF656F9291FF16C0053ABF5 /* CreateNewTokoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTokoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +186,6 @@
 				40527E16270BBE3400DB2901 /* RatingView.swift */,
 				40744288270FAFB3009CABC7 /* ParticipantView.swift */,
 				408BD4D92713B29900294A81 /* AddToExistingShareView.swift */,
-				408BD4DB2713F0F400294A81 /* ManagingSharesView.swift */,
 				40C6211D2755AFB500015301 /* SharePickerView.swift */,
 				405831692767DCDE0044E86D /* FullImageView.swift */,
 				DC2B6D1A291D4AC400CA6BE1 /* TokoGridView.swift */,
@@ -322,6 +325,9 @@
 				DC2B6D33291E36F300CA6BE1 /* ProductListView.swift */,
 				DC2B6D35291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift */,
 				DC2B6D37291EAC3E00CA6BE1 /* SettingView.swift */,
+				408BD4DB2713F0F400294A81 /* ManagingSharesView.swift */,
+				DCF656F7291FEDD00053ABF5 /* WelcomeView.swift */,
+				DCF656F9291FF16C0053ABF5 /* CreateNewTokoView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -445,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				407D7D6B2704334400D2BA90 /* SceneDelegate.swift in Sources */,
+				DCF656F8291FEDD00053ABF5 /* WelcomeView.swift in Sources */,
 				40AE53F12719F98C00B978CA /* CoreDataHelper.swift in Sources */,
 				407D7D6D2704335A00D2BA90 /* AppDelegate.swift in Sources */,
 				40BF672F273B17A900ED9D2D /* PersistenceController+History.swift in Sources */,
@@ -479,6 +486,7 @@
 				DC2B6D38291EAC3E00CA6BE1 /* SettingView.swift in Sources */,
 				407D7D5F2703878000D2BA90 /* PersistenceController+Photo.swift in Sources */,
 				DC2B6D25291D80CE00CA6BE1 /* AddProductView.swift in Sources */,
+				DCF656FA291FF16C0053ABF5 /* CreateNewTokoView.swift in Sources */,
 				7EB3C39E291EC53A006E2251 /* ScanView.swift in Sources */,
 				DC2B6D27291D816100CA6BE1 /* PersistenceController+Produk.swift in Sources */,
 				407D7CF827024EBE00D2BA90 /* CoreDataCloudKitShare.xcdatamodeld in Sources */,
