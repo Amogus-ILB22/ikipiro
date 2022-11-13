@@ -75,7 +75,7 @@ struct AddProdukView: View {
         taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation {
-                PersistenceController.shared.addProduk(nama: nama, satuan: satuan, harga: harga, kode: Int32(kode), kategori: kategori,relateTo: tokoModel.selectedToko)
+                PersistenceController.shared.addProduk(nama: nama, satuan: satuan, harga: harga, kode: Int64(kode), kategori: kategori,relateTo: tokoModel.selectedToko)
                    
                    tokoModel.openAddProduk.toggle()
               

@@ -42,7 +42,7 @@ struct DetailProductView: View {
                                     .font(.system(.body)).bold()
                                     .foregroundColor(.black)
                                 Spacer()
-                                Text("\(products.first?.kode ?? 0)")
+                                Text(String(products.first?.kode ?? 0))
                                     .font(.system(.body))
                                     .foregroundColor(.black)
                             }
@@ -64,7 +64,9 @@ struct DetailProductView: View {
                                     .font(.system(.body)).bold()
                                     .foregroundColor(.black)
                                 Spacer()
-                                Text("\(products.first?.harga ?? 0)")
+//                                Text(NumberFormatter.localizedString(from: (products.first?.harga ?? 0) as NSNumber, number: .ordinal))
+                                Text(DetailProductView.df2so(products.first?.harga ?? 0))
+//                                Text(String(format: "Rp %.02f", products.first?.harga ?? 0))
                                     .font(.system(.body))
                                     .foregroundColor(.black)
                             }
@@ -100,7 +102,7 @@ struct DetailProductView: View {
                             Text("Edit")
                         }).foregroundColor(.green)
                             .fullScreenCover(isPresented: self.$showAddProductView, content: {
-                                EditProductView(productBarcode: self.$productBarcode, productName: products.first?.nama ?? "",productPrice: "\(products.first?.harga ?? 0)",productCategory: products.first?.kategori ?? "", productUnit: UnitProduct.init(rawValue: products.first?.satuan ?? "")!, produk: products.first!, showAddProductView: self.$showAddProductView)
+                                EditProductView(productBarcode:  self.productBarcode, productName: products.first?.nama ?? "",productPrice: "\(products.first?.harga ?? 0)",productCategory: products.first?.kategori ?? "", productUnit: UnitProduct.init(rawValue: products.first?.satuan ?? "")!, produk: products.first!, showAddProductView: self.$showAddProductView)
                                 
                             })
                     }
@@ -111,6 +113,18 @@ struct DetailProductView: View {
         }
             
     }
+    
+    static func df2so(_ price: Double) -> String{
+           let numberFormatter = NumberFormatter()
+           numberFormatter.groupingSeparator = "."
+           numberFormatter.groupingSize = 3
+           numberFormatter.usesGroupingSeparator = true
+           numberFormatter.decimalSeparator = ","
+           numberFormatter.numberStyle = .decimal
+           numberFormatter.maximumFractionDigits = 2
+           return "Rp " + numberFormatter.string(from: price as NSNumber)!
+       }
+    
 }
 
 struct DetailProductView_Previews: PreviewProvider {
@@ -118,3 +132,5 @@ struct DetailProductView_Previews: PreviewProvider {
         DetailProductView(productBarcode: "")
     }
 }
+
+

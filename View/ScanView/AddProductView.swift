@@ -78,11 +78,13 @@ struct AddProductView: View {
                 Form {
                     Section {
                         TextField("Kode", text: self.$productBarcode)
+                            .keyboardType(.numberPad)
                     }.listRowBackground(Color.gray.opacity(0.1))
                     
                     Section {
                         TextField("Nama", text: self.$productName)
                         TextField("Harga", text: self.$productPrice)
+                            .keyboardType(.numberPad)
                     }.listRowBackground(Color.gray.opacity(0.1))
                     
                     Section {
@@ -102,9 +104,12 @@ struct AddProductView: View {
                             
                             HStack {
                                 Text("Kategori")
+                                    .font(.system(.body))
+                                    .foregroundColor(.black)
                                 Spacer()
                                 if self.productCategory.isEmpty {
-                                    Text("Pilih Kategori")
+                                    Text("Pilih Kategori").font(.system(.body))
+                                        .foregroundColor(.black)
                                         .padding(.trailing)
                                 }else{
                                     Text(self.productCategory)
@@ -112,6 +117,7 @@ struct AddProductView: View {
                                 }
                                     
                                 Image(systemName: "chevron.right")
+                                    .foregroundColor(.gray)
                             }
                         })
                         .fullScreenCover(isPresented: self.$showCategory, content: {
@@ -133,10 +139,11 @@ struct AddProductView: View {
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
                         if(!productBarcode.isEmpty && !productCategory.isEmpty && !productName.isEmpty && !productPrice.isEmpty){
-                            persistenceController.addProduk(nama: productName, satuan: productUnit.rawValue, harga: Double(productPrice) ?? 0, kode: Int32(productBarcode) ?? 0, kategori: productCategory, relateTo: tokos.first!)
+                            persistenceController.addProduk(nama: productName, satuan: productUnit.rawValue, harga: Double(productPrice) ?? 0, kode: Int64(productBarcode) ?? 0, kategori: productCategory, relateTo: tokos.first!)
                             
                             self.showAddProductView.toggle()
                         }
+
                        
                     }, label: {
                         Text("Selesai")

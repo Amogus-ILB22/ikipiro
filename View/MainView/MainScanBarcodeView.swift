@@ -17,7 +17,7 @@ struct MainScanBarcodeView: View {
     @State var toggleCamera = false
     @State var showDetailProduct = false
     
-    @State var productBarcode: String = "0000"
+    @State var productBarcode: String = ""
     
     var body: some View {
         

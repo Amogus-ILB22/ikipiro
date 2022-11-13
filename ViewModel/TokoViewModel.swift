@@ -12,24 +12,18 @@ import CoreData
 
 class TokoViewModel: ObservableObject {
     
-    
-    
+
     @Published var selectedToko = Toko()
-    
-    
     @Published var openAddProduk: Bool = false
-    
-    
     @Published var openProdukFilter: Bool = false
-    
-    @Published var currentBarcodeProduct: String = ""
     @Published var showDetailProduct: Bool = false
     
+    @Published var selectedProduct = Produk()
     
-    //page control variable
-    @Published var showAddProductPage: Bool = false
     
     
     @Published var categories = UserDefaults.standard.array(forKey: "categories") as? [String]
     
 }
+
+

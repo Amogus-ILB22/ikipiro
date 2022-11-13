@@ -13,7 +13,7 @@ struct EditProductView: View {
     private let persistenceController = PersistenceController.shared
     @Environment(\.managedObjectContext) private var viewContext
     @State var segmentationSelection: EditProductSection = .withBarcode
-    @Binding var productBarcode: String
+    @State var productBarcode: String = ""
     @State var productName: String = ""
     @State var productPrice: String = ""
     @State var productCategory: String = ""
@@ -60,11 +60,13 @@ struct EditProductView: View {
                 Form {
                     Section {
                         TextField("Kode", text: self.$productBarcode)
+                            .keyboardType(.numberPad)
                     }.listRowBackground(Color.gray.opacity(0.1))
                     
                     Section {
                         TextField("Nama", text: self.$productName)
                         TextField("Harga", text: self.$productPrice)
+                            .keyboardType(.numberPad)
                     }.listRowBackground(Color.gray.opacity(0.1))
                     
                     Section {

@@ -47,6 +47,7 @@ struct ProductListView: View {
     @StateObject var tokoModel: TokoViewModel = .init()
     
     @State var showAddProductView: Bool = false
+    @State var selectedCategory: String = ""
     
         
     var body: some View {
@@ -61,89 +62,8 @@ struct ProductListView: View {
                         Spacer()
                     } else {
 //                        LazyVGrid(columns: [GridItem(.adaptive(minimum: kGridCellSize.width))]) {
-                        ProductListFiltered(filterCategory: searchText)
+                        ProductListFiltered(filterCategory: selectedCategory, filteredSearchKey: searchText)
                         
-//                        ForEach(products, id: \.self) { produk in
-//
-//                            HStack(){
-//
-//                                HStack(){
-//                                    VStack(alignment: .leading){
-//                                        //                                    HStack(){
-//                                        Text(produk.nama ?? "")
-//                                            .frame(maxWidth: .infinity,alignment: .leading)
-//                                            .multilineTextAlignment(.leading)
-//                                            .font(.system(.title3, design: .rounded))
-//
-//
-//                                        //                                    }
-//
-//                                        //                                    HStack(){
-//                                        Text(produk.kategori ?? "")
-//                                            .frame(maxWidth: .infinity,alignment: .leading)
-//                                            .multilineTextAlignment(.leading)
-//                                            .foregroundColor(.gray)
-//                                            .font(.system(.callout, design: .rounded))
-//                                        //                                    }
-//
-//                                    }
-//                                    .padding(.leading, 10)
-//
-//                                    .frame(maxWidth: .infinity)
-//
-//                                    //                                Spacer()
-//                                    VStack(alignment : .trailing){
-//                                        Text("\(String(produk.harga) ?? "0")")
-//                                            .font(.system(.title3, design: .rounded))
-//                                            .foregroundColor(Color("GreenButton"))
-//                                            .fontWeight(.bold)
-//                                            .frame(maxWidth: .infinity,alignment: .trailing)
-//                                            .multilineTextAlignment(.leading)
-//                                            .lineLimit(1)
-//
-//                                        Text("/\(produk.satuan ?? "") ")
-//                                            .font(.system(.caption, design: .rounded))
-//                                            .fontWeight(.bold)
-//                                            .foregroundColor(Color("GreenButton"))
-//                                            .frame(maxWidth: .infinity,alignment: .trailing)
-//                                            .font(.caption)
-//
-//                                    }.padding(.trailing, 5)
-//
-//                                        .frame(maxWidth: UIScreen.main.bounds.width*0.3)
-//                                }
-//                                .padding()
-//                                .frame(width : UIScreen.main.bounds.width*18/20, alignment: .center)
-//                                .background(Color.white)
-//
-//                                .cornerRadius(10)
-////                                .padding(.horizontal, 30)
-////                                .padding(.vertical,3)
-//                                .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 10, x: 0, y: 0)
-//                                                        .padding(.bottom,5)
-//
-//
-//                            }.frame(width : UIScreen.main.bounds.width*1, alignment: .center)
-//
-////                                .foregroundColor(Color.gray)
-//
-//
-//
-////                                    NavigationLink(destination: DetailTokoView(tokoModel: tokoModel)) {
-////                                        VStack{
-////                                            Text(toko.namaToko ?? "Nama Toko").foregroundColor(.white)
-////                                            Text(toko.namaPemilik ?? "Nama Pemilik").foregroundColor(.white)
-////
-////                                        }.background(.blue)
-////                                            .padding()
-////                                    }
-////                                        .simultaneousGesture(TapGesture().onEnded{
-////                                            tokoModel.selectedToko = toko
-////                                        })
-//                                    // gridItemView(photo: photo, itemSize: kGridCellSize)
-//                                }
-                            
-//                        }
                     }
                 }
                 
@@ -174,7 +94,7 @@ struct ProductListView: View {
                         Label("", systemImage: "line.3.horizontal.decrease.circle").labelStyle(.iconOnly).foregroundColor(Color("GreenButton"))
                     }
                     .sheet(isPresented: $tokoModel.openProdukFilter, content: {
-                        ProductFilterByCategoryView(tokoModel: tokoModel)
+                        ProductFilterByCategoryView(tokoModel: tokoModel, selectedItem: self.$selectedCategory)
                     })
                 }
                 
@@ -199,12 +119,7 @@ struct ProductListView: View {
         if searchText.isEmpty {
             return ProductListView.produks
         } else {
-            
-//            let produksFiltered = ProductListView.produks.filter() {
-//                let nama = $0.nama.contains(searchText)
-//
-//                return nama
-//            }
+
             
             return ProductListView.produks.filter { $0.nama.contains(searchText) }
         }
@@ -223,13 +138,28 @@ struct ProductListFiltered: View {
     @State var selectedBarcodeProduct: String = ""
     @State var showDetailProduct: Bool = false
     
-    init(filterCategory: String) {
-        _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.nama)],
-                                         predicate: filterCategory.isEmpty ? nil :
-                                            
-                                            
-                                            NSPredicate(format: "nama CONTAINS[cd] %@", filterCategory.lowercased()),
-                                         animation: .default)
+    init(filterCategory: String, filteredSearchKey: String) {
+        if filterCategory.isEmpty {
+            if filteredSearchKey.isEmpty{
+                _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.dibuatPada)],
+                                                 animation: .default)
+            }else{
+                _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.dibuatPada)],
+                                                 predicate: NSPredicate(format: "nama CONTAINS[cd] %@", filteredSearchKey.lowercased()),
+                                                 animation: .default)
+            }
+        }else{
+            if filteredSearchKey.isEmpty{
+                _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.dibuatPada)],
+                                                 predicate: NSPredicate(format: "kategori == %@", filterCategory),
+                                                 animation: .default)
+            }else{
+                _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.dibuatPada)],
+                                                 predicate: filterCategory.isEmpty ? nil :
+                                                    NSPredicate(format: "nama CONTAINS[cd] %@ and kategori == %@", filteredSearchKey.lowercased(), filterCategory),
+                                                 animation: .default)
+            }
+        }
     }
     
     var body: some View {
@@ -237,7 +167,7 @@ struct ProductListFiltered: View {
             Button(action: {
                 self.selectedBarcodeProduct = "\(produk.kode)"
                 self.showDetailProduct.toggle()
-                
+
             }, label: {
                 HStack(){
                     HStack(){
@@ -266,7 +196,7 @@ struct ProductListFiltered: View {
                         
                         //                                Spacer()
                         VStack(alignment : .trailing){
-                            Text("\(String(produk.harga) ?? "0")")
+                            Text(DetailProductView.df2so(produk.harga))
                                 .font(.system(.title3, design: .rounded))
                                 .foregroundColor(Color("GreenButton"))
                                 .fontWeight(.bold)
@@ -282,8 +212,6 @@ struct ProductListFiltered: View {
                                 .font(.caption)
                             
                         }.padding(.trailing, 5)
-                        
-                            .frame(maxWidth: UIScreen.main.bounds.width*0.3)
                     }
                     .padding()
                     .frame(width : UIScreen.main.bounds.width*18/20, alignment: .center)

@@ -17,7 +17,7 @@ struct ProductFilterByCategoryView: View {
 //    
     
     @ObservedObject var tokoModel: TokoViewModel = TokoViewModel()
-    @State var selectedItem: String = ""
+    @Binding var selectedItem: String
     @State var categories = UserDefaults.standard.array(forKey: "categories") as? [String]
 
  
@@ -84,6 +84,11 @@ struct ProductFilterByCategoryView: View {
                     //                self.showSheetView = false
                 }) {
                     Text("Atur Ulang").foregroundColor(Color("GreenButton")).bold()
+                        .onTapGesture {
+                            withAnimation{
+                                self.selectedItem = ""
+                            }
+                        }
                 })
             
     
@@ -95,6 +100,6 @@ struct ProductFilterByCategoryView: View {
 
 struct ProductFilterByCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductFilterByCategoryView()
+        ProductFilterByCategoryView(selectedItem: .constant(""))
     }
 }
