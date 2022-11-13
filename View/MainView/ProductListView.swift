@@ -95,6 +95,7 @@ struct ProductListView: View {
                                             .fontWeight(.bold)
                                             .frame(maxWidth: .infinity,alignment: .trailing)
                                             .multilineTextAlignment(.leading)
+                                            .lineLimit(1)
                                         
                                         Text("/\(produk.satuan ?? "") ")
                                             .font(.system(.caption, design: .rounded))

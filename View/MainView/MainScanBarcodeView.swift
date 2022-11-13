@@ -1,26 +1,23 @@
 //
-//  ScanView.swift
-//  CoreDataCloudKitShare
+//  MainScanBarcodeView.swift
+//  Ikipiro
 //
-//  Created by Rivaldo Fernandes on 12/11/22.
+//  Created by Rivaldo Fernandes on 13/11/22.
 //  Copyright © 2022 Apple. All rights reserved.
 //
 
 import Foundation
 import SwiftUI
-import AVFoundation
 import CodeScanner
+import AVFoundation
 
-struct ScanView: View {
+struct MainScanBarcodeView: View {
     @State var isTorchOn = false
     @State var cameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .front)
     @State var toggleCamera = false
     @State var showDetailProduct = false
     
-    @Binding var showScanView: Bool
-    @Binding var productBarcode: String
-    
-
+    @State var productBarcode: String = "0000"
     
     var body: some View {
         
@@ -88,7 +85,7 @@ struct ScanView: View {
                 HStack{
                     Button(action: {
                         if !self.productBarcode.isEmpty{
-                            self.showScanView.toggle()
+                            self.showDetailProduct.toggle()
                         }
                     }, label: {
                         Color.white
@@ -98,9 +95,9 @@ struct ScanView: View {
                 }.frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.black.opacity(0.5))
-//                    .sheet(isPresented: self.$showDetailProduct, content: {
-//                        DetailProductView(tokoViewModel: tokoViewModel, barcodeNumber: self.$scannedCode)
-//                    })
+                    .sheet(isPresented: self.$showDetailProduct, content: {
+                        DetailProductView(productBarcode: self.productBarcode)
+                    })
                 
             }
         }
@@ -110,8 +107,8 @@ struct ScanView: View {
     }
 }
 
-struct ScanView_Previews: PreviewProvider {
+struct MainScanBarcodeView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanView(showScanView: .constant(true), productBarcode: .constant(""))
+        MainScanBarcodeView()
     }
 }

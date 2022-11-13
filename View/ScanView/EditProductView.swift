@@ -44,9 +44,6 @@ struct EditProductView: View {
     
     @Binding var showAddProductView: Bool
     
-
-    
-    
     var body: some View {
         NavigationView{
             VStack {
@@ -70,7 +67,7 @@ struct EditProductView: View {
                         }.frame(maxWidth: .infinity)
                             .frame(maxHeight: 35)
                     }).sheet(isPresented: self.$showScanView, content: {
-                        ScanView(showScanView: self.$showScanView, productBarcode: self.$productBarcode)
+                        AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.$productBarcode)
                     })
                     .buttonStyle(.borderedProminent)
                         .foregroundColor(.white)
