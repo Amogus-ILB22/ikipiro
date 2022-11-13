@@ -83,6 +83,16 @@ struct AddBarcodeProductView: View {
                 Spacer()
                 
                 HStack{
+                    Spacer()
+                    Button(action: {
+                        self.showScanView.toggle()
+                    }, label: {
+                        Text("Kembali")
+                            .font(.system(.body))
+                            .foregroundColor(.white)
+                    })
+                    
+                    Spacer()
                     Button(action: {
                         if !self.productBarcode.isEmpty{
                             self.showScanView.toggle()
@@ -92,13 +102,12 @@ struct AddBarcodeProductView: View {
                             .frame(width: 50,height: 50)
                             .clipShape(Circle())
                     })
+                    Spacer()
+                    Spacer()
+                    Spacer()
                 }.frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.black.opacity(0.5))
-//                    .sheet(isPresented: self.$showDetailProduct, content: {
-//                        DetailProductView(tokoViewModel: tokoViewModel, barcodeNumber: self.$scannedCode)
-//                    })
-                
             }
         }
         
