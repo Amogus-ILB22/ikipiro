@@ -29,7 +29,6 @@ struct DetailProductView: View {
     
     @ObservedObject var tokoViewModel: TokoViewModel = TokoViewModel()
     @Environment(\.dismiss) var dismiss
-    
     @State var showAddProductView = false
     
     var body: some View {
@@ -110,6 +109,7 @@ struct DetailProductView: View {
                 .navigationBarTitleDisplayMode(.inline)
             }
         }
+            
     }
 }
 

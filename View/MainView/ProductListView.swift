@@ -220,6 +220,8 @@ struct ProductListView_Previews: PreviewProvider {
 
 struct ProductListFiltered: View {
     @FetchRequest var products: FetchedResults<Produk>
+    @State var selectedBarcodeProduct: String = ""
+    @State var showDetailProduct: Bool = false
     
     init(filterCategory: String) {
         _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.nama)],
@@ -232,82 +234,75 @@ struct ProductListFiltered: View {
     
     var body: some View {
         ForEach(products, id: \.self) { produk in
-            HStack(){
-
+            Button(action: {
+                self.selectedBarcodeProduct = "\(produk.kode)"
+                self.showDetailProduct.toggle()
+                
+            }, label: {
                 HStack(){
-                    VStack(alignment: .leading){
-                        //                                    HStack(){
-                        Text(produk.nama ?? "")
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                            .multilineTextAlignment(.leading)
-                            .font(.system(.title3, design: .rounded))
+                    HStack(){
+                        VStack(alignment: .leading){
+                            //                                    HStack(){
+                            Text(produk.nama ?? "")
+                                .frame(maxWidth: .infinity,alignment: .leading)
+                                .multilineTextAlignment(.leading)
+                                .font(.system(.title3, design: .rounded))
+                            
+                            
+                            //                                    }
+                            
+                            //                                    HStack(){
+                            Text(produk.kategori ?? "")
+                                .frame(maxWidth: .infinity,alignment: .leading)
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(.gray)
+                                .font(.system(.callout, design: .rounded))
+                            //                                    }
+                            
+                        }
+                        .padding(.leading, 10)
                         
+                        .frame(maxWidth: .infinity)
                         
-                        //                                    }
+                        //                                Spacer()
+                        VStack(alignment : .trailing){
+                            Text("\(String(produk.harga) ?? "0")")
+                                .font(.system(.title3, design: .rounded))
+                                .foregroundColor(Color("GreenButton"))
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity,alignment: .trailing)
+                                .multilineTextAlignment(.leading)
+                                .lineLimit(1)
+                            
+                            Text("/\(produk.satuan ?? "") ")
+                                .font(.system(.caption, design: .rounded))
+                                .fontWeight(.bold)
+                                .foregroundColor(Color("GreenButton"))
+                                .frame(maxWidth: .infinity,alignment: .trailing)
+                                .font(.caption)
+                            
+                        }.padding(.trailing, 5)
                         
-                        //                                    HStack(){
-                        Text(produk.kategori ?? "")
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                            .multilineTextAlignment(.leading)
-                            .foregroundColor(.gray)
-                            .font(.system(.callout, design: .rounded))
-                        //                                    }
-                        
+                            .frame(maxWidth: UIScreen.main.bounds.width*0.3)
                     }
-                    .padding(.leading, 10)
-                    
-                    .frame(maxWidth: .infinity)
-                    
-                    //                                Spacer()
-                    VStack(alignment : .trailing){
-                        Text("\(String(produk.harga) ?? "0")")
-                            .font(.system(.title3, design: .rounded))
-                            .foregroundColor(Color("GreenButton"))
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity,alignment: .trailing)
-                            .multilineTextAlignment(.leading)
-                            .lineLimit(1)
-                        
-                        Text("/\(produk.satuan ?? "") ")
-                            .font(.system(.caption, design: .rounded))
-                            .fontWeight(.bold)
-                            .foregroundColor(Color("GreenButton"))
-                            .frame(maxWidth: .infinity,alignment: .trailing)
-                            .font(.caption)
-                        
-                    }.padding(.trailing, 5)
-                    
-                        .frame(maxWidth: UIScreen.main.bounds.width*0.3)
-                }
-                .padding()
-                .frame(width : UIScreen.main.bounds.width*18/20, alignment: .center)
-                .background(Color.white)
+                    .padding()
+                    .frame(width : UIScreen.main.bounds.width*18/20, alignment: .center)
+                    .background(Color.white)
+                
+                    .cornerRadius(10)
+    //                                .padding(.horizontal, 30)
+    //                                .padding(.vertical,3)
+                    .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 10, x: 0, y: 0)
+                                            .padding(.bottom,5)
             
-                .cornerRadius(10)
-//                                .padding(.horizontal, 30)
-//                                .padding(.vertical,3)
-                .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 10, x: 0, y: 0)
-                                        .padding(.bottom,5)
-        
 
-            }.frame(width : UIScreen.main.bounds.width*1, alignment: .center)
+                }.frame(width : UIScreen.main.bounds.width*1, alignment: .center)
+            })
+            .sheet(isPresented: self.$showDetailProduct, content: {
+                DetailProductView(productBarcode: self.selectedBarcodeProduct)
+            })
          
-//                                .foregroundColor(Color.gray)
-        
-            
-            
-//                                    NavigationLink(destination: DetailTokoView(tokoModel: tokoModel)) {
-//                                        VStack{
-//                                            Text(toko.namaToko ?? "Nama Toko").foregroundColor(.white)
-//                                            Text(toko.namaPemilik ?? "Nama Pemilik").foregroundColor(.white)
-//
-//                                        }.background(.blue)
-//                                            .padding()
-//                                    }
-//                                        .simultaneousGesture(TapGesture().onEnded{
-//                                            tokoModel.selectedToko = toko
-//                                        })
-                    // gridItemView(photo: photo, itemSize: kGridCellSize)
-                }
+
+        }
     }
 }
