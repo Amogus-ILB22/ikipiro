@@ -29,4 +29,7 @@ class TokoViewModel: ObservableObject {
     //page control variable
     @Published var showAddProductPage: Bool = false
     
+    
+    @Published var categories = UserDefaults.standard.array(forKey: "categories") as? [String]
+    
 }

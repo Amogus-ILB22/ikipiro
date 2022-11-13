@@ -18,7 +18,7 @@ struct ProductFilterByCategoryView: View {
     
     @ObservedObject var tokoModel: TokoViewModel = TokoViewModel()
     @State var selectedItem: String = ""
-    
+    @State var categories = UserDefaults.standard.array(forKey: "categories") as? [String]
 
  
     var body: some View {
@@ -34,9 +34,9 @@ struct ProductFilterByCategoryView: View {
 //                    }      .listRowBackground(Color.white)
 //                        .background(Color.white)
                     List {
-                        ForEach((1...100), id:\.self){ number in
+                        ForEach(categories ?? [], id:\.self){ category in
                             Button(action: {}, label: {
-                                SelectionRow(title: "Kategori \(number)", selectedItem: self.$selectedItem)
+                                SelectionRow(title: category, selectedItem: self.$selectedItem)
                             })
                         }
                     }

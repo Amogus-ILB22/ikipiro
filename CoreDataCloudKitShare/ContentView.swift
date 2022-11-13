@@ -24,9 +24,11 @@ struct ContentView: View {
     }
     
     @AppStorage("isStart") private var isStart: Bool = false
+    
+//    @AppStorage("categories") private var categories: [String] = ["Makanan","Minuman","Alat Mandi", "Bahan Masak"]
 //    @AppStorage("isBreathingIntroStarted") private var isBreathingIntroStarted: Bool = false
 
-    
+    var categories: [String] = ["Makanan","Minuman","Alat Mandi", "Bahan Masak"]
     static let sample = OnboardingDataModel.data
     
     var body: some View {
@@ -84,7 +86,12 @@ struct ContentView: View {
                 UserDefaults.standard.set(true, forKey: "isStart")
                 }
                 
-            })
+            }).onAppear() {
+                UserDefaults.standard.set(categories, forKey: "categories")
+            }
+            
+            
+  
 //        }
 //
 //        else if !isBreathingIntroStarted  {
