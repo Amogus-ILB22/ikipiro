@@ -16,12 +16,14 @@ struct DetailProductView: View {
     //    ) private var products: FetchedResults<Produk>
     
     @FetchRequest var products: FetchedResults<Produk>
+    @State var productBarcode: String = ""
     
     init(productBarcode: String){
         _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.kode)],
                                          predicate: NSPredicate(format: "kode == %@", productBarcode),
                                          animation: .default
         )
+        self.productBarcode = productBarcode
     }
     
     
@@ -79,7 +81,10 @@ struct DetailProductView: View {
                             Text("Edit")
                         }).foregroundColor(.green)
                             .fullScreenCover(isPresented: self.$showAddProductView, content: {
-                                AddProductView(showAddProductView: self.$showAddProductView)
+//                                AddProductView(showAddProductView: self.$showAddProductView)
+                                
+                                EditProductView(productBarcode: "\(products.first?.kode ?? 0)", productName: products.first?.nama ?? "",productPrice: "\(products.first?.harga ?? 0)",productCategory: products.first?.kategori ?? "", productUnit: UnitProduct.init(rawValue: products.first?.satuan ?? "")!, produk: products.first!, showAddProductView: self.$showAddProductView)
+                                
                             })
                     }
                 }

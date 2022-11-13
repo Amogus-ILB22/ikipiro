@@ -59,85 +59,87 @@ struct ProductListView: View {
                         Spacer()
                     } else {
 //                        LazyVGrid(columns: [GridItem(.adaptive(minimum: kGridCellSize.width))]) {
-                        ForEach(products, id: \.self) { produk in
-                                    
-                            HStack(){
-
-                                HStack(){
-                                    VStack(alignment: .leading){
-                                        //                                    HStack(){
-                                        Text(produk.nama ?? "")
-                                            .frame(maxWidth: .infinity,alignment: .leading)
-                                            .multilineTextAlignment(.leading)
-                                            .font(.system(.title3, design: .rounded))
-                                        
-                                        
-                                        //                                    }
-                                        
-                                        //                                    HStack(){
-                                        Text(produk.kategori ?? "")
-                                            .frame(maxWidth: .infinity,alignment: .leading)
-                                            .multilineTextAlignment(.leading)
-                                            .foregroundColor(.gray)
-                                            .font(.system(.callout, design: .rounded))
-                                        //                                    }
-                                        
-                                    }
-                                    .padding(.leading, 10)
-                                    
-                                    .frame(maxWidth: .infinity)
-                                    
-                                    //                                Spacer()
-                                    VStack(alignment : .trailing){
-                                        Text("\(String(produk.harga) ?? "0")")
-                                            .font(.system(.title3, design: .rounded))
-                                            .foregroundColor(Color("GreenButton"))
-                                            .fontWeight(.bold)
-                                            .frame(maxWidth: .infinity,alignment: .trailing)
-                                            .multilineTextAlignment(.leading)
-                                            .lineLimit(1)
-                                        
-                                        Text("/\(produk.satuan ?? "") ")
-                                            .font(.system(.caption, design: .rounded))
-                                            .fontWeight(.bold)
-                                            .foregroundColor(Color("GreenButton"))
-                                            .frame(maxWidth: .infinity,alignment: .trailing)
-                                            .font(.caption)
-                                        
-                                    }.padding(.trailing, 5)
-                                    
-                                        .frame(maxWidth: UIScreen.main.bounds.width*0.3)
-                                }
-                                .padding()
-                                .frame(width : UIScreen.main.bounds.width*18/20, alignment: .center)
-                                .background(Color.white)
-                            
-                                .cornerRadius(10)
-//                                .padding(.horizontal, 30)
-//                                .padding(.vertical,3)
-                                .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 10, x: 0, y: 0)
-                                                        .padding(.bottom,5)
+                        ProductListFiltered(filterCategory: searchText)
                         
-
-                            }.frame(width : UIScreen.main.bounds.width*1, alignment: .center)
-                         
-//                                .foregroundColor(Color.gray)
-                        
-                            
-                            
-//                                    NavigationLink(destination: DetailTokoView(tokoModel: tokoModel)) {
-//                                        VStack{
-//                                            Text(toko.namaToko ?? "Nama Toko").foregroundColor(.white)
-//                                            Text(toko.namaPemilik ?? "Nama Pemilik").foregroundColor(.white)
+//                        ForEach(products, id: \.self) { produk in
 //
-//                                        }.background(.blue)
-//                                            .padding()
+//                            HStack(){
+//
+//                                HStack(){
+//                                    VStack(alignment: .leading){
+//                                        //                                    HStack(){
+//                                        Text(produk.nama ?? "")
+//                                            .frame(maxWidth: .infinity,alignment: .leading)
+//                                            .multilineTextAlignment(.leading)
+//                                            .font(.system(.title3, design: .rounded))
+//
+//
+//                                        //                                    }
+//
+//                                        //                                    HStack(){
+//                                        Text(produk.kategori ?? "")
+//                                            .frame(maxWidth: .infinity,alignment: .leading)
+//                                            .multilineTextAlignment(.leading)
+//                                            .foregroundColor(.gray)
+//                                            .font(.system(.callout, design: .rounded))
+//                                        //                                    }
+//
 //                                    }
-//                                        .simultaneousGesture(TapGesture().onEnded{
-//                                            tokoModel.selectedToko = toko
-//                                        })
-                                    // gridItemView(photo: photo, itemSize: kGridCellSize)
-                                }
+//                                    .padding(.leading, 10)
+//
+//                                    .frame(maxWidth: .infinity)
+//
+//                                    //                                Spacer()
+//                                    VStack(alignment : .trailing){
+//                                        Text("\(String(produk.harga) ?? "0")")
+//                                            .font(.system(.title3, design: .rounded))
+//                                            .foregroundColor(Color("GreenButton"))
+//                                            .fontWeight(.bold)
+//                                            .frame(maxWidth: .infinity,alignment: .trailing)
+//                                            .multilineTextAlignment(.leading)
+//                                            .lineLimit(1)
+//
+//                                        Text("/\(produk.satuan ?? "") ")
+//                                            .font(.system(.caption, design: .rounded))
+//                                            .fontWeight(.bold)
+//                                            .foregroundColor(Color("GreenButton"))
+//                                            .frame(maxWidth: .infinity,alignment: .trailing)
+//                                            .font(.caption)
+//
+//                                    }.padding(.trailing, 5)
+//
+//                                        .frame(maxWidth: UIScreen.main.bounds.width*0.3)
+//                                }
+//                                .padding()
+//                                .frame(width : UIScreen.main.bounds.width*18/20, alignment: .center)
+//                                .background(Color.white)
+//
+//                                .cornerRadius(10)
+////                                .padding(.horizontal, 30)
+////                                .padding(.vertical,3)
+//                                .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 10, x: 0, y: 0)
+//                                                        .padding(.bottom,5)
+//
+//
+//                            }.frame(width : UIScreen.main.bounds.width*1, alignment: .center)
+//
+////                                .foregroundColor(Color.gray)
+//
+//
+//
+////                                    NavigationLink(destination: DetailTokoView(tokoModel: tokoModel)) {
+////                                        VStack{
+////                                            Text(toko.namaToko ?? "Nama Toko").foregroundColor(.white)
+////                                            Text(toko.namaPemilik ?? "Nama Pemilik").foregroundColor(.white)
+////
+////                                        }.background(.blue)
+////                                            .padding()
+////                                    }
+////                                        .simultaneousGesture(TapGesture().onEnded{
+////                                            tokoModel.selectedToko = toko
+////                                        })
+//                                    // gridItemView(photo: photo, itemSize: kGridCellSize)
+//                                }
                             
 //                        }
                     }
@@ -210,5 +212,97 @@ struct ProductListView: View {
 struct ProductListView_Previews: PreviewProvider {
     static var previews: some View {
         ProductListView()
+    }
+}
+
+
+struct ProductListFiltered: View {
+    @FetchRequest var products: FetchedResults<Produk>
+    
+    init(filterCategory: String) {
+        _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.nama)],
+                                         predicate: filterCategory.isEmpty ? nil : NSPredicate(format: "nama CONTAINS[cd] %@", filterCategory.lowercased()),
+                                         animation: .default)
+    }
+    
+    var body: some View {
+        ForEach(products, id: \.self) { produk in
+            HStack(){
+
+                HStack(){
+                    VStack(alignment: .leading){
+                        //                                    HStack(){
+                        Text(produk.nama ?? "")
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                            .multilineTextAlignment(.leading)
+                            .font(.system(.title3, design: .rounded))
+                        
+                        
+                        //                                    }
+                        
+                        //                                    HStack(){
+                        Text(produk.kategori ?? "")
+                            .frame(maxWidth: .infinity,alignment: .leading)
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(.gray)
+                            .font(.system(.callout, design: .rounded))
+                        //                                    }
+                        
+                    }
+                    .padding(.leading, 10)
+                    
+                    .frame(maxWidth: .infinity)
+                    
+                    //                                Spacer()
+                    VStack(alignment : .trailing){
+                        Text("\(String(produk.harga) ?? "0")")
+                            .font(.system(.title3, design: .rounded))
+                            .foregroundColor(Color("GreenButton"))
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity,alignment: .trailing)
+                            .multilineTextAlignment(.leading)
+                            .lineLimit(1)
+                        
+                        Text("/\(produk.satuan ?? "") ")
+                            .font(.system(.caption, design: .rounded))
+                            .fontWeight(.bold)
+                            .foregroundColor(Color("GreenButton"))
+                            .frame(maxWidth: .infinity,alignment: .trailing)
+                            .font(.caption)
+                        
+                    }.padding(.trailing, 5)
+                    
+                        .frame(maxWidth: UIScreen.main.bounds.width*0.3)
+                }
+                .padding()
+                .frame(width : UIScreen.main.bounds.width*18/20, alignment: .center)
+                .background(Color.white)
+            
+                .cornerRadius(10)
+//                                .padding(.horizontal, 30)
+//                                .padding(.vertical,3)
+                .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 10, x: 0, y: 0)
+                                        .padding(.bottom,5)
+        
+
+            }.frame(width : UIScreen.main.bounds.width*1, alignment: .center)
+         
+//                                .foregroundColor(Color.gray)
+        
+            
+            
+//                                    NavigationLink(destination: DetailTokoView(tokoModel: tokoModel)) {
+//                                        VStack{
+//                                            Text(toko.namaToko ?? "Nama Toko").foregroundColor(.white)
+//                                            Text(toko.namaPemilik ?? "Nama Pemilik").foregroundColor(.white)
+//
+//                                        }.background(.blue)
+//                                            .padding()
+//                                    }
+//                                        .simultaneousGesture(TapGesture().onEnded{
+//                                            tokoModel.selectedToko = toko
+//                                        })
+                    // gridItemView(photo: photo, itemSize: kGridCellSize)
+                }
     }
 }

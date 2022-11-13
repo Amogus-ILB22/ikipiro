@@ -43,6 +43,7 @@
 		40C6211E2755AFB500015301 /* SharePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C6211D2755AFB500015301 /* SharePickerView.swift */; };
 		40D68E942719101A00FB9B78 /* PersistenceController+Deduplicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D68E932719101A00FB9B78 /* PersistenceController+Deduplicate.swift */; };
 		7E74FA292921056000F3D2E4 /* MainScanBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E74FA282921055F00F3D2E4 /* MainScanBarcodeView.swift */; };
+		7E74FA2D29211BFA00F3D2E4 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E74FA2C29211BFA00F3D2E4 /* EditProductView.swift */; };
 		7EB3C39E291EC53A006E2251 /* AddBarcodeProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C39D291EC53A006E2251 /* AddBarcodeProductView.swift */; };
 		7EB3C3A3291EC848006E2251 /* DetailProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C3A2291EC848006E2251 /* DetailProductView.swift */; };
 		7EB3C3A5291EC923006E2251 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C3A4291EC923006E2251 /* AddProductView.swift */; };
@@ -124,6 +125,7 @@
 		40C6211D2755AFB500015301 /* SharePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePickerView.swift; sourceTree = "<group>"; };
 		40D68E932719101A00FB9B78 /* PersistenceController+Deduplicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Deduplicate.swift"; sourceTree = "<group>"; };
 		7E74FA282921055F00F3D2E4 /* MainScanBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScanBarcodeView.swift; sourceTree = "<group>"; };
+		7E74FA2C29211BFA00F3D2E4 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
 		7EB3C39D291EC53A006E2251 /* AddBarcodeProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBarcodeProductView.swift; sourceTree = "<group>"; };
 		7EB3C3A2291EC848006E2251 /* DetailProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductView.swift; sourceTree = "<group>"; };
 		7EB3C3A4291EC923006E2251 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				7EB3C3A2291EC848006E2251 /* DetailProductView.swift */,
 				7EB3C3A4291EC923006E2251 /* AddProductView.swift */,
 				7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */,
+				7E74FA2C29211BFA00F3D2E4 /* EditProductView.swift */,
 			);
 			path = ScanView;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				407D7D6D2704335A00D2BA90 /* AppDelegate.swift in Sources */,
 				40BF672F273B17A900ED9D2D /* PersistenceController+History.swift in Sources */,
 				408BD4DA2713B29900294A81 /* AddToExistingShareView.swift in Sources */,
+				7E74FA2D29211BFA00F3D2E4 /* EditProductView.swift in Sources */,
 				4058316A2767DCDE0044E86D /* FullImageView.swift in Sources */,
 				DC2B6D20291D5ADB00CA6BE1 /* DetailTokoView.swift in Sources */,
 				DC2B6D23291D5D9400CA6BE1 /* TokoViewModel.swift in Sources */,
