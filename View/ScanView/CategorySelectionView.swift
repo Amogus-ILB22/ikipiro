@@ -11,16 +11,16 @@ import SwiftUI
 
 struct CategorySelectionView: View {
     @State var showNewCategoryModal: Bool = false
-    @State var selectedItem: String? = nil
+    
+    @Binding var showCategory: Bool
+    @Binding var productCategory: String
     
     var body: some View {
         NavigationView{
             VStack {
                 List {
                     ForEach((1...100), id:\.self){ number in
-                        Button(action: {}, label: {
-                            SelectionRow(title: "Kategori \(number)", selectedItem: self.$selectedItem)
-                        })
+                            SelectionRow(title: "Kategori \(number)", selectedItem: self.$productCategory)
                     }
                 }
                 Spacer()
@@ -46,16 +46,16 @@ struct CategorySelectionView: View {
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button(action: {
-                       print("clicked")
+                        self.showCategory.toggle()
                     }, label: {
                         Text("Kembali")
                     }).foregroundColor(.green)
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
-    //                        dismiss()
-    //                        self.showEditProduct.toggle()
-                       
+                        if !self.productCategory.isEmpty{
+                            self.showCategory.toggle()
+                        }
                     }, label: {
                         Text("Selesai")
                     }).foregroundColor(.green)
@@ -106,7 +106,7 @@ struct AddCategoryModelView: View {
 
 struct SelectionRow: View {
     let title: String
-    @Binding var selectedItem: String?
+    @Binding var selectedItem: String
     
     var body: some View {
         Button(action: {
@@ -128,7 +128,7 @@ struct SelectionRow: View {
 
 struct CategorySelection_Previews: PreviewProvider {
     static var previews: some View {
-        CategorySelectionView()
+        CategorySelectionView(showCategory: .constant(true), productCategory: .constant(""))
     }
 }
 

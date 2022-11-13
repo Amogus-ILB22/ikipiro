@@ -10,7 +10,7 @@ import CoreData
 import CloudKit
 import SwiftUI
 
-let gCloudKitContainerIdentifier = "iCloud.com.rivaldofez.testcdcloudkit"
+let gCloudKitContainerIdentifier = "iCloud.com.amogus.ikipiro"
 
 /**
  This app doesn't necessarily post notifications from the main queue.

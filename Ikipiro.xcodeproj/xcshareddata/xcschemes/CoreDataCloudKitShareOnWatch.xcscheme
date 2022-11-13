@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "407D7CE727024EBD00D2BA90"
-               BuildableName = "CoreDataCloudKitShare.app"
-               BlueprintName = "CoreDataCloudKitShare"
+               BuildableName = "Ikipiro.app"
+               BlueprintName = "Ikipiro"
                ReferencedContainer = "container:Ikipiro.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

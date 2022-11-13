@@ -13,6 +13,7 @@ import CoreData
 class TokoViewModel: ObservableObject {
     
     
+    
     @Published var selectedToko = Toko()
     
     
@@ -24,5 +25,8 @@ class TokoViewModel: ObservableObject {
     @Published var currentBarcodeProduct: String = ""
     @Published var showDetailProduct: Bool = false
     
+    
+    //page control variable
+    @Published var showAddProductPage: Bool = false
     
 }

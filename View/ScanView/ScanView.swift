@@ -13,12 +13,14 @@ import CodeScanner
 
 struct ScanView: View {
     @State var isTorchOn = false
-    @State var scannedCode = "12345678910"
     @State var cameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .front)
     @State var toggleCamera = false
     @State var showDetailProduct = false
     
-    @ObservedObject var tokoViewModel: TokoViewModel = TokoViewModel()
+    @Binding var showScanView: Bool
+    @Binding var productBarcode: String
+    
+
     
     var body: some View {
         
@@ -28,15 +30,14 @@ struct ScanView: View {
                 CodeScannerView(codeTypes: [.ean13, .ean8, .code128, .code39], scanMode: .continuous,isTorchOn: isTorchOn, videoCaptureDevice:  AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .front),
                                 completion: { result in
                     if case let .success(code) = result {
-                        self.scannedCode = code.string
-                        tokoViewModel.currentBarcodeProduct = code.string
+                        self.productBarcode = code.string
                     }
                 })
             }else{
                 CodeScannerView(codeTypes: [.ean13, .ean8, .code128, .code39], scanMode: .continuous,isTorchOn: isTorchOn, videoCaptureDevice:  AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .back),
                                 completion: { result in
                     if case let .success(code) = result {
-                        self.scannedCode = code.string
+                        self.productBarcode = code.string
                     }
                 })
             }
@@ -78,7 +79,7 @@ struct ScanView: View {
                 
                 Spacer()
                 
-                Text(self.scannedCode)
+                Text(self.productBarcode)
                     .font(.system(.title3)).bold()
                     .foregroundColor(.white)
                 
@@ -86,8 +87,8 @@ struct ScanView: View {
                 
                 HStack{
                     Button(action: {
-                        if !self.scannedCode.isEmpty{
-                            self.showDetailProduct.toggle()
+                        if !self.productBarcode.isEmpty{
+                            self.showScanView.toggle()
                         }
                     }, label: {
                         Color.white
@@ -97,9 +98,9 @@ struct ScanView: View {
                 }.frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.black.opacity(0.5))
-                    .sheet(isPresented: self.$showDetailProduct, content: {
-                        DetailProductView(tokoViewModel: tokoViewModel, barcodeNumber: self.$scannedCode)
-                    })
+//                    .sheet(isPresented: self.$showDetailProduct, content: {
+//                        DetailProductView(tokoViewModel: tokoViewModel, barcodeNumber: self.$scannedCode)
+//                    })
                 
             }
         }
@@ -111,6 +112,6 @@ struct ScanView: View {
 
 struct ScanView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanView()
+        ScanView(showScanView: .constant(true), productBarcode: .constant(""))
     }
 }

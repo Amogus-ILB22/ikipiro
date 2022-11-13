@@ -20,18 +20,32 @@ enum UnitProduct: String, CaseIterable {
     case liter = "Liter"
     case pcs = "Pcs"
     case dozen = "Lusin"
+    case box = "Dus"
+    case wrap = "Bungkus"
 }
 
 
 struct EditProductView: View {
+    private let persistenceController = PersistenceController.shared
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.namaPemilik)],
+                  animation: .default
+    ) private var tokos: FetchedResults<Toko>
+    
     @State var segmentationSelection: EditProductSection = .withBarcode
     @State var productBarcode: String = ""
     @State var productName: String = ""
     @State var productPrice: String = ""
     @State var productCategory: String = ""
     @State var productUnit: UnitProduct = .dozen
-    
+
     @State var showCategory = false
+    @State var showScanView = false
+    
+    @Binding var showAddProductView: Bool
+    
+
+    
     
     var body: some View {
         NavigationView{
@@ -42,20 +56,29 @@ struct EditProductView: View {
                         
                     }
                 }.pickerStyle(.segmented)
-                    .padding()
+                    .padding(.horizontal)
                 
-                Button(action: {}, label: {
-                    HStack {
-                        Image(systemName: "barcode.viewfinder")
-                        Text("Scan Barcode")
-                            .font(.body)
-                            .bold()
-                    }.frame(maxWidth: .infinity)
-                        .frame(maxHeight: 35)
-                }).buttonStyle(.borderedProminent)
-                    .foregroundColor(.white)
-                    .tint(.green)
-                    .padding()
+                if segmentationSelection == EditProductSection.withBarcode{
+                    Button(action: {
+                        self.showScanView.toggle()
+                    }, label: {
+                        HStack {
+                            Image(systemName: "barcode.viewfinder")
+                            Text("Scan Barcode")
+                                .font(.body)
+                                .bold()
+                        }.frame(maxWidth: .infinity)
+                            .frame(maxHeight: 35)
+                    }).sheet(isPresented: self.$showScanView, content: {
+                        ScanView(showScanView: self.$showScanView, productBarcode: self.$productBarcode)
+                    })
+                    .buttonStyle(.borderedProminent)
+                        .foregroundColor(.white)
+                        .tint(.green)
+                        .padding()
+                }
+                
+                
                 Form {
                     Section {
                         TextField("Kode", text: self.$productBarcode)
@@ -72,6 +95,7 @@ struct EditProductView: View {
                                 Text(unit.rawValue)
                             }
                         }.pickerStyle(.wheel)
+                            .padding(0)
                     }.listRowBackground(Color.gray.opacity(0.1))
                     
                     Section {
@@ -83,33 +107,40 @@ struct EditProductView: View {
                             HStack {
                                 Text("Kategori")
                                 Spacer()
-                                Text("Kategori")
-                                    .padding(.trailing)
+                                if self.productCategory.isEmpty {
+                                    Text("Pilih Kategori")
+                                        .padding(.trailing)
+                                }else{
+                                    Text(self.productCategory)
+                                        .padding(.trailing)
+                                }
+                                    
                                 Image(systemName: "chevron.right")
                             }
                         })
                         .fullScreenCover(isPresented: self.$showCategory, content: {
-                            CategorySelectionView()
+                            CategorySelectionView(showCategory: self.$showCategory, productCategory: self.$productCategory)
                         })
                     }.listRowBackground(Color.gray.opacity(0.1))
                 }
                 .background(.clear)
-    //            .scrollContentBackground(.hidden)
-                
                 Spacer()
             }
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button(action: {
-                       print("clicked")
+                        self.showAddProductView.toggle()
                     }, label: {
                         Text("Kembali")
                     }).foregroundColor(.green)
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
-//                        dismiss()
-//                        self.showEditProduct.toggle()
+                        if(!productBarcode.isEmpty && !productCategory.isEmpty && !productName.isEmpty && !productPrice.isEmpty){
+                            persistenceController.addProduk(nama: productName, satuan: productUnit.rawValue, harga: Double(productPrice) ?? 0, kode: Int32(productBarcode) ?? 0, kategori: productCategory, relateTo: tokos.first!)
+                            
+                            self.showAddProductView.toggle()
+                        }
                        
                     }, label: {
                         Text("Selesai")
@@ -120,14 +151,12 @@ struct EditProductView: View {
             .navigationTitle("Tambah Produk")
             .navigationBarTitleDisplayMode(.inline)
         }
-        
-        
     }
 }
 
 struct EditProduct_Previews: PreviewProvider {
     static var previews: some View {
-        EditProductView()
+        EditProductView(showAddProductView: .constant(true))
     }
 }
 

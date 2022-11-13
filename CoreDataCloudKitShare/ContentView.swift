@@ -56,7 +56,7 @@ struct ContentView: View {
                         }
                     
                     
-                    ScanView()
+                    Text("Hello")
                         .tabItem{
                             Image(systemName: "barcode.viewfinder").renderingMode(.template)
                             Text("Memindai")

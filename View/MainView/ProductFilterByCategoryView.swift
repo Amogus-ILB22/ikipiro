@@ -17,7 +17,7 @@ struct ProductFilterByCategoryView: View {
 //    
     
     @ObservedObject var tokoModel: TokoViewModel = TokoViewModel()
-    
+    @State var selectedItem: String = ""
     
 
  
@@ -25,15 +25,21 @@ struct ProductFilterByCategoryView: View {
         NavigationView{
             VStack{
                 Form {
-                    List{
-                        Text("Hello, World!")
-                        Text("Hello, World!")
-                        Text("Hello, World!")
-                        Text("Hello, World!")
-                        Text("Hello, World!")
-                    }      .listRowBackground(Color.white)
-                        .background(Color.white)
-                    
+//                    List{
+//                        Text("Hello, World!")
+//                        Text("Hello, World!")
+//                        Text("Hello, World!")
+//                        Text("Hello, World!")
+//                        Text("Hello, World!")
+//                    }      .listRowBackground(Color.white)
+//                        .background(Color.white)
+                    List {
+                        ForEach((1...100), id:\.self){ number in
+                            Button(action: {}, label: {
+                                SelectionRow(title: "Kategori \(number)", selectedItem: self.$selectedItem)
+                            })
+                        }
+                    }
                 }
                 Button(action: {
                     withAnimation {

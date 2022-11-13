@@ -19,6 +19,12 @@ struct ProductListView: View {
         var kode: Int
         
     }
+    
+    private let persistenceController = PersistenceController.shared
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.nama)],
+                  animation: .default
+    ) private var products: FetchedResults<Produk>
 
         static var produks: [ProdukDataModel] = [
           ProdukDataModel(nama: "Aqua 500 Ml", harga: 5000, satuan: "Unit", kategoti: "Minuman", kode: 7978471274),
@@ -40,17 +46,20 @@ struct ProductListView: View {
     @State private var searchText = ""
     @StateObject var tokoModel: TokoViewModel = .init()
     
+    @State var showAddProductView: Bool = false
+    
         
     var body: some View {
         NavigationView {
             VStack {
                 ScrollView {
-                    if ProductListView.produks.isEmpty {
+//                    if ProductListView.produks.isEmpty {
+                    if products.isEmpty {
                         Text("Tap the add (+) button on the iOS app to add a Produk.").padding()
                         Spacer()
                     } else {
 //                        LazyVGrid(columns: [GridItem(.adaptive(minimum: kGridCellSize.width))]) {
-                        ForEach(searchResults, id: \.self) { produk in
+                        ForEach(products, id: \.self) { produk in
                                     
                             HStack(){
 
@@ -66,7 +75,7 @@ struct ProductListView: View {
                                         //                                    }
                                         
                                         //                                    HStack(){
-                                        Text(produk.kategoti ?? "")
+                                        Text(produk.kategori ?? "")
                                             .frame(maxWidth: .infinity,alignment: .leading)
                                             .multilineTextAlignment(.leading)
                                             .foregroundColor(.gray)
@@ -133,10 +142,10 @@ struct ProductListView: View {
                     }
                 }
                 
+                
                 Button(action: {
                     withAnimation {
-//                        showFilterSheetActivity = false
-//                    activityModel.loadActivities()
+                        self.showAddProductView.toggle()
                     }
                 }) {
                     Text("Tambah Produk")
@@ -151,30 +160,32 @@ struct ProductListView: View {
                 }.padding(.horizontal)
                     .padding(.bottom,10)
             }
-            .sheet(isPresented: $tokoModel.openProdukFilter, content: {
-                ProductFilterByCategoryView(tokoModel: tokoModel)
+            .fullScreenCover(isPresented: self.$showAddProductView, content: {
+                EditProductView(showAddProductView: self.$showAddProductView)
             })
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: { tokoModel.openProdukFilter.toggle() }) {
                         Label("", systemImage: "line.3.horizontal.decrease.circle").labelStyle(.iconOnly).foregroundColor(Color("GreenButton"))
                     }
+                    .sheet(isPresented: $tokoModel.openProdukFilter, content: {
+                        ProductFilterByCategoryView(tokoModel: tokoModel)
+                    })
+                }
+                
+                ToolbarItem(placement: .cancellationAction) {
+                    VStack(alignment: .leading) {
+                        Text("Produk")
+                            .font(.system(.title, design: .rounded)).fontWeight(.bold)
+                          .foregroundColor(Color.black)
+                          
+                        
+                        Spacer()
+                    }
                 }
             }
             .searchable(text: $searchText)
             .navigationBarTitleDisplayMode(.inline)
-             .toolbar {
-                 ToolbarItem(placement: .cancellationAction) {
-                     VStack(alignment: .leading) {
-                         Text("Produk")
-                             .font(.system(.title, design: .rounded)).fontWeight(.bold)
-                           .foregroundColor(Color.black)
-                           
-                         
-                         Spacer()
-                     }
-                 }
-             }
 
         }.navigationViewStyle(.stack)
     }

@@ -14,7 +14,7 @@ struct DetailProductView: View {
     @Environment(\.dismiss) var dismiss
     @Binding var barcodeNumber: String
     
-    @State var showEditProduct = false
+    @State var showAddProductView = false
     
     var body: some View {
         NavigationView{
@@ -58,13 +58,13 @@ struct DetailProductView: View {
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
 //                        dismiss()
-                        self.showEditProduct.toggle()
+                        self.showAddProductView.toggle()
                        
                     }, label: {
                         Text("Edit")
                     }).foregroundColor(.green)
-                        .fullScreenCover(isPresented: self.$showEditProduct, content: {
-                            EditProductView()
+                        .fullScreenCover(isPresented: self.$showAddProductView, content: {
+                            EditProductView(showAddProductView: self.$showAddProductView)
                         })
                 }
             }
