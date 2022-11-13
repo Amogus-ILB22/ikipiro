@@ -24,8 +24,7 @@ enum UnitProduct: String, CaseIterable {
     case wrap = "Bungkus"
 }
 
-
-struct EditProductView: View {
+struct AddProductView: View {
     private let persistenceController = PersistenceController.shared
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.namaPemilik)],
@@ -153,7 +152,7 @@ struct EditProductView: View {
 
 struct EditProduct_Previews: PreviewProvider {
     static var previews: some View {
-        EditProductView(showAddProductView: .constant(true))
+        AddProdukView()
     }
 }
 

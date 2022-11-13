@@ -106,7 +106,7 @@ struct DetailTokoView: View {
             sheetView(with: item)
         }
         .sheet(isPresented: $tokoModel.openAddProduk, content: {
-            AddProductView(tokoModel: tokoModel)
+            AddProdukView(tokoModel: tokoModel)
         })
     }
     

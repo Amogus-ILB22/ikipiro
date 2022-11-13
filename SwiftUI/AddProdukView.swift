@@ -9,7 +9,7 @@
 import SwiftUI
 import CoreData
 
-struct AddProductView: View {
+struct AddProdukView: View {
     
     
     @State var nama: String = ""

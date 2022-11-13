@@ -45,7 +45,7 @@ extension NSManagedObjectContext {
         case sheetOnDismiss
         case deduplicateAndWait
         case addToko, deleteToko
-        case addProduk, deleteProduk
+        case addProduk, deleteProduk, updateProduk
     }
     /**
      Save a context and handle the save error. This sample simply prints the error message. Real apps can

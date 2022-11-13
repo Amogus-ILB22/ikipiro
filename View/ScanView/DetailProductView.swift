@@ -79,7 +79,7 @@ struct DetailProductView: View {
                             Text("Edit")
                         }).foregroundColor(.green)
                             .fullScreenCover(isPresented: self.$showAddProductView, content: {
-                                EditProductView(showAddProductView: self.$showAddProductView)
+                                AddProductView(showAddProductView: self.$showAddProductView)
                             })
                     }
                 }

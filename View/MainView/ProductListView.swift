@@ -162,7 +162,7 @@ struct ProductListView: View {
                     .padding(.bottom,10)
             }
             .fullScreenCover(isPresented: self.$showAddProductView, content: {
-                EditProductView(showAddProductView: self.$showAddProductView)
+                AddProductView(showAddProductView: self.$showAddProductView)
             })
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
