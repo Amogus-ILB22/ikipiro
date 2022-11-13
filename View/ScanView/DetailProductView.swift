@@ -16,14 +16,14 @@ struct DetailProductView: View {
     //    ) private var products: FetchedResults<Produk>
     
     @FetchRequest var products: FetchedResults<Produk>
-    @State var productBarcode: String = ""
+    @State var productBarcode: String
     
     init(productBarcode: String){
         _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.kode)],
                                          predicate: NSPredicate(format: "kode == %@", productBarcode),
                                          animation: .default
         )
-        self.productBarcode = productBarcode
+        _productBarcode = State(initialValue: productBarcode)
     }
     
     
@@ -36,34 +36,55 @@ struct DetailProductView: View {
         if(!products.isEmpty){
             NavigationView{
                 VStack {
-                    VStack {
-                        Text(products.first?.nama ?? "").font(.system(.title2).bold())
-                            .padding(.top)
-                        Text("\(products.first?.harga ?? 0)/\(products.first?.satuan ?? "")").font(.system(.title3))
-                            .padding(.bottom)
+                    List{
+                        Section {
+                            HStack {
+                                Text("Kode")
+                                    .font(.system(.body)).bold()
+                                    .foregroundColor(.black)
+                                Spacer()
+                                Text("\(products.first?.kode ?? 0)")
+                                    .font(.system(.body))
+                                    .foregroundColor(.black)
+                            }
+                        }
+                        
+                        Section {
+                            HStack {
+                                Text("Nama")
+                                    .font(.system(.body)).bold()
+                                    .foregroundColor(.black)
+                                Spacer()
+                                Text(products.first?.nama ?? "")
+                                    .font(.system(.body))
+                                    .foregroundColor(.black)
+                            }
+                            
+                            HStack {
+                                Text("Harga")
+                                    .font(.system(.body)).bold()
+                                    .foregroundColor(.black)
+                                Spacer()
+                                Text("\(products.first?.harga ?? 0)")
+                                    .font(.system(.body))
+                                    .foregroundColor(.black)
+                            }
+                            
+                            HStack {
+                                Text("Kategori")
+                                    .font(.system(.body)).bold()
+                                    .foregroundColor(.black)
+                                Spacer()
+                                Text("\(products.first?.kategori ?? "")")
+                                    .font(.system(.body))
+                                    .foregroundColor(.black)
+                            }
+                            
+                        }
+                        
                     }
-                    .frame(maxWidth: .infinity)
-                    .background(Color.gray.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                    .padding(EdgeInsets(top: 0, leading: 30, bottom: 0, trailing: 30))
-                    
-                    VStack {
-                        HStack {
-                            Text("Kode")
-                            Spacer()
-                            Text("\(products.first?.kode ?? 1)")
-                        }.padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
-                        Divider().padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
-                        HStack {
-                            Text("Kategori")
-                            Spacer()
-                            Text("\(products.first?.kategori ?? "")")
-                        }.padding(EdgeInsets(top: 0, leading: 20, bottom: 20, trailing: 20))
-                    }
-                    .background(Color.gray.opacity(0.1))
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                    .padding(EdgeInsets(top: 30, leading: 30, bottom: 0, trailing: 30))
                 }
+                .frame(maxWidth: .infinity)
                 .toolbar{
                     ToolbarItem(placement: .navigationBarLeading){
                         Button(action: {
@@ -74,21 +95,18 @@ struct DetailProductView: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button(action: {
-                            //                        dismiss()
                             self.showAddProductView.toggle()
                             
                         }, label: {
                             Text("Edit")
                         }).foregroundColor(.green)
                             .fullScreenCover(isPresented: self.$showAddProductView, content: {
-//                                AddProductView(showAddProductView: self.$showAddProductView)
-                                
-                                EditProductView(productBarcode: "\(products.first?.kode ?? 0)", productName: products.first?.nama ?? "",productPrice: "\(products.first?.harga ?? 0)",productCategory: products.first?.kategori ?? "", productUnit: UnitProduct.init(rawValue: products.first?.satuan ?? "")!, produk: products.first!, showAddProductView: self.$showAddProductView)
+                                EditProductView(productBarcode: self.$productBarcode, productName: products.first?.nama ?? "",productPrice: "\(products.first?.harga ?? 0)",productCategory: products.first?.kategori ?? "", productUnit: UnitProduct.init(rawValue: products.first?.satuan ?? "")!, produk: products.first!, showAddProductView: self.$showAddProductView)
                                 
                             })
                     }
                 }
-                .navigationTitle("Detail Product")
+                .navigationTitle("Informasi Produk")
                 .navigationBarTitleDisplayMode(.inline)
             }
         }

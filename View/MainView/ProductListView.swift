@@ -55,7 +55,9 @@ struct ProductListView: View {
                 ScrollView {
 //                    if ProductListView.produks.isEmpty {
                     if products.isEmpty {
-                        Text("Tap the add (+) button on the iOS app to add a Produk.").padding()
+                        Spacer()
+                        Text("Tambahkan produk di toko anda.").padding()
+                            .multilineTextAlignment(.center)
                         Spacer()
                     } else {
 //                        LazyVGrid(columns: [GridItem(.adaptive(minimum: kGridCellSize.width))]) {

@@ -13,7 +13,7 @@ struct EditProductView: View {
     private let persistenceController = PersistenceController.shared
     @Environment(\.managedObjectContext) private var viewContext
     @State var segmentationSelection: EditProductSection = .withBarcode
-    @State var productBarcode: String = ""
+    @Binding var productBarcode: String
     @State var productName: String = ""
     @State var productPrice: String = ""
     @State var productCategory: String = ""
