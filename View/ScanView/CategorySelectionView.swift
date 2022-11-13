@@ -14,13 +14,16 @@ struct CategorySelectionView: View {
     
     @Binding var showCategory: Bool
     @Binding var productCategory: String
+//    @State var categories = UserDefaults.standard.array(forKey: "categories") as? [String]
+    
+    @StateObject var tokoModel: TokoViewModel = .init()
     
     var body: some View {
         NavigationView{
             VStack {
                 List {
-                    ForEach((1...100), id:\.self){ number in
-                            SelectionRow(title: "Kategori \(number)", selectedItem: self.$productCategory)
+                    ForEach(tokoModel.categories ?? [], id:\.self){ category in
+                            SelectionRow(title: category, selectedItem: self.$productCategory)
                     }
                 }
                 Spacer()
@@ -39,7 +42,7 @@ struct CategorySelectionView: View {
                     .tint(.green)
                     .padding()
                     .sheet(isPresented: self.$showNewCategoryModal, content: {
-                        AddCategoryModelView()
+                        AddCategoryModelView(tokoModel: tokoModel)
                     })
                 
             }
@@ -64,15 +67,21 @@ struct CategorySelectionView: View {
             }
             .navigationTitle("Pilih Kategori")
             .navigationBarTitleDisplayMode(.inline)
+        }.onAppear{
+            
+            tokoModel.categories = UserDefaults.standard.array(forKey: "categories") as? [String]
+            
         }
         
     }
 }
 
 struct AddCategoryModelView: View {
+    @ObservedObject var tokoModel: TokoViewModel = TokoViewModel()
+                        
     @Environment(\.dismiss) var dismiss
     @State var newCategory: String = ""
-    
+  
     var body: some View {
         NavigationView{
             VStack {
@@ -91,7 +100,20 @@ struct AddCategoryModelView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
+                        var temp = UserDefaults.standard.array(forKey: "categories") as? [String]
+                        
+                        temp?.append(newCategory)
+                        
+                        
+                        UserDefaults.standard.set(temp, forKey: "categories")
+                        
+                        
                        dismiss()
+                        
+                        tokoModel.categories = temp ?? []
+                       
+                        
+                        
                     }, label: {
                         Text("Selesai")
                     }).foregroundColor(.green)
@@ -113,7 +135,7 @@ struct SelectionRow: View {
             self.selectedItem = self.title
         }, label: {
             HStack {
-                Text(title)
+                Text(title).foregroundColor(.black)
                 Spacer()
                 if title == selectedItem {
                     Image(systemName: "checkmark")

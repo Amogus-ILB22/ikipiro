@@ -67,12 +67,12 @@ struct SettingView: View {
             VStack{
                 List{
                     
-//                    ForEach(tokos, id: \.self) { toko in
-//
-//                        if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
-//
-//
-//                        } else{
+                    ForEach(tokos, id: \.self) { toko in
+
+                        if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
+
+
+                        } else{
                             
                             
                                         Section{
@@ -169,8 +169,8 @@ struct SettingView: View {
                                 
                             }.frame(maxWidth: .infinity).background(Image("card")).scaledToFit()
                             
-//                        }
-//                    }
+                        }
+                    }
                     
                     Section(header: Text("TOKO SAYA")) {
                         
