@@ -221,7 +221,10 @@ struct ProductListFiltered: View {
     
     init(filterCategory: String) {
         _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.nama)],
-                                         predicate: filterCategory.isEmpty ? nil : NSPredicate(format: "nama CONTAINS[cd] %@", filterCategory.lowercased()),
+                                         predicate: filterCategory.isEmpty ? nil :
+                                            
+                                            
+                                            NSPredicate(format: "nama CONTAINS[cd] %@", filterCategory.lowercased()),
                                          animation: .default)
     }
     
