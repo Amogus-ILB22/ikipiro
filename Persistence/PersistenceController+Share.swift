@@ -264,7 +264,7 @@ extension PersistenceController {
     }
     
     private func configure(share: CKShare, with photo: Photo? = nil) {
-        share[CKShare.SystemFieldKey.title] = "A cool photo"
+        share[CKShare.SystemFieldKey.title] = "Bagikan Toko"
     }
 }
 
