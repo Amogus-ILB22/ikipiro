@@ -50,16 +50,16 @@ struct ContentView: View {
                 
                 
                 TabView{
-                    
-                    ProductListView()
+                    MainProductListView()
+//                    ProductListView()
                         .tabItem{
                             Image(systemName: "shippingbox").renderingMode(.template)
                             Text("Produk")
                         }
                     
                     
-                    MainScanBarcodeView()
-//                    TestView()
+//                    MainScanBarcodeView()
+                    TestView()
                         .tabItem{
                             Image(systemName: "barcode.viewfinder").renderingMode(.template)
                             Text("Memindai")

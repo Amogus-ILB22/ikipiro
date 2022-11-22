@@ -12,6 +12,7 @@ import CoreData
 class ProductViewModel: ObservableObject {
     private let persistenceController = PersistenceController.shared
     @Published var products: [Produk] = []
+    @Published var selectedBarcodeProduk = ""
     
     func fetchProduct(){
         let request = NSFetchRequest<Produk>(entityName: "Produk")
@@ -59,6 +60,21 @@ class ProductViewModel: ObservableObject {
         } catch let error {
             print("Error Fetching. \(error)")
             return false
+        }
+    }
+    
+    func getProduct(productBarcode: String) -> Produk? {
+        let request = NSFetchRequest<Produk>(entityName: "Produk")
+        request.predicate = NSPredicate(format: "kode = %@", productBarcode)
+        
+        do {
+            let result = try persistenceController.persistentContainer.viewContext.fetch(request)
+            
+            return result.first
+            
+        } catch let error {
+            print("Error Fetching. \(error)")
+            return nil
         }
     }
 }

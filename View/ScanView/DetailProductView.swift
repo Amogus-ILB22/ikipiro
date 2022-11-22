@@ -15,16 +15,20 @@ struct DetailProductView: View {
     //                  animation: .default
     //    ) private var products: FetchedResults<Produk>
     
-    @FetchRequest var products: FetchedResults<Produk>
-    @State var productBarcode: String
+    @StateObject var vm = ProductViewModel()
     
-    init(productBarcode: String){
-        _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.kode)],
-                                         predicate: NSPredicate(format: "kode == %@", productBarcode),
-                                         animation: .default
-        )
-        _productBarcode = State(initialValue: productBarcode)
-    }
+    
+//    @FetchRequest var products: FetchedResults<Produk>
+    @State var productBarcode: String
+    @State var currentProduct: Produk? = nil
+    
+//    init(productBarcode: String){
+//        _products = FetchRequest<Produk>(sortDescriptors: [SortDescriptor(\.kode)],
+//                                         predicate: NSPredicate(format: "kode == %@", productBarcode),
+//                                         animation: .default
+//        )
+//        _productBarcode = State(initialValue: productBarcode)
+//    }
     
     
     @ObservedObject var tokoViewModel: TokoViewModel = TokoViewModel()
@@ -32,85 +36,89 @@ struct DetailProductView: View {
     @State var showAddProductView = false
     
     var body: some View {
-        if(!products.isEmpty){
             NavigationView{
-                VStack {
-                    List{
-                        Section {
-                            HStack {
-                                Text("Kode")
-                                    .font(.system(.body)).bold()
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Text(String(products.first?.kode ?? 0))
-                                    .font(.system(.body))
-                                    .foregroundColor(.black)
-                            }
-                        }
-                        
-                        Section {
-                            HStack {
-                                Text("Nama")
-                                    .font(.system(.body)).bold()
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Text(products.first?.nama ?? "")
-                                    .font(.system(.body))
-                                    .foregroundColor(.black)
+                if(currentProduct != nil){
+                    VStack {
+                        List{
+                            Section {
+                                HStack {
+                                    Text("Kode")
+                                        .font(.system(.body)).bold()
+                                        .foregroundColor(.black)
+                                    Spacer()
+                                    Text(String(currentProduct?.kode ?? 0))
+                                        .font(.system(.body))
+                                        .foregroundColor(.black)
+                                }
                             }
                             
-                            HStack {
-                                Text("Harga")
-                                    .font(.system(.body)).bold()
-                                    .foregroundColor(.black)
-                                Spacer()
-//                                Text(NumberFormatter.localizedString(from: (products.first?.harga ?? 0) as NSNumber, number: .ordinal))
-                                Text(DetailProductView.df2so(products.first?.harga ?? 0))
-//                                Text(String(format: "Rp %.02f", products.first?.harga ?? 0))
-                                    .font(.system(.body))
-                                    .foregroundColor(.black)
-                            }
-                            
-                            HStack {
-                                Text("Kategori")
-                                    .font(.system(.body)).bold()
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Text("\(products.first?.kategori ?? "")")
-                                    .font(.system(.body))
-                                    .foregroundColor(.black)
-                            }
-                            
-                        }
-                        
-                    }
-                }
-                .frame(maxWidth: .infinity)
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading){
-                        Button(action: {
-                            dismiss()
-                        }, label: {
-                            Text("Kembali")
-                        }).foregroundColor(.green)
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        Button(action: {
-                            self.showAddProductView.toggle()
-                            
-                        }, label: {
-                            Text("Edit")
-                        }).foregroundColor(.green)
-                            .fullScreenCover(isPresented: self.$showAddProductView, content: {
-                                EditProductView(productBarcode:  self.productBarcode, productName: products.first?.nama ?? "",productPrice: "\(products.first?.harga ?? 0)",productCategory: products.first?.kategori ?? "", productUnit: UnitProduct.init(rawValue: products.first?.satuan ?? "")!, produk: products.first!, showAddProductView: self.$showAddProductView)
+                            Section {
+                                HStack {
+                                    Text("Nama")
+                                        .font(.system(.body)).bold()
+                                        .foregroundColor(.black)
+                                    Spacer()
+                                    Text(currentProduct?.nama ?? "")
+                                        .font(.system(.body))
+                                        .foregroundColor(.black)
+                                }
                                 
-                            })
+                                HStack {
+                                    Text("Harga")
+                                        .font(.system(.body)).bold()
+                                        .foregroundColor(.black)
+                                    Spacer()
+    //                                Text(NumberFormatter.localizedString(from: (products.first?.harga ?? 0) as NSNumber, number: .ordinal))
+                                    Text(DetailProductView.df2so(currentProduct?.harga ?? 0))
+    //                                Text(String(format: "Rp %.02f", products.first?.harga ?? 0))
+                                        .font(.system(.body))
+                                        .foregroundColor(.black)
+                                }
+                                
+                                HStack {
+                                    Text("Kategori")
+                                        .font(.system(.body)).bold()
+                                        .foregroundColor(.black)
+                                    Spacer()
+                                    Text("\(currentProduct?.kategori ?? "")")
+                                        .font(.system(.body))
+                                        .foregroundColor(.black)
+                                }
+                                
+                            }
+                            
+                        }
                     }
+                    .frame(maxWidth: .infinity)
+                    .toolbar{
+                        ToolbarItem(placement: .navigationBarLeading){
+                            Button(action: {
+                                dismiss()
+                            }, label: {
+                                Text("Kembali")
+                            }).foregroundColor(.green)
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing){
+                            Button(action: {
+                                self.showAddProductView.toggle()
+                                
+                            }, label: {
+                                Text("Edit")
+                            }).foregroundColor(.green)
+//                                .fullScreenCover(isPresented: self.$showAddProductView, content: {
+//                                    EditProductView(productBarcode:  self.productBarcode, productName: currentProduct?.nama ?? "",productPrice: "\(currentProduct.harga ?? 0)",productCategory: currentProduct?.kategori ?? "", productUnit: UnitProduct.init(rawValue: currentProduct?.satuan ?? "")!, produk: currentProduct ?? <#default value#>, showAddProductView: self.$showAddProductView)
+//                                    
+//                                })
+                        }
+                    }
+                    .navigationTitle("Informasi Produk")
+                    .navigationBarTitleDisplayMode(.inline)
                 }
-                .navigationTitle("Informasi Produk")
-                .navigationBarTitleDisplayMode(.inline)
             }
-        }
+            .onAppear{
+                self.currentProduct = vm.getProduct(productBarcode: productBarcode) ?? Produk()
+            }
+        
             
     }
     

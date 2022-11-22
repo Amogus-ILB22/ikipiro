@@ -134,6 +134,9 @@ struct ProductListView_Previews: PreviewProvider {
 
 
 struct ProductListFiltered: View {
+    @StateObject var productViewModel = ProductViewModel()
+    
+    
     @FetchRequest var products: FetchedResults<Produk>
     @State var selectedBarcodeProduct: String = ""
     @State var showDetailProduct: Bool = false
@@ -163,7 +166,7 @@ struct ProductListFiltered: View {
     }
     
     var body: some View {
-        ForEach(products, id: \.self) { produk in
+        ForEach(productViewModel.products, id: \.self) { produk in
             Button(action: {
                 self.selectedBarcodeProduct = "\(produk.kode)"
                 self.showDetailProduct.toggle()
@@ -218,8 +221,6 @@ struct ProductListFiltered: View {
                     .background(Color.white)
                 
                     .cornerRadius(10)
-    //                                .padding(.horizontal, 30)
-    //                                .padding(.vertical,3)
                     .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 10, x: 0, y: 0)
                                             .padding(.bottom,5)
             
@@ -227,10 +228,13 @@ struct ProductListFiltered: View {
                 }.frame(width : UIScreen.main.bounds.width*1, alignment: .center)
             })
             .sheet(isPresented: self.$showDetailProduct, content: {
-                DetailProductView(productBarcode: self.selectedBarcodeProduct)
+                DetailProductView(productBarcode: "8992222051613")
             })
          
 
+        }
+        .onAppear{
+            productViewModel.fetchProduct()
         }
     }
 }
