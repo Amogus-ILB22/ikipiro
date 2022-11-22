@@ -101,6 +101,12 @@ struct MainProductListView: View {
                 .onChange(of: self.selectedCategory){ value in
                     productViewModel.filteredProduct(category: value)
                 }
+                .onChange(of: self.showDetailProduct){ _ in
+                    productViewModel.filteredProduct()
+                }
+                .onChange(of: self.showAddProductView){ _ in
+                    productViewModel.filteredProduct()
+                }
                 
                 Button(action: {
                     withAnimation {
@@ -118,7 +124,7 @@ struct MainProductListView: View {
                     .padding(.bottom,10)
             }
                         .fullScreenCover(isPresented: self.$showAddProductView, content: {
-                            AddProductView(productViewModel: productViewModel,showAddProductView: self.$showAddProductView)
+                            AddProductView(showAddProductView: self.$showAddProductView)
                         })
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

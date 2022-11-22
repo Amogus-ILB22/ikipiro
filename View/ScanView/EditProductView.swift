@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 struct EditProductView: View {
+    @StateObject var productViewModel = ProductViewModel()
+    
     private let persistenceController = PersistenceController.shared
     @Environment(\.managedObjectContext) private var viewContext
     @State var segmentationSelection: EditProductSection = .withBarcode
@@ -18,7 +20,7 @@ struct EditProductView: View {
     @State var productPrice: String = ""
     @State var productCategory: String = ""
     @State var productUnit: UnitProduct = .dozen
-    @State var produk: Produk
+    @State var currentProduct: Produk
     
     @State var showCategory = false
     @State var showScanView = false
@@ -55,7 +57,6 @@ struct EditProductView: View {
                         .tint(.green)
                         .padding()
                 }
-                
                 
                 Form {
                     Section {
@@ -117,19 +118,25 @@ struct EditProductView: View {
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
                         if(!productBarcode.isEmpty && !productCategory.isEmpty && !productName.isEmpty && !productPrice.isEmpty){
-                            persistenceController.editProduk(produk: self.produk, nama: productName, satuan: productUnit.rawValue, harga: Double(productPrice) ?? 0, kategori: productCategory, relateTo: produk.toko!)
+                            productViewModel.editProduct(nama: self.productName, satuan: self.productUnit.rawValue, harga: Double(self.productPrice) ?? 0, kategori: self.productCategory, product: self.currentProduct)
                             
                             self.showAddProductView.toggle()
                         }
-                       
                     }, label: {
                         Text("Selesai")
                     }).foregroundColor(.green)
                         
                 }
             }
-            .navigationTitle("Tambah Produk")
+            .navigationTitle("Ubah Produk")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onAppear{
+            self.productBarcode = String(currentProduct.kode)
+            self.productName = currentProduct.nama ?? ""
+            self.productPrice = String(currentProduct.harga)
+            self.productCategory = currentProduct.kategori ?? ""
+            self.productUnit = UnitProduct.init(rawValue: currentProduct.satuan ?? "")!
         }
     }
 }

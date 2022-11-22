@@ -34,8 +34,8 @@ extension PersistenceController {
         
     }
     
-    func editProduk(produk: Produk,nama: String,satuan: String, harga: Double ,kategori: String , relateTo toko: Toko){
-        if let context = toko.managedObjectContext {
+    func editProduk(produk: Produk,nama: String,satuan: String, harga: Double ,kategori: String){
+        if let context = produk.toko!.managedObjectContext {
             context.performAndWait {
                 produk.nama = nama
                 produk.kategori = kategori

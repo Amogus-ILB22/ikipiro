@@ -78,6 +78,10 @@ class ProductViewModel: ObservableObject {
         persistenceController.addProduk(nama: nama, satuan: satuan, harga: harga, kode: kode, kategori: kategori, relateTo: toko)
     }
     
+    func editProduct(nama: String,satuan: String, harga: Double, kategori: String, product: Produk){
+        persistenceController.editProduk(produk: product, nama: nama, satuan: satuan, harga: harga, kategori: kategori)
+    }
+    
     func containsProduct(productBarcode: String) -> Bool {
         let request = NSFetchRequest<Produk>(entityName: "Produk")
         request.predicate = NSPredicate(format: "kode = %@", productBarcode)
