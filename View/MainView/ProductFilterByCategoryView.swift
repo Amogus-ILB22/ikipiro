@@ -9,14 +9,7 @@
 import SwiftUI
 
 struct ProductFilterByCategoryView: View {
-    
-    
-//    init() {
-//        UIView.appearance().backgroundColor = UIColor.red
-//    }
-//    
-    
-    @ObservedObject var tokoModel: TokoViewModel = TokoViewModel()
+    @Binding var showProductFilter: Bool
     @Binding var selectedItem: String
     @State var categories = UserDefaults.standard.array(forKey: "categories") as? [String]
 
@@ -25,14 +18,6 @@ struct ProductFilterByCategoryView: View {
         NavigationView{
             VStack{
                 Form {
-//                    List{
-//                        Text("Hello, World!")
-//                        Text("Hello, World!")
-//                        Text("Hello, World!")
-//                        Text("Hello, World!")
-//                        Text("Hello, World!")
-//                    }      .listRowBackground(Color.white)
-//                        .background(Color.white)
                     List {
                         ForEach(categories ?? [], id:\.self){ category in
                             Button(action: {}, label: {
@@ -43,26 +28,18 @@ struct ProductFilterByCategoryView: View {
                 }
                 Button(action: {
                     withAnimation {
-//                        showFilterSheetActivity = false
-//                    activityModel.loadActivities()
-                        
-                        tokoModel.openProdukFilter.toggle()
+                        self.showProductFilter.toggle()
                     }
                 }) {
                     Text("Terapkan")
                         .font(.system(.headline, design: .rounded))
                         .padding()
                         .frame(maxWidth: .infinity)
-    //                        .border(Color.blue)
                         .foregroundColor(.white)
                         .background(Color("GreenButton"))
                         .cornerRadius(10)
-    //                        .padding()
                 }.padding(.horizontal,30)
                     .padding(.bottom,10)
-                
-                
-                
                 
             }.background(Color.listHeaderBackground)
                 .onAppear{
@@ -74,14 +51,12 @@ struct ProductFilterByCategoryView: View {
             
             .navigationBarTitle(Text("Filter"), displayMode: .inline)
                 .navigationBarItems(leading: Button(action: {
-                    tokoModel.openProdukFilter.toggle()
-                    //                self.showSheetView = false
+                    self.showProductFilter.toggle()
                 }) {
                     Text("Kembali").foregroundColor(Color("GreenButton"))
                 })
                 .navigationBarItems(trailing: Button(action: {
                     print("Dismissing sheet view...")
-                    //                self.showSheetView = false
                 }) {
                     Text("Atur Ulang").foregroundColor(Color("GreenButton")).bold()
                         .onTapGesture {
@@ -100,6 +75,6 @@ struct ProductFilterByCategoryView: View {
 
 struct ProductFilterByCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductFilterByCategoryView(selectedItem: .constant(""))
+        ProductFilterByCategoryView(showProductFilter: .constant(true) ,selectedItem: .constant(""))
     }
 }

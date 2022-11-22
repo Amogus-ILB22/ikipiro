@@ -13,19 +13,16 @@ import SwiftUI
 struct MainProductListView: View {
     @StateObject var productViewModel = ProductViewModel()
     @State private var searchText = ""
+    @State private var selectedCategory = ""
+    
+    
     @State private var showDetailProduct = false
+    @State private var showAddProductView = false
+    @State private var showProductFilter = false
+    
+
     
     var body: some View {
-        //        List{
-        //            ForEach(vm.products){ product in
-        //                Text(product.nama ?? "")
-        //            }
-        //        }
-        //        .onAppear{
-        //            vm.fetchProduct()
-        //            print(vm.containsProduct(productBarcode: "666"))
-        //        }
-        
         NavigationView {
             VStack {
                 ScrollView {
@@ -44,29 +41,22 @@ struct MainProductListView: View {
                                 HStack(){
                                     HStack(){
                                         VStack(alignment: .leading){
-                                            //                                    HStack(){
                                             Text(produk.nama ?? "")
                                                 .frame(maxWidth: .infinity,alignment: .leading)
                                                 .multilineTextAlignment(.leading)
                                                 .font(.system(.title3, design: .rounded))
-                                            
-                                            
-                                            //                                    }
-                                            
-                                            //                                    HStack(){
+
                                             Text(produk.kategori ?? "")
                                                 .frame(maxWidth: .infinity,alignment: .leading)
                                                 .multilineTextAlignment(.leading)
                                                 .foregroundColor(.gray)
                                                 .font(.system(.callout, design: .rounded))
-                                            //                                    }
                                             
                                         }
                                         .padding(.leading, 10)
-                                        
                                         .frame(maxWidth: .infinity)
                                         
-                                        //                                Spacer()
+                                        
                                         VStack(alignment : .trailing){
                                             Text(DetailProductView.df2so(produk.harga))
                                                 .font(.system(.title3, design: .rounded))
@@ -99,21 +89,22 @@ struct MainProductListView: View {
                             .sheet(isPresented: self.$showDetailProduct, content: {
                                 DetailProductView(productBarcode: productViewModel.selectedBarcodeProduk)
                             })
-                            
-                            
                         }
-                        
                     }
                 }
                 .onAppear{
-                    productViewModel.fetchProduct()
+                    productViewModel.filteredProduct()
                 }
-                
-                
+                .onChange(of: self.searchText){ value in
+                    productViewModel.filteredProduct(searchKey: value)
+                }
+                .onChange(of: self.selectedCategory){ value in
+                    productViewModel.filteredProduct(category: value)
+                }
                 
                 Button(action: {
                     withAnimation {
-                        //                        self.showAddProductView.toggle()
+                        self.showAddProductView.toggle()
                     }
                 }) {
                     Text("Tambah Produk")
@@ -126,20 +117,20 @@ struct MainProductListView: View {
                 }.padding(.horizontal)
                     .padding(.bottom,10)
             }
-            //            .fullScreenCover(isPresented: self.$showAddProductView, content: {
-            //                AddProductView(showAddProductView: self.$showAddProductView)
-            //            })
+                        .fullScreenCover(isPresented: self.$showAddProductView, content: {
+                            AddProductView(productViewModel: productViewModel,showAddProductView: self.$showAddProductView)
+                        })
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        //                        tokoModel.openProdukFilter.toggle()
+                        self.showProductFilter.toggle()
                         
                     }) {
                         Label("", systemImage: "line.3.horizontal.decrease.circle").labelStyle(.iconOnly).foregroundColor(Color("GreenButton"))
                     }
-                    //                    .sheet(isPresented: $tokoModel.openProdukFilter, content: {
-                    //                        ProductFilterByCategoryView(tokoModel: tokoModel, selectedItem: self.$selectedCategory)
-                    //                    })
+                    .sheet(isPresented: self.$showProductFilter, content: {
+                        ProductFilterByCategoryView(showProductFilter: self.$showProductFilter ,selectedItem: self.$selectedCategory)
+                    })
                 }
                 
                 ToolbarItem(placement: .cancellationAction) {

@@ -46,7 +46,6 @@
 		7E74FA292921056000F3D2E4 /* MainScanBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E74FA282921055F00F3D2E4 /* MainScanBarcodeView.swift */; };
 		7E74FA2D29211BFA00F3D2E4 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E74FA2C29211BFA00F3D2E4 /* EditProductView.swift */; };
 		7E978978292B7B9F001A80B1 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E978977292B7B9F001A80B1 /* ProductViewModel.swift */; };
-		7E97897A292B7CCD001A80B1 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E978979292B7CCD001A80B1 /* Test.swift */; };
 		7EB3C39E291EC53A006E2251 /* AddBarcodeProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C39D291EC53A006E2251 /* AddBarcodeProductView.swift */; };
 		7EB3C3A3291EC848006E2251 /* DetailProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C3A2291EC848006E2251 /* DetailProductView.swift */; };
 		7EB3C3A5291EC923006E2251 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C3A4291EC923006E2251 /* AddProductView.swift */; };
@@ -131,7 +130,6 @@
 		7E74FA282921055F00F3D2E4 /* MainScanBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScanBarcodeView.swift; sourceTree = "<group>"; };
 		7E74FA2C29211BFA00F3D2E4 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
 		7E978977292B7B9F001A80B1 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
-		7E978979292B7CCD001A80B1 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		7EB3C39D291EC53A006E2251 /* AddBarcodeProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBarcodeProductView.swift; sourceTree = "<group>"; };
 		7EB3C3A2291EC848006E2251 /* DetailProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductView.swift; sourceTree = "<group>"; };
 		7EB3C3A4291EC923006E2251 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
@@ -290,7 +288,6 @@
 				7EB3C3A4291EC923006E2251 /* AddProductView.swift */,
 				7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */,
 				7E74FA2C29211BFA00F3D2E4 /* EditProductView.swift */,
-				7E978979292B7CCD001A80B1 /* Test.swift */,
 			);
 			path = ScanView;
 			sourceTree = "<group>";
@@ -470,7 +467,6 @@
 				40AE53F12719F98C00B978CA /* CoreDataHelper.swift in Sources */,
 				407D7D6D2704335A00D2BA90 /* AppDelegate.swift in Sources */,
 				40BF672F273B17A900ED9D2D /* PersistenceController+History.swift in Sources */,
-				7E97897A292B7CCD001A80B1 /* Test.swift in Sources */,
 				408BD4DA2713B29900294A81 /* AddToExistingShareView.swift in Sources */,
 				7E74FA2D29211BFA00F3D2E4 /* EditProductView.swift in Sources */,
 				4058316A2767DCDE0044E86D /* FullImageView.swift in Sources */,

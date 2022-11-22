@@ -14,7 +14,10 @@ class ProductViewModel: ObservableObject {
     @Published var products: [Produk] = []
     @Published var selectedBarcodeProduk = ""
     
-    func fetchProduct(){
+    @Published private var searchKeyword = ""
+    @Published private var selectedCategory = ""
+    
+    private func fetchProduct(){
         let request = NSFetchRequest<Produk>(entityName: "Produk")
         
         do {
@@ -23,6 +26,33 @@ class ProductViewModel: ObservableObject {
             print("Error Fetching. \(error)")
         }
     }
+    
+    func filteredProduct(searchKey: String? = nil, category: String? = nil){
+        if searchKey != nil {
+            self.searchKeyword = searchKey!
+        }
+        
+        if category != nil {
+            self.selectedCategory = category!
+        }
+        
+        
+        fetchProduct()
+        if(self.searchKeyword.isEmpty){
+            if(self.selectedCategory.isEmpty){
+                
+            }else{
+               products = products.filter { $0.kategori == category}
+            }
+        }else{
+            if(self.selectedCategory.isEmpty){
+                products = products.filter{ ($0.nama?.contains(self.searchKeyword))!}
+            }else{
+                products = products.filter{(($0.nama?.contains(self.searchKeyword))! && $0.kategori == self.selectedCategory)}
+            }
+        }
+    }
+    
     
     func deleteProduct(indexSet: IndexSet){
         guard let index = indexSet.first else { return }

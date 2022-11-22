@@ -25,6 +25,8 @@ enum UnitProduct: String, CaseIterable {
 }
 
 struct AddProductView: View {
+    @StateObject var productViewModel = ProductViewModel()
+    
     private let persistenceController = PersistenceController.shared
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.namaPemilik)],
@@ -142,9 +144,8 @@ struct AddProductView: View {
                             persistenceController.addProduk(nama: productName, satuan: productUnit.rawValue, harga: Double(productPrice) ?? 0, kode: Int64(productBarcode) ?? 0, kategori: productCategory, relateTo: tokos.first!)
                             
                             self.showAddProductView.toggle()
+                            productViewModel.filteredProduct()
                         }
-
-                       
                     }, label: {
                         Text("Selesai")
                     }).foregroundColor(.green)
