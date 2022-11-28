@@ -15,7 +15,7 @@ struct CustomFormCellView: View {
     var body: some View {
         
         
-        FormCustomStack{
+        CustomFormStack{
             HStack() {
                 TextField("Kode", text: self.$productBarcode)
                     .keyboardType(.numberPad)

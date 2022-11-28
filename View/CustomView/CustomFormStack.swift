@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct FormCustomStack<Content> : View where Content: View {
+struct CustomFormStack<Content> : View where Content: View {
     let content: () -> Content
     
     init(@ViewBuilder _ content: @escaping () -> Content){
@@ -21,6 +21,6 @@ struct FormCustomStack<Content> : View where Content: View {
         }
         .frame(maxWidth: UIScreen.main.bounds.width - 60)
         .background(Color("cultured"))
-        .cornerRadius(20)
+        .cornerRadius(10)
     }
 }

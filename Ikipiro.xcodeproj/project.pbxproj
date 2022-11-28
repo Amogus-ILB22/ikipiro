@@ -43,7 +43,9 @@
 		40C6211E2755AFB500015301 /* SharePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C6211D2755AFB500015301 /* SharePickerView.swift */; };
 		40D68E942719101A00FB9B78 /* PersistenceController+Deduplicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D68E932719101A00FB9B78 /* PersistenceController+Deduplicate.swift */; };
 		7E2FD7E02934D2040007004C /* CustomFormCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2FD7DF2934D2040007004C /* CustomFormCellView.swift */; };
-		7E2FD7E32934DEB50007004C /* FormCustomStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2FD7E22934DEB50007004C /* FormCustomStack.swift */; };
+		7E2FD7E32934DEB50007004C /* CustomFormStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2FD7E22934DEB50007004C /* CustomFormStack.swift */; };
+		7E2FD7E52934ED360007004C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2FD7E42934ED360007004C /* CustomTextField.swift */; };
+		7E2FD7E72934EFB30007004C /* CustomTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2FD7E62934EFB30007004C /* CustomTextEditor.swift */; };
 		7E72B61C292C82050026BBE0 /* MainProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E72B61B292C82050026BBE0 /* MainProductListView.swift */; };
 		7E74FA292921056000F3D2E4 /* MainScanBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E74FA282921055F00F3D2E4 /* MainScanBarcodeView.swift */; };
 		7E74FA2D29211BFA00F3D2E4 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E74FA2C29211BFA00F3D2E4 /* EditProductView.swift */; };
@@ -130,7 +132,9 @@
 		40C6211D2755AFB500015301 /* SharePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePickerView.swift; sourceTree = "<group>"; };
 		40D68E932719101A00FB9B78 /* PersistenceController+Deduplicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Deduplicate.swift"; sourceTree = "<group>"; };
 		7E2FD7DF2934D2040007004C /* CustomFormCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormCellView.swift; sourceTree = "<group>"; };
-		7E2FD7E22934DEB50007004C /* FormCustomStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCustomStack.swift; sourceTree = "<group>"; };
+		7E2FD7E22934DEB50007004C /* CustomFormStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormStack.swift; sourceTree = "<group>"; };
+		7E2FD7E42934ED360007004C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		7E2FD7E62934EFB30007004C /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
 		7E72B61B292C82050026BBE0 /* MainProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProductListView.swift; sourceTree = "<group>"; };
 		7E74FA282921055F00F3D2E4 /* MainScanBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScanBarcodeView.swift; sourceTree = "<group>"; };
 		7E74FA2C29211BFA00F3D2E4 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
@@ -289,7 +293,9 @@
 		7E2FD7E12934DE880007004C /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				7E2FD7E22934DEB50007004C /* FormCustomStack.swift */,
+				7E2FD7E22934DEB50007004C /* CustomFormStack.swift */,
+				7E2FD7E42934ED360007004C /* CustomTextField.swift */,
+				7E2FD7E62934EFB30007004C /* CustomTextEditor.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -479,6 +485,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E2FD7E52934ED360007004C /* CustomTextField.swift in Sources */,
 				407D7D6B2704334400D2BA90 /* SceneDelegate.swift in Sources */,
 				DCF656F8291FEDD00053ABF5 /* WelcomeView.swift in Sources */,
 				40AE53F12719F98C00B978CA /* CoreDataHelper.swift in Sources */,
@@ -496,7 +503,7 @@
 				4074428B270FB2B5009CABC7 /* PersistenceController+Share.swift in Sources */,
 				7EB3C3A7291EC981006E2251 /* CategorySelectionView.swift in Sources */,
 				DC2B6D1E291D4FDC00CA6BE1 /* AddTokoView.swift in Sources */,
-				7E2FD7E32934DEB50007004C /* FormCustomStack.swift in Sources */,
+				7E2FD7E32934DEB50007004C /* CustomFormStack.swift in Sources */,
 				40D68E942719101A00FB9B78 /* PersistenceController+Deduplicate.swift in Sources */,
 				407D7D0427024F5D00D2BA90 /* PersistenceController.swift in Sources */,
 				DC2B6D2D291E21BD00CA6BE1 /* OnboardingViewPure.swift in Sources */,
@@ -508,6 +515,7 @@
 				407D7CEE27024EBD00D2BA90 /* PhotoGridView.swift in Sources */,
 				408BD4DC2713F0F400294A81 /* ManagingSharesView.swift in Sources */,
 				40527E19270BC8FE00DB2901 /* PersistenceController+Rating.swift in Sources */,
+				7E2FD7E72934EFB30007004C /* CustomTextEditor.swift in Sources */,
 				407D7D612703880E00D2BA90 /* PersistenceController+Tag.swift in Sources */,
 				7EE868F7292E1D8F00C215C6 /* TestView.swift in Sources */,
 				DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */,

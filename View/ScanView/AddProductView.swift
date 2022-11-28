@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftUI
+import UIKit
 
 enum EditProductSection: String, CaseIterable {
     case withBarcode = "Dengan Barcode"
@@ -40,59 +41,61 @@ struct AddProductView: View {
     var body: some View {
         NavigationView{
             VStack {
-                Form {
-                    Section {
-                        TextField("Nama Produk", text: self.$productName)
-                        TextField("Harga", text: self.$productPrice)
-                            .keyboardType(.numberPad)
+                CustomFormStack {
+                    HStack() {
+                        CustomTextField(fieldString: self.$productName, title: "Nama Produk", asteriks: true)
+                        Spacer()
+                    }
+                    .padding()
+                    
+                    Divider()
+                    
+                    HStack() {
+                        CustomTextField(fieldString: self.$productPrice, title: "Harga",asteriks: true, keyboardType: .numberPad)
+                        Spacer()
+                    }
+                    .padding()
+                    
+                    Divider()
+                    
+                    Button(action: {
+                        self.showCategory.toggle()
                         
-                        Button(action: {
-                            self.showCategory.toggle()
-                            
-                        }, label: {
-                            HStack {
-                                Text("Satuan")
+                    }, label: {
+                        
+                        HStack(spacing: 0) {
+                            Text("Satuan")
+                                .font(.system(.body))
+                                .foregroundColor(Color("charcoal"))
+                            Text("*")
+                                .font(.system(.body))
+                                .foregroundColor(.red)
+                            Spacer()
+                            if self.productCategory.isEmpty {
+                                Text("Pilih Satuan")
                                     .font(.system(.body))
-                                    .foregroundColor(.black)
-                                Spacer()
-                                if self.productCategory.isEmpty {
-                                    Text("Pilih Satuan").font(.system(.body))
-                                        .foregroundColor(Color("sunray"))
-                                        .padding(.trailing)
-                                }else{
-                                    Text(self.productCategory)
-                                        .foregroundColor(Color("sunray"))
-                                        .padding(.trailing)
-                                }
-                                
-//                                Image(systemName: "chevron.right")
-//                                    .foregroundColor(.gray)
+                                    .foregroundColor(Color("sunray"))
+                                    .padding(.trailing)
+                            }else{
+                                Text(self.productCategory)
+                                    .padding(.trailing)
                             }
-                        })
-                        .fullScreenCover(isPresented: self.$showCategory, content: {
-                            CategorySelectionView(showCategory: self.$showCategory, productCategory: self.$productCategory)
-                        })
-                        
-                        ZStack {
-                            TextEditor(text: self.$productDescription)
                         }
-                        .frame(height: 70)
-                        .padding(.all, 0)
-                        
-                        
-                    }.listRowBackground(Color.clear)
-                
-//                    Section {
-//                        Picker("", selection: self.$productUnit){
-//                            ForEach(UnitProduct.allCases, id: \.self){ unit in
-//                                Text(unit.rawValue)
-//                            }
-//                        }.pickerStyle(.wheel)
-//                            .padding(0)
-//                    }.listRowBackground(Color.gray.opacity(0.1))
+                    })
+                    .fullScreenCover(isPresented: self.$showCategory, content: {
+                        CategorySelectionView(showCategory: self.$showCategory, productCategory: self.$productCategory)
+                    })
+                    .padding()
+                    
+                    Divider()
+                    
+                    CustomTextEditor(fieldString: self.$productDescription, title: "Keterangan Produk", asteriks: false)
+                    .padding()
+                    .frame(maxHeight: 100)
+                    
+                    Divider()
                     
                 }
-                .background(.clear)
                 
                 Button(action: {
                     self.showScanView.toggle()
@@ -101,55 +104,62 @@ struct AddProductView: View {
                         Image(systemName: "barcode.viewfinder")
                         Text("Pindai Kode Batang")
                             .font(.body)
+                            .bold()
                     }.frame(maxWidth: .infinity)
-                        .padding(.all, 0)
+                        .frame(maxHeight: 35)
                 }).sheet(isPresented: self.$showScanView, content: {
                     AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.$productBarcode)
                 })
+                .cornerRadius(10)
                 .buttonStyle(.borderedProminent)
                 .foregroundColor(.white)
                 .tint(Color("sunray"))
-                .padding(.all, 0)
+                .padding()
                 
-                Form {
-                    
-                            
-                            Section {
-                                TextField("Kode", text: self.$productBarcode)
-                                    .keyboardType(.numberPad)
-                            }.listRowBackground(Color.clear)
-                            
-                            Section {
-                                HStack{
-                                    Spacer()
-                                    VStack(alignment: .center){
-                                        Image(systemName: "camera.shutter.button.fill")
-                                            .resizable()
-                                            .frame(width: 50, height: 50).foregroundColor(.white)
-                                        Text("Tambah Foto")
-                                            .font(.system(.body).bold())
-                                            .foregroundColor(.white)
-                                    }
-                                    .frame(width: 130,height: 130)
-                                    .background(Color("sunray"))
-                                    .cornerRadius(20)
-                                    
-                                    Spacer()
-                                }
-                                
-                                    
-                            }.listRowBackground(Color.clear)
+                CustomFormStack {
+                    HStack() {
+                        CustomTextField(fieldString: self.$productBarcode, title: "Kode Produk", asteriks: false, keyboardType: .numberPad)
+                        Spacer()
+                    }
+                    .padding()
                 }
                 
+                CustomFormStack {
+                    Button(action: {}, label: {
+                        VStack{
+                            Image(systemName: "camera.shutter.button.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 60)
+                            
+                            Text("Tambah Foto")
+                                .font(.system(.body))
+                                .foregroundColor(.white)
+                            
+                        }
+                        .padding(20)
+                        .background(Color("sunray"))
+                        .cornerRadius(10)
+                        .foregroundColor(.white)
+                        .padding(30)
+                    })
+                    
+                }.padding()
                 
                 Spacer()
             }
+            .padding()
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
                     Button(action: {
                         self.showAddProductView.toggle()
                     }, label: {
-                        Text("Kembali")
+                        HStack{
+                            Image(systemName: "chevron.left")
+                                .foregroundColor(Color("sunray"))
+                            Text("Kembali")
+                        }
+                        
                     }).foregroundColor(Color("sunray"))
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
@@ -160,9 +170,8 @@ struct AddProductView: View {
                             productViewModel.filteredProduct()
                         }
                     }, label: {
-                        Text("Selesai")
+                        Text("Simpan")
                     }).foregroundColor(Color("sunray"))
-                    
                 }
             }
             .navigationTitle("Tambah Produk")
