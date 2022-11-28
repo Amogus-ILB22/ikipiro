@@ -14,10 +14,7 @@ struct CreateNewTokoView: View {
     @State var namaPemilik: String = ""
     @State var namaToko : String = ""
     
-    
     let persistenceController = PersistenceController.shared
-    
-    
     
     var body: some View {
         VStack{
@@ -78,22 +75,14 @@ struct CreateNewTokoView: View {
                 .padding([.leading, .trailing],16.0)
                 .disabled(namaToko.isEmpty || namaPemilik.isEmpty)
 
-                
-                
             }
         }
     }
     
     private func addToko() {
         
-        guard !namaToko.isEmpty else {
-            return
-        }
-        
-        guard !namaPemilik.isEmpty else {
-            return
-        }
-//        toggleProgress.toggle()
+        guard !namaToko.isEmpty else { return }
+        guard !namaPemilik.isEmpty else { return }
         
         let controller = persistenceController
         
@@ -102,14 +91,9 @@ struct CreateNewTokoView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation {
                 PersistenceController.shared.addToko(namaToko: namaToko, namaPemilik: namaPemilik, context: taskContext)
-        
-              
             }
         }
     }
-
-    
-    
 }
 
 struct CreateNewTokoView_Previews: PreviewProvider {

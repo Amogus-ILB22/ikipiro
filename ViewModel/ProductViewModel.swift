@@ -13,6 +13,8 @@ class ProductViewModel: ObservableObject {
     private let persistenceController = PersistenceController.shared
     @Published var products: [Produk] = []
     @Published var selectedBarcodeProduk = ""
+    @Published var tokos: [Toko] = []
+    @Published var currentToko: Toko?
     
     @Published private var searchKeyword = ""
     @Published private var selectedCategory = ""
@@ -27,6 +29,64 @@ class ProductViewModel: ObservableObject {
         }
     }
     
+    func fetchProductByToko(toko: Toko){
+        
+        let productsResult = toko.produk?.allObjects as! [Produk]
+        
+        if(productsResult.isEmpty){
+            products = []
+        }else{
+            self.products = productsResult
+        }
+    }
+    
+    func fetchProductInToko(toko: Toko) -> [Produk] {
+        //        return toko.produk?.allObjects as! [Produk]
+        
+        let productsResult = toko.produk?.allObjects as! [Produk]
+        
+        if(productsResult.isEmpty){
+            return []
+        }else{
+            return productsResult
+        }
+    }
+    
+    func fetchProductWithToko(){
+        //        return toko.produk?.allObjects as! [Produk]
+        if(self.currentToko != nil){
+            let productsResult = self.currentToko!.produk?.allObjects as! [Produk]
+            
+            if(productsResult.isEmpty){
+                self.products = []
+            }else{
+                self.products = productsResult
+            }
+        }else{
+            fetchTokos()
+            self.currentToko = tokos.first!
+            if(self.currentToko != nil){
+                let productsResult = self.currentToko!.produk?.allObjects as! [Produk]
+                
+                if(productsResult.isEmpty){
+                    self.products = []
+                }else{
+                    self.products = productsResult
+                }
+                
+            }
+        }
+    }
+    
+    func fetchTokos(){
+        let request = NSFetchRequest<Toko>(entityName: "Toko")
+        do {
+            tokos = try persistenceController.persistentContainer.viewContext.fetch(request)
+        }catch let error {
+            print("Error Fetching. \(error)")
+        }
+    }
+    
     func filteredProduct(searchKey: String? = nil, category: String? = nil){
         if searchKey != nil {
             self.searchKeyword = searchKey!
@@ -36,13 +96,12 @@ class ProductViewModel: ObservableObject {
             self.selectedCategory = category!
         }
         
-        
         fetchProduct()
         if(self.searchKeyword.isEmpty){
             if(self.selectedCategory.isEmpty){
                 
             }else{
-               products = products.filter { $0.kategori == category}
+                products = products.filter { $0.kategori == category}
             }
         }else{
             if(self.selectedCategory.isEmpty){
@@ -61,7 +120,7 @@ class ProductViewModel: ObservableObject {
         
     }
     
-    func fetchToko() -> Toko? {
+    private func fetchToko() -> Toko? {
         let request = NSFetchRequest<Toko>(entityName: "Toko")
         do {
             let toko = try persistenceController.persistentContainer.viewContext.fetch(request).first
@@ -73,7 +132,7 @@ class ProductViewModel: ObservableObject {
     }
     
     func addProduct(nama: String,satuan: String, harga: Double, kode: Int64,kategori: String){
-        guard let toko = fetchToko() else { return }
+        guard let toko = self.currentToko else { return }
         
         persistenceController.addProduk(nama: nama, satuan: satuan, harga: harga, kode: kode, kategori: kategori, relateTo: toko)
     }

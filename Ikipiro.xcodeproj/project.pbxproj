@@ -51,6 +51,7 @@
 		7EB3C3A5291EC923006E2251 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C3A4291EC923006E2251 /* AddProductView.swift */; };
 		7EB3C3A7291EC981006E2251 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */; };
 		7EB3C3AA291EDC42006E2251 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB3C3A9291EDC42006E2251 /* CodeScanner */; };
+		7EE868F7292E1D8F00C215C6 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE868F6292E1D8F00C215C6 /* TestView.swift */; };
 		DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */; };
 		DC2B6D1B291D4AC400CA6BE1 /* TokoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1A291D4AC400CA6BE1 /* TokoGridView.swift */; };
 		DC2B6D1E291D4FDC00CA6BE1 /* AddTokoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1D291D4FDC00CA6BE1 /* AddTokoView.swift */; };
@@ -134,6 +135,7 @@
 		7EB3C3A2291EC848006E2251 /* DetailProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductView.swift; sourceTree = "<group>"; };
 		7EB3C3A4291EC923006E2251 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		7EE868F6292E1D8F00C215C6 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		B24732F33201E3732F237ECB /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Toko.swift"; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				7EB3C3A4291EC923006E2251 /* AddProductView.swift */,
 				7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */,
 				7E74FA2C29211BFA00F3D2E4 /* EditProductView.swift */,
+				7EE868F6292E1D8F00C215C6 /* TestView.swift */,
 			);
 			path = ScanView;
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				408BD4DC2713F0F400294A81 /* ManagingSharesView.swift in Sources */,
 				40527E19270BC8FE00DB2901 /* PersistenceController+Rating.swift in Sources */,
 				407D7D612703880E00D2BA90 /* PersistenceController+Tag.swift in Sources */,
+				7EE868F7292E1D8F00C215C6 /* TestView.swift in Sources */,
 				DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */,
 				7E74FA292921056000F3D2E4 /* MainScanBarcodeView.swift in Sources */,
 				DC2B6D36291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift in Sources */,

@@ -22,9 +22,8 @@ struct CoreDataCloudKitShareApp: App {
         }
         #else
         
-        
         WindowGroup {
-            
+//            TestView()
             ContentView()
                 .environment(\.managedObjectContext, persistentContainer.viewContext)
         }

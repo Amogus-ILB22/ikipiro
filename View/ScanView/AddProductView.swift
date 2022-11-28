@@ -25,7 +25,7 @@ enum UnitProduct: String, CaseIterable {
 }
 
 struct AddProductView: View {
-    @StateObject var productViewModel = ProductViewModel()
+    @EnvironmentObject var productViewModel: ProductViewModel
     @State var segmentationSelection: EditProductSection = .withBarcode
     @State var productBarcode: String = ""
     @State var productName: String = ""

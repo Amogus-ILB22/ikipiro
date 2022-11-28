@@ -10,8 +10,8 @@ import Foundation
 import SwiftUI
 
 struct DetailProductView: View {
+    @EnvironmentObject var vm: ProductViewModel
     @Environment(\.dismiss) var dismiss
-    @StateObject var vm = ProductViewModel()
     
     @State var productBarcode: String
     @State var currentProduct: Produk? = nil

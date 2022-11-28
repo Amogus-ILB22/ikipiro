@@ -218,10 +218,6 @@ struct SettingView: View {
                             }
                         }
                             }
-                        
-                        
-
-                    
                     Section(header: Text("TOKO BERSAMA")) {
                         
                         ForEach(tokos, id: \.self)  { toko in
@@ -252,7 +248,6 @@ struct SettingView: View {
                             }
                         }
 
-                        
                     }
 
                     

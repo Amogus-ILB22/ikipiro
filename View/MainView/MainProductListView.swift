@@ -11,16 +11,14 @@ import SwiftUI
 
 
 struct MainProductListView: View {
-    @StateObject var productViewModel = ProductViewModel()
+//    @StateObject var productViewModel = ProductViewModel()
+    @EnvironmentObject var productViewModel: ProductViewModel
     @State private var searchText = ""
     @State private var selectedCategory = ""
-    
     
     @State private var showDetailProduct = false
     @State private var showAddProductView = false
     @State private var showProductFilter = false
-    
-
     
     var body: some View {
         NavigationView {
@@ -56,7 +54,6 @@ struct MainProductListView: View {
                                         .padding(.leading, 10)
                                         .frame(maxWidth: .infinity)
                                         
-                                        
                                         VStack(alignment : .trailing){
                                             Text(DetailProductView.df2so(produk.harga))
                                                 .font(.system(.title3, design: .rounded))
@@ -83,7 +80,6 @@ struct MainProductListView: View {
                                     .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 10, x: 0, y: 0)
                                     .padding(.bottom,5)
                                     
-                                    
                                 }.frame(width : UIScreen.main.bounds.width*1, alignment: .center)
                             })
                             .sheet(isPresented: self.$showDetailProduct, content: {
@@ -93,19 +89,30 @@ struct MainProductListView: View {
                     }
                 }
                 .onAppear{
-                    productViewModel.filteredProduct()
+//                    productViewModel.filteredProduct()
+                    productViewModel.fetchProductWithToko()
+                    
+//                    productViewModel.fetchTokos()
+//                    print(productViewModel.tokos)
+                    
+                    print(productViewModel.products)
+                    
                 }
                 .onChange(of: self.searchText){ value in
-                    productViewModel.filteredProduct(searchKey: value)
+//                    productViewModel.filteredProduct(searchKey: value)
+                    productViewModel.fetchProductWithToko()
                 }
                 .onChange(of: self.selectedCategory){ value in
-                    productViewModel.filteredProduct(category: value)
+//                    productViewModel.filteredProduct(category: value)
+                    productViewModel.fetchProductWithToko()
                 }
                 .onChange(of: self.showDetailProduct){ _ in
-                    productViewModel.filteredProduct()
+//                    productViewModel.filteredProduct()
+                    productViewModel.fetchProductWithToko()
                 }
                 .onChange(of: self.showAddProductView){ _ in
-                    productViewModel.filteredProduct()
+//                    productViewModel.filteredProduct()
+                    productViewModel.fetchProductWithToko()
                 }
                 
                 Button(action: {
@@ -144,8 +151,6 @@ struct MainProductListView: View {
                         Text("Produk")
                             .font(.system(.title, design: .rounded)).fontWeight(.bold)
                             .foregroundColor(Color.black)
-                        
-                        
                         Spacer()
                     }
                 }
@@ -154,7 +159,6 @@ struct MainProductListView: View {
             .navigationBarTitleDisplayMode(.inline)
             
         }.navigationViewStyle(.stack)
-        
     }
 }
 

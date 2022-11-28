@@ -20,24 +20,22 @@ struct MainScanBarcodeView: View {
     @State var toggleCamera = false
     @State var productBarcode: String = ""
     
-    
     @State var showDetailProduct = false
     @State var showAddProduct = false
-
     
     var body: some View {
         ZStack(alignment: .center) {
             if(self.toggleCamera){
                 CodeScannerView(codeTypes: [.ean13, .ean8, .code128, .code39], scanMode: .continuous,isTorchOn: isTorchOn, videoCaptureDevice:  AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .front), completion: { result in
-                        if case let .success(code) = result {
-                            self.productBarcode = code.string
-                            if vm.containsProduct(productBarcode: code.string){
-                                self.showDetailProduct.toggle()
-                            }else{
-                                self.showAddProduct.toggle()
-                            }
+                    if case let .success(code) = result {
+                        self.productBarcode = code.string
+                        if vm.containsProduct(productBarcode: code.string){
+                            self.showDetailProduct.toggle()
+                        }else{
+                            self.showAddProduct.toggle()
                         }
-                    })
+                    }
+                })
             }else{
                 CodeScannerView(codeTypes: [.ean13, .ean8, .code128, .code39], scanMode: .continuous,isTorchOn: isTorchOn, videoCaptureDevice:  AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .back),
                                 completion: { result in
@@ -96,15 +94,15 @@ struct MainScanBarcodeView: View {
                 Spacer()
                 
                 HStack{
-                                        Button(action: {
-                                            if !self.productBarcode.isEmpty{
-                                                self.showDetailProduct.toggle()
-                                            }
-                                        }, label: {
-                                            Color.white
-                                                .frame(width: 50,height: 50)
-                                                .clipShape(Circle())
-                                        })
+                    Button(action: {
+                        if !self.productBarcode.isEmpty{
+                            self.showDetailProduct.toggle()
+                        }
+                    }, label: {
+                        Color.white
+                            .frame(width: 50,height: 50)
+                            .clipShape(Circle())
+                    })
                 }.frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.black.opacity(0.5))
@@ -117,9 +115,6 @@ struct MainScanBarcodeView: View {
                 
             }
         }
-        
-        
-        
     }
 }
 

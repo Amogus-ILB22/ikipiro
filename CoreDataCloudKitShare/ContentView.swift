@@ -9,13 +9,15 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-
+    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.namaPemilik)],
                   animation: .default
     ) private var tokos: FetchedResults<Toko>
     
-
+    @StateObject var productViewModel = ProductViewModel()
+    
+    
     init() {
         UITabBar.appearance().barTintColor = .white
         UITabBar.appearance().shadowImage = UIImage()
@@ -25,82 +27,77 @@ struct ContentView: View {
     
     @AppStorage("isStart") private var isStart: Bool = false
     
-//    @AppStorage("categories") private var categories: [String] = ["Makanan","Minuman","Alat Mandi", "Bahan Masak"]
-//    @AppStorage("isBreathingIntroStarted") private var isBreathingIntroStarted: Bool = false
-
     var categories: [String] = ["Makanan","Minuman","Alat Mandi", "Bahan Masak"]
     static let sample = OnboardingDataModel.data
     
     var body: some View {
         
-//        NavigationView{
-   
-        if isStart
-//
-////            && isBreathingIntroStarted
-////
-        {
+        NavigationView{
             
-            if tokos.count < 1 {
-                
-                
-                WelcomeView()
-                
-            }else{
-                
-                
-                TabView{
-                    MainProductListView()
-//                    ProductListView()
-                        .tabItem{
-                            Image(systemName: "shippingbox").renderingMode(.template)
-                            Text("Produk")
-                        }
+            if isStart
+            //
+            ////            && isBreathingIntroStarted
+            ////
+            {
+                if tokos.count < 1 {
+                    WelcomeView()
+                    
+                }else{
                     
                     
-//                    MainScanBarcodeView()
-//                    TestView()
-                    MainScanBarcodeView()
-                        .tabItem{
-                            Image(systemName: "barcode.viewfinder").renderingMode(.template)
-                            Text("Memindai")
-                        }
-                    
-                    SettingView()
-                        .tabItem{
-                            Image(systemName: "person.3").renderingMode(.template)
-                            Text("Pengaturan")
-                        }
+                    TabView{
+                        MainProductListView()
+                        //                    ProductListView()
+                            .tabItem{
+                                Image(systemName: "shippingbox").renderingMode(.template)
+                                Text("Produk")
+                            }
+                        
+                        
+                        //                    MainScanBarcodeView()
+                        //                    TestView()
+                        MainScanBarcodeView()
+                            .tabItem{
+                                Image(systemName: "barcode.viewfinder").renderingMode(.template)
+                                Text("Memindai")
+                            }
+                        
+                        SettingView()
+                            .tabItem{
+                                Image(systemName: "person.3").renderingMode(.template)
+                                Text("Pengaturan")
+                            }
+                        
+                        TestView()
+                            .tabItem{
+                                Image(systemName: "testtube.2").renderingMode(.template)
+                                Text("Test")
+                            }
+                        
+                    }
+                    .accentColor(Color("GreenButton"))
                     
                 }
-                .accentColor(Color("GreenButton"))
                 
             }
-        }
-        else
-////        if !isStart
-//
-        {
+            else
 
-            OnboardingViewPure(data: ContentView.sample, doneFunction: {
+            {
                 
-                withAnimation{
-                UserDefaults.standard.set(true, forKey: "isStart")
+                OnboardingViewPure(data: ContentView.sample, doneFunction: {
+                    
+                    withAnimation{
+                        UserDefaults.standard.set(true, forKey: "isStart")
+                    }
+                    
+                }).onAppear() {
+                    UserDefaults.standard.set(categories, forKey: "categories")
                 }
-                
-            }).onAppear() {
-                UserDefaults.standard.set(categories, forKey: "categories")
+
             }
             
-            
-  
-//        }
-//
-//        else if !isBreathingIntroStarted  {
-//                Breathing_Intro_Screen()
-//        }
-
         }
+        .environmentObject(productViewModel)
         
     }
 }
