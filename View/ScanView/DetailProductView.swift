@@ -23,53 +23,78 @@ struct DetailProductView: View {
         NavigationView{
             if(currentProduct != nil){
                 VStack {
-                    List{
-                        Section {
-                            HStack {
-                                Text("Kode")
-                                    .font(.system(.body)).bold()
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Text(String(currentProduct?.kode ?? 0))
-                                    .font(.system(.body))
-                                    .foregroundColor(.black)
-                            }
+                    Divider()
+                    
+                    ZStack(alignment: .center){
+                        Color("biege")
+                        Image(systemName: "video.slash.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 50)
+                            .foregroundColor(Color("sunray"))
+                    }
+                    .frame(maxHeight: 200)
+                    .cornerRadius(15)
+                    .padding(EdgeInsets(top: 30, leading: 30, bottom: 20, trailing: 30))
+                    
+                    
+                    CustomFormStack {
+                        HStack() {
+                            Text("Kode")
+                                .font(.system(.body).bold())
+                                .foregroundColor(Color("charcoal"))
+                            Spacer()
+                            Text(String(currentProduct?.kode ?? 0))
+                                .font(.system(.body))
+                                .foregroundColor(Color("charcoal"))
                         }
+                        .padding()
+                        Divider()
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 30, bottom: 20, trailing: 30))
+                    
+                    CustomFormStack {
+                        HStack() {
+                            Text("Nama")
+                                .font(.system(.body).bold())
+                                .foregroundColor(Color("charcoal"))
+                            Spacer()
+                            Text(String(currentProduct?.nama ?? ""))
+                                .font(.system(.body))
+                                .foregroundColor(Color("charcoal"))
+                        }
+                        .padding()
                         
-                        Section {
-                            HStack {
-                                Text("Nama")
-                                    .font(.system(.body)).bold()
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Text(currentProduct?.nama ?? "")
-                                    .font(.system(.body))
-                                    .foregroundColor(.black)
-                            }
-                            
-                            HStack {
-                                Text("Harga")
-                                    .font(.system(.body)).bold()
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Text(DetailProductView.df2so(currentProduct?.harga ?? 0))
-                                    .font(.system(.body))
-                                    .foregroundColor(.black)
-                            }
-                            
-                            HStack {
-                                Text("Kategori")
-                                    .font(.system(.body)).bold()
-                                    .foregroundColor(.black)
-                                Spacer()
-                                Text("\(currentProduct?.kategori ?? "")")
-                                    .font(.system(.body))
-                                    .foregroundColor(.black)
-                            }
-                            
+                        Divider()
+                        
+                        HStack() {
+                            Text("Harga")
+                                .font(.system(.body).bold())
+                                .foregroundColor(Color("charcoal"))
+                            Spacer()
+                            Text("\(DetailProductView.df2so(currentProduct?.harga ?? 0))/\(currentProduct?.satuan ?? "")")
+                                .font(.system(.body))
+                                .foregroundColor(Color("charcoal"))
                         }
+                        .padding()
+                        
+                        Divider()
+                        
+                        HStack() {
+                            Text("Keterangan Produk")
+                                .font(.system(.body).bold())
+                                .foregroundColor(Color("charcoal"))
+                            Spacer()
+                            Text("\(currentProduct?.kategori ?? "")")
+                                .font(.system(.body))
+                                .foregroundColor(Color("charcoal"))
+                        }
+                        .padding()
                         
                     }
+                    .padding(EdgeInsets(top: 0, leading: 30, bottom: 20, trailing: 30))
+                    
+                    Spacer()
                 }
                 .frame(maxWidth: .infinity)
                 .toolbar{
@@ -77,8 +102,12 @@ struct DetailProductView: View {
                         Button(action: {
                             dismiss()
                         }, label: {
-                            Text("Kembali")
-                        }).foregroundColor(.green)
+                            HStack{
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(Color("sunray"))
+                                Text("Kembali")
+                            }
+                        }).foregroundColor(Color("sunray"))
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button(action: {
@@ -86,14 +115,14 @@ struct DetailProductView: View {
                             
                         }, label: {
                             Text("Edit")
-                        }).foregroundColor(.green)
+                        }).foregroundColor(Color("sunray"))
                         
                             .fullScreenCover(isPresented: self.$showAddProductView, content: {
                                 EditProductView(currentProduct: self.currentProduct!, showAddProductView: self.$showAddProductView)
                             })
                     }
                 }
-                .navigationTitle("Informasi Produk")
+                .navigationTitle("Info Produk")
                 .navigationBarTitleDisplayMode(.inline)
             }
         }
