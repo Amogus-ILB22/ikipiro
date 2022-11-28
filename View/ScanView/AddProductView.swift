@@ -31,6 +31,7 @@ struct AddProductView: View {
     @State var productName: String = ""
     @State var productPrice: String = ""
     @State var productCategory: String = ""
+    @State var productDescription: String = ""
     @State var productUnit: UnitProduct = .dozen
     @State var showCategory = false
     @State var showScanView = false
@@ -39,86 +40,108 @@ struct AddProductView: View {
     var body: some View {
         NavigationView{
             VStack {
-                Picker("", selection: $segmentationSelection){
-                    ForEach(EditProductSection.allCases, id: \.self) { option in
-                        Text(option.rawValue)
-                        
-                    }
-                }.pickerStyle(.segmented)
-                    .padding(.horizontal)
-                
-                if segmentationSelection == EditProductSection.withBarcode{
-                    Button(action: {
-                        self.showScanView.toggle()
-                    }, label: {
-                        HStack {
-                            Image(systemName: "barcode.viewfinder")
-                            Text("Scan Barcode")
-                                .font(.body)
-                                .bold()
-                        }.frame(maxWidth: .infinity)
-                            .frame(maxHeight: 35)
-                    }).sheet(isPresented: self.$showScanView, content: {
-                        AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.$productBarcode)
-                    })
-                    .buttonStyle(.borderedProminent)
-                        .foregroundColor(.white)
-                        .tint(.green)
-                        .padding()
-                }
-                
-                
                 Form {
                     Section {
-                        TextField("Kode", text: self.$productBarcode)
-                            .keyboardType(.numberPad)
-                    }.listRowBackground(Color.gray.opacity(0.1))
-                    
-                    Section {
-                        TextField("Nama", text: self.$productName)
+                        TextField("Nama Produk", text: self.$productName)
                         TextField("Harga", text: self.$productPrice)
                             .keyboardType(.numberPad)
-                    }.listRowBackground(Color.gray.opacity(0.1))
-                    
-                    Section {
-                        Picker("", selection: self.$productUnit){
-                            ForEach(UnitProduct.allCases, id: \.self){ unit in
-                                Text(unit.rawValue)
-                            }
-                        }.pickerStyle(.wheel)
-                            .padding(0)
-                    }.listRowBackground(Color.gray.opacity(0.1))
-                    
-                    Section {
+                        
                         Button(action: {
                             self.showCategory.toggle()
                             
                         }, label: {
-                            
                             HStack {
-                                Text("Kategori")
+                                Text("Satuan")
                                     .font(.system(.body))
                                     .foregroundColor(.black)
                                 Spacer()
                                 if self.productCategory.isEmpty {
-                                    Text("Pilih Kategori").font(.system(.body))
-                                        .foregroundColor(.black)
+                                    Text("Pilih Satuan").font(.system(.body))
+                                        .foregroundColor(Color("sunray"))
                                         .padding(.trailing)
                                 }else{
                                     Text(self.productCategory)
+                                        .foregroundColor(Color("sunray"))
                                         .padding(.trailing)
                                 }
-                                    
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.gray)
+                                
+//                                Image(systemName: "chevron.right")
+//                                    .foregroundColor(.gray)
                             }
                         })
                         .fullScreenCover(isPresented: self.$showCategory, content: {
                             CategorySelectionView(showCategory: self.$showCategory, productCategory: self.$productCategory)
                         })
-                    }.listRowBackground(Color.gray.opacity(0.1))
+                        
+                        ZStack {
+                            TextEditor(text: self.$productDescription)
+                        }
+                        .frame(height: 70)
+                        .padding(.all, 0)
+                        
+                        
+                    }.listRowBackground(Color.clear)
+                
+//                    Section {
+//                        Picker("", selection: self.$productUnit){
+//                            ForEach(UnitProduct.allCases, id: \.self){ unit in
+//                                Text(unit.rawValue)
+//                            }
+//                        }.pickerStyle(.wheel)
+//                            .padding(0)
+//                    }.listRowBackground(Color.gray.opacity(0.1))
+                    
                 }
                 .background(.clear)
+                
+                Button(action: {
+                    self.showScanView.toggle()
+                }, label: {
+                    HStack {
+                        Image(systemName: "barcode.viewfinder")
+                        Text("Pindai Kode Batang")
+                            .font(.body)
+                    }.frame(maxWidth: .infinity)
+                        .padding(.all, 0)
+                }).sheet(isPresented: self.$showScanView, content: {
+                    AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.$productBarcode)
+                })
+                .buttonStyle(.borderedProminent)
+                .foregroundColor(.white)
+                .tint(Color("sunray"))
+                .padding(.all, 0)
+                
+                Form {
+                    
+                            
+                            Section {
+                                TextField("Kode", text: self.$productBarcode)
+                                    .keyboardType(.numberPad)
+                            }.listRowBackground(Color.clear)
+                            
+                            Section {
+                                HStack{
+                                    Spacer()
+                                    VStack(alignment: .center){
+                                        Image(systemName: "camera.shutter.button.fill")
+                                            .resizable()
+                                            .frame(width: 50, height: 50).foregroundColor(.white)
+                                        Text("Tambah Foto")
+                                            .font(.system(.body).bold())
+                                            .foregroundColor(.white)
+                                    }
+                                    .frame(width: 130,height: 130)
+                                    .background(Color("sunray"))
+                                    .cornerRadius(20)
+                                    
+                                    Spacer()
+                                }
+                                
+                                    
+                            }.listRowBackground(Color.clear)
+                }
+                
+                
                 Spacer()
             }
             .toolbar{
@@ -127,7 +150,7 @@ struct AddProductView: View {
                         self.showAddProductView.toggle()
                     }, label: {
                         Text("Kembali")
-                    }).foregroundColor(.green)
+                    }).foregroundColor(Color("sunray"))
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
@@ -138,12 +161,16 @@ struct AddProductView: View {
                         }
                     }, label: {
                         Text("Selesai")
-                    }).foregroundColor(.green)
-                        
+                    }).foregroundColor(Color("sunray"))
+                    
                 }
             }
             .navigationTitle("Tambah Produk")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onAppear{
+            UITableView.appearance().backgroundColor = .clear
+            UITableViewCell.appearance().backgroundColor = UIColor.clear
         }
     }
 }
