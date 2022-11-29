@@ -17,9 +17,9 @@ struct OnboardingDataModel {
 
 extension OnboardingDataModel {
     static var data: [OnboardingDataModel] = [
-        OnboardingDataModel(image: "onboarding-1", heading: "Buat Daftar Harga\n Tanpa Ribet!", text: "Anda hanya perlu memindai kode batang barang dan masukkan harga yang sesuai. Nama barang akan muncul secara otomatis!"),
-        OnboardingDataModel(image: "onboarding-2", heading: "Pindai Kode\n Batang", text: "Gunakan Alat Pindai Kode Batang untuk pencarian harga yang cepat dan tepat."),
-        OnboardingDataModel(image: "onboarding-3", heading: "Multi Admin &\n Sinkronisasi", text: "Hubungkan data daftar harga di perangkat anda dengan perangkat lainnya."),
+        OnboardingDataModel(image: "onboarding-1", heading: "Daftar Harga\n Produk yang Rapih!", text: "Tersedianya tempat untuk kamu menyimpan harga dan informasi produk dalam toko kamu secara jelas dan teratur."),
+        OnboardingDataModel(image: "onboarding-2", heading: "Informasi Harga\n Produk yang Cepat!", text: "Tersedianya fitur memindai untuk mendapatkan informasi harga produk hanya dengan memindai kode batang produk!"),
+        OnboardingDataModel(image: "onboarding-3", heading: "Berikan Akses ke\n Data Produkmu!", text: "Kamu dapat memberikan akses akan semua informasi produk yang ada di toko ke admin lain yang ingin kamu berikan."),
        
     ]
 }

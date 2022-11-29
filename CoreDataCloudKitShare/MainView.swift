@@ -18,6 +18,7 @@ struct MainView: View {
     @StateObject var productViewModel = ProductViewModel()
     
     @AppStorage("isStart") private var isStart: Bool = false
+    @AppStorage("ownerName") private var ownerName: String = ""
     
     var categories: [String] = ["Makanan","Minuman","Alat Mandi", "Bahan Masak"]
     static let sample = OnboardingDataModel.data
@@ -35,103 +36,113 @@ struct MainView: View {
     var body: some View {
         NavigationView{
             if isStart {
-                if tokos.count < 1 {
-                    WelcomeView()
-                }else{
-                    ZStack {
-                        VStack {
-                            if selectedTab == 0 {
-                                MainProductListView()
-                                    .padding(.bottom, 40)
-                            }else if selectedTab == 1 {
-                                MainScanBarcodeView()
-                                    .padding(.bottom, 40)
-                            }else{
-                                SettingView()
-                                    .padding(.bottom, 40)
-                            }
-                            Spacer()
-                            
-                        }.padding(.bottom, 40)
-                        
-                        VStack(spacing: 0) {
-                            
-                            Spacer()
-                            
-                            HStack {
-                                
-                                Spacer(minLength: 0)
-                                
-                                Button(action : {
-                                    self.selectedTab = 0
-                                }){
-                                    VStack(spacing: 0) {
-                                        Image(selectedTab == 0 ? "box_active": "box_inactive")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(maxWidth: 30)
-                                        Text("Produk")
-                                            .font(.system(.callout, design: .rounded))
-                                            .padding(.bottom, 25)
-                                    }
-                                    .frame(width: 100)
+                
+                if(ownerName == ""){
+                    
+                    InputOwnerNameView()
+                    
+                    
+                }else {
+                    
+                    if tokos.count < 1 {
+                        WelcomeView()
+                    }else{
+                        ZStack {
+                            VStack {
+                                if selectedTab == 0 {
+                                    MainProductListView()
+                                        .padding(.bottom, 40)
+                                }else if selectedTab == 1 {
+                                    MainScanBarcodeView()
+                                        .padding(.bottom, 40)
+                                }else{
+                                    SettingView()
+                                        .padding(.bottom, 40)
                                 }
-                                .foregroundColor(selectedTab == 0 ? Color.black : Color("sunray"))
+                                Spacer()
                                 
-                                Spacer(minLength: 0)
+                            }.padding(.bottom, 40)
+                            
+                            VStack(spacing: 0) {
                                 
-                                Button(action: {
-                                    self.selectedTab = 1
-                                }){
-                                    VStack(spacing: 0) {
-                                        Image(selectedTab == 1 ? "barcode_active": "barcode_inactive")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(maxWidth: 35)
-                                        Text("Pindai")
-                                            .font(.system(.callout, design: .rounded))
-                                            
-                                    }
-                                    .frame(width: 80, height: 80)
-                                    .background(Color(selectedTab == 1 ? "sunray" : "biege"))
-                                    .clipShape(Circle())
+                                Spacer()
+                                
+                                HStack {
                                     
-                                }
-                                .offset(y: -28)
-                                .foregroundColor(selectedTab == 1 ? Color.black : Color("sunray"))
-                                
-                                Spacer(minLength: 0)
-                                
-                                Button(action : {
-                                    self.selectedTab = 2
-                                }){
-                                    VStack(spacing: 0) {
-                                        Image(selectedTab == 2 ? "person_active": "person_inactive")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(maxWidth: 30)
-                                        Text("Pengaturan")
-                                            .font(.system(.callout, design: .rounded))
-                                            .padding(.bottom, 25)
+                                    Spacer(minLength: 0)
+                                    
+                                    Button(action : {
+                                        self.selectedTab = 0
+                                    }){
+                                        VStack(spacing: 0) {
+                                            Image(selectedTab == 0 ? "box_active": "box_inactive")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(maxWidth: 30)
+                                            Text("Produk")
+                                                .font(.system(.callout, design: .rounded))
+                                                .padding(.bottom, 25)
+                                        }
+                                        .frame(width: 100)
                                     }
-                                    .frame(width: 100, height: 100)
+                                    .foregroundColor(selectedTab == 0 ? Color.black : Color("sunray"))
+                                    
+                                    Spacer(minLength: 0)
+                                    
+                                    Button(action: {
+                                        self.selectedTab = 1
+                                    }){
+                                        VStack(spacing: 0) {
+                                            Image(selectedTab == 1 ? "barcode_active": "barcode_inactive")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(maxWidth: 35)
+                                            Text("Pindai")
+                                                .font(.system(.callout, design: .rounded))
+                                            
+                                        }
+                                        .frame(width: 80, height: 80)
+                                        .background(Color(selectedTab == 1 ? "sunray" : "biege"))
+                                        .clipShape(Circle())
+                                        
+                                    }
+                                    .offset(y: -28)
+                                    .foregroundColor(selectedTab == 1 ? Color.black : Color("sunray"))
+                                    
+                                    Spacer(minLength: 0)
+                                    
+                                    Button(action : {
+                                        self.selectedTab = 2
+                                    }){
+                                        VStack(spacing: 0) {
+                                            Image(selectedTab == 2 ? "person_active": "person_inactive")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .frame(maxWidth: 30)
+                                            Text("Pengaturan")
+                                                .font(.system(.callout, design: .rounded))
+                                                .padding(.bottom, 25)
+                                        }
+                                        .frame(width: 100, height: 100)
+                                    }
+                                    .foregroundColor(selectedTab == 2 ? Color.black : Color("sunray"))
+                                    
+                                    Spacer(minLength: 0)
                                 }
-                                .foregroundColor(selectedTab == 2 ? Color.black : Color("sunray"))
                                 
-                                Spacer(minLength: 0)
+                                .padding(.top, 60)
+                                .background(.white)
+                                .clipShape(CustomShapeTabBar())
+                                .shadow(color: .gray, radius: 7, x: 0, y: 0)
                             }
-                            
-                            .padding(.top, 60)
-                            .background(.white)
-                            .clipShape(CustomShapeTabBar())
-                            .shadow(color: .gray, radius: 7, x: 0, y: 0)
                         }
+                        .ignoresSafeArea(edges: .bottom)
                     }
-                    .ignoresSafeArea(edges: .bottom)
+                    
                 }
             }
             else
-
+            
             {
                 
                 OnboardingViewPure(data: ContentView.sample, doneFunction: {
@@ -143,7 +154,7 @@ struct MainView: View {
                 }).onAppear() {
                     UserDefaults.standard.set(categories, forKey: "categories")
                 }
-
+                
             }
         }
         .environmentObject(productViewModel)

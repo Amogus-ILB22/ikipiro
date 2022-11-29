@@ -72,6 +72,7 @@
 		DC2B6D34291E36F300CA6BE1 /* ProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D33291E36F300CA6BE1 /* ProductListView.swift */; };
 		DC2B6D36291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D35291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift */; };
 		DC2B6D38291EAC3E00CA6BE1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D37291EAC3E00CA6BE1 /* SettingView.swift */; };
+		DCB091E729360577000E4F53 /* InputOwnerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB091E629360577000E4F53 /* InputOwnerNameView.swift */; };
 		DCF656F8291FEDD00053ABF5 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF656F7291FEDD00053ABF5 /* WelcomeView.swift */; };
 		DCF656FA291FF16C0053ABF5 /* CreateNewTokoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF656F9291FF16C0053ABF5 /* CreateNewTokoView.swift */; };
 /* End PBXBuildFile section */
@@ -164,6 +165,7 @@
 		DC2B6D33291E36F300CA6BE1 /* ProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListView.swift; sourceTree = "<group>"; };
 		DC2B6D35291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFilterByCategoryView.swift; sourceTree = "<group>"; };
 		DC2B6D37291EAC3E00CA6BE1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		DCB091E629360577000E4F53 /* InputOwnerNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputOwnerNameView.swift; sourceTree = "<group>"; };
 		DCF656F7291FEDD00053ABF5 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		DCF656F9291FF16C0053ABF5 /* CreateNewTokoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTokoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -369,6 +371,7 @@
 				408BD4DB2713F0F400294A81 /* ManagingSharesView.swift */,
 				DCF656F7291FEDD00053ABF5 /* WelcomeView.swift */,
 				DCF656F9291FF16C0053ABF5 /* CreateNewTokoView.swift */,
+				DCB091E629360577000E4F53 /* InputOwnerNameView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				407D7D612703880E00D2BA90 /* PersistenceController+Tag.swift in Sources */,
 				7EE868F7292E1D8F00C215C6 /* TestView.swift in Sources */,
 				DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */,
+				DCB091E729360577000E4F53 /* InputOwnerNameView.swift in Sources */,
 				7E74FA292921056000F3D2E4 /* MainScanBarcodeView.swift in Sources */,
 				DC2B6D36291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift in Sources */,
 				DC2B6D34291E36F300CA6BE1 /* ProductListView.swift in Sources */,

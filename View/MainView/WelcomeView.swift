@@ -17,8 +17,21 @@ struct WelcomeView: View {
                     .resizable()
                     .aspectRatio( contentMode: .fill)
                     .frame(minWidth:0, maxWidth: .infinity)
+                    .opacity(0.05)
                     .edgesIgnoringSafeArea(.all)
                 
+                VStack(alignment: .center){
+                    
+
+                    HStack(alignment: .center){
+                        Image("welcome-message")
+                            .resizable()
+                            .aspectRatio( contentMode: .fit)
+                            .frame(minWidth:0, maxWidth: UIScreen.main.bounds.width * 0.5 )
+                    }.padding(.top, UIScreen.main.bounds.height * 0.26  )
+                    Spacer()
+
+                }
                 
                 VStack{
                     Spacer()
@@ -33,7 +46,7 @@ struct WelcomeView: View {
                     .padding(.horizontal,13)
                     .background(
                         RoundedRectangle(cornerRadius: 8.0)
-                            .fill(Color("GreenButton"))
+                            .fill(Color("sunray"))
                     )
                     .onTapGesture {
                         withAnimation{
@@ -41,12 +54,19 @@ struct WelcomeView: View {
                             openCreateNewToko.toggle()
                         }
                     }
-                    .padding([.leading, .trailing],16.0)
-                    .padding(.bottom, UIScreen.main.bounds.height * 0.25)
-                }
+                    
+                    Text("Klik jika sudah memiliki toko").underline().foregroundColor(Color("bistre")).font(.caption).fontWeight(.bold)
+                        .onTapGesture{
+                        withAnimation{
+                            
+                        }
+                        }.padding(.top,5)
+         
+                }    .padding([.leading, .trailing],16.0)
+                    .padding(.bottom, UIScreen.main.bounds.height * 0.12)
                 
-            }.sheet(isPresented: $openCreateNewToko, content: {
-                CreateNewTokoView()
+            }.fullScreenCover(isPresented: $openCreateNewToko, content: {
+                CreateNewTokoView(openCreateNewToko: $openCreateNewToko)
             })
             
         
