@@ -135,14 +135,14 @@ struct MainProductListView: View {
                     }, label: {
                         HStack {
                             Text("Tambah Produk")
-                                .font(.system(.body).bold())
+                                .font(.system(.callout).bold())
                                 .foregroundColor(.black)
                             Image("plus")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(maxHeight: 20)
                         }
-                        .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
+                        .padding(EdgeInsets(top: 3, leading: 8, bottom: 3, trailing: 8))
                         .background(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                         .shadow(color: .gray, radius: 2, x: 0, y: 0)

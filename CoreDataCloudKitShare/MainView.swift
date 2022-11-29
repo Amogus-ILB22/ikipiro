@@ -69,8 +69,10 @@ struct MainView: View {
                                         Image(selectedTab == 0 ? "box_active": "box_inactive")
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(maxWidth: 40)
-                                        Text("Beranda")
+                                            .frame(maxWidth: 30)
+                                        Text("Produk")
+                                            .font(.system(.callout, design: .rounded))
+                                            .padding(.bottom, 25)
                                     }
                                     .frame(width: 100)
                                 }
@@ -85,15 +87,17 @@ struct MainView: View {
                                         Image(selectedTab == 1 ? "barcode_active": "barcode_inactive")
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(maxWidth: 50)
+                                            .frame(maxWidth: 35)
                                         Text("Pindai")
+                                            .font(.system(.callout, design: .rounded))
+                                            
                                     }
-                                    .frame(width: 90, height: 90)
+                                    .frame(width: 80, height: 80)
                                     .background(Color(selectedTab == 1 ? "sunray" : "biege"))
                                     .clipShape(Circle())
                                     
                                 }
-                                .offset(y: -30)
+                                .offset(y: -28)
                                 .foregroundColor(selectedTab == 1 ? Color.black : Color("sunray"))
                                 
                                 Spacer(minLength: 0)
@@ -105,10 +109,12 @@ struct MainView: View {
                                         Image(selectedTab == 2 ? "person_active": "person_inactive")
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
-                                            .frame(maxWidth: 40)
+                                            .frame(maxWidth: 30)
                                         Text("Pengaturan")
+                                            .font(.system(.callout, design: .rounded))
+                                            .padding(.bottom, 25)
                                     }
-                                    .frame(width: 100)
+                                    .frame(width: 100, height: 100)
                                 }
                                 .foregroundColor(selectedTab == 2 ? Color.black : Color("sunray"))
                                 
@@ -123,6 +129,21 @@ struct MainView: View {
                     }
                     .ignoresSafeArea(edges: .bottom)
                 }
+            }
+            else
+
+            {
+                
+                OnboardingViewPure(data: ContentView.sample, doneFunction: {
+                    
+                    withAnimation{
+                        UserDefaults.standard.set(true, forKey: "isStart")
+                    }
+                    
+                }).onAppear() {
+                    UserDefaults.standard.set(categories, forKey: "categories")
+                }
+
             }
         }
         .environmentObject(productViewModel)
