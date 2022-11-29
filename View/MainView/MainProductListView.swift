@@ -114,35 +114,42 @@ struct MainProductListView: View {
 //                    productViewModel.filteredProduct()
                     productViewModel.fetchProductWithToko()
                 }
-                
-                Button(action: {
-                    withAnimation {
-                        self.showAddProductView.toggle()
-                    }
-                }) {
-                    Text("Tambah Produk")
-                        .font(.system(.headline, design: .rounded))
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .background(Color("GreenButton"))
-                        .cornerRadius(10)
-                }.padding(.horizontal)
-                    .padding(.bottom,10)
             }
-                        .fullScreenCover(isPresented: self.$showAddProductView, content: {
-                            AddProductView(showAddProductView: self.$showAddProductView)
-                        })
+                        
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        self.showProductFilter.toggle()
+//                    Button(action: {
+//                        self.showProductFilter.toggle()
+//
+//                    }) {
+//                        Label("", systemImage: "line.3.horizontal.decrease.circle").labelStyle(.iconOnly).foregroundColor(Color("GreenButton"))
+//                    }
+//                    .sheet(isPresented: self.$showProductFilter, content: {
+//                        ProductFilterByCategoryView(showProductFilter: self.$showProductFilter ,selectedItem: self.$selectedCategory)
+//                    })
+                    
+                    Button (action: {
+                        withAnimation {
+                            self.showAddProductView.toggle()
+                        }
+                    }, label: {
+                        HStack {
+                            Text("Tambah Produk")
+                                .font(.system(.body).bold())
+                                .foregroundColor(.black)
+                            Image("plus")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxHeight: 20)
+                        }
+                        .padding(EdgeInsets(top: 2, leading: 8, bottom: 2, trailing: 8))
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                        .shadow(color: .gray, radius: 2, x: 0, y: 0)
                         
-                    }) {
-                        Label("", systemImage: "line.3.horizontal.decrease.circle").labelStyle(.iconOnly).foregroundColor(Color("GreenButton"))
-                    }
-                    .sheet(isPresented: self.$showProductFilter, content: {
-                        ProductFilterByCategoryView(showProductFilter: self.$showProductFilter ,selectedItem: self.$selectedCategory)
+                    })
+                    .fullScreenCover(isPresented: self.$showAddProductView, content: {
+                        AddProductView(showAddProductView: self.$showAddProductView)
                     })
                 }
                 
