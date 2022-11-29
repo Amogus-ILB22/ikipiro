@@ -17,7 +17,7 @@ struct AddBarcodeProductView: View {
     @State var toggleCamera = false
     
     @Binding var showScanView: Bool
-    @Binding var productBarcode: String
+    @State var productBarcode: String = ""
     
     var body: some View {
         
@@ -116,8 +116,8 @@ struct AddBarcodeProductView: View {
     }
 }
 
-struct ScanView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddBarcodeProductView(showScanView: .constant(true), productBarcode: .constant(""))
-    }
-}
+//struct ScanView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddBarcodeProductView(showScanView: .constant(true), productBarcode: .constant(""))
+//    }
+//}

@@ -50,7 +50,7 @@ struct EditProductView: View {
                         }.frame(maxWidth: .infinity)
                             .frame(maxHeight: 35)
                     }).sheet(isPresented: self.$showScanView, content: {
-                        AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.$productBarcode)
+                        AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.productBarcode)
                     })
                     .buttonStyle(.borderedProminent)
                         .foregroundColor(.white)

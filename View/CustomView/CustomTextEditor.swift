@@ -14,8 +14,7 @@ struct CustomTextEditor: View {
     @State var title: String
     @State var asteriks: Bool
     @State var keyboardType: UIKeyboardType?
-    
-    
+
     
     var body: some View {
         ZStack(alignment: .topLeading) {

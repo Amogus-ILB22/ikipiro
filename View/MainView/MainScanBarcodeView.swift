@@ -22,6 +22,7 @@ struct MainScanBarcodeView: View {
     
     @State var showDetailProduct = false
     @State var showAddProduct = false
+    @State var showAlert = false
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -32,7 +33,7 @@ struct MainScanBarcodeView: View {
                         if vm.containsProduct(productBarcode: code.string){
                             self.showDetailProduct.toggle()
                         }else{
-                            self.showAddProduct.toggle()
+                            self.showAlert.toggle()
                         }
                     }
                 })
@@ -44,7 +45,7 @@ struct MainScanBarcodeView: View {
                         if vm.containsProduct(productBarcode: code.string){
                             self.showDetailProduct.toggle()
                         }else{
-                            self.showAddProduct.toggle()
+                            self.showAlert.toggle()
                         }
                     }
                 })
@@ -94,15 +95,7 @@ struct MainScanBarcodeView: View {
                 Spacer()
                 
                 HStack{
-                    Button(action: {
-                        if !self.productBarcode.isEmpty{
-                            self.showDetailProduct.toggle()
-                        }
-                    }, label: {
-                        Color.white
-                            .frame(width: 50,height: 50)
-                            .clipShape(Circle())
-                    })
+                    
                 }.frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.black.opacity(0.5))
@@ -114,6 +107,30 @@ struct MainScanBarcodeView: View {
                     })
                 
             }
+            .alert("Kode Produk Tidak Ditemukan", isPresented: self.$showAlert, actions: {
+                Button(role: .cancel){
+                    self.productBarcode = ""
+                } label: {
+                    Text("Tidak")
+                }
+                
+                Button {
+                    self.showAddProduct.toggle()
+                } label: {
+                    Text("Tambah")
+                }
+            }, message: {
+                Text("Apakah ingin menambah produk dengan kode ini?")
+            })
+            .onDisappear{
+                self.productBarcode = ""
+            }
+            .onChange(of: self.showAddProduct, perform: { state in
+                if state == false{
+                    self.productBarcode = ""
+                }
+                
+            })
         }
     }
 }

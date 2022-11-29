@@ -32,7 +32,7 @@ struct AddProductView: View {
     @State var productName: String = ""
     @State var productPrice: String = ""
     @State var productCategory: String = ""
-    @State var productDescription: String = ""
+    @State var productDescription: String = "Deskripsi Produk"
     @State var productUnit: UnitProduct = .dozen
     @State var showCategory = false
     @State var showScanView = false
@@ -89,9 +89,10 @@ struct AddProductView: View {
                     
                     Divider()
                     
-                    CustomTextEditor(fieldString: self.$productDescription, title: "Keterangan Produk", asteriks: false)
+                    TextEditor(text: self.$productDescription)
                     .padding()
                     .frame(maxHeight: 100)
+                    .colorMultiply(Color("cultured"))
                     
                     Divider()
                     
@@ -108,7 +109,7 @@ struct AddProductView: View {
                     }.frame(maxWidth: .infinity)
                         .frame(maxHeight: 35)
                 }).sheet(isPresented: self.$showScanView, content: {
-                    AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.$productBarcode)
+                    AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.productBarcode)
                 })
                 .cornerRadius(10)
                 .buttonStyle(.borderedProminent)
