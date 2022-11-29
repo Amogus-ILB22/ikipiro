@@ -24,7 +24,8 @@ struct CoreDataCloudKitShareApp: App {
         
         WindowGroup {
 //            TestView()
-            ContentView()
+//            ContentView()
+            MainView()
                 .environment(\.managedObjectContext, persistentContainer.viewContext)
 //            CustomFormCellView()
         }

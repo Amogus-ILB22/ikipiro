@@ -35,9 +35,6 @@ struct ContentView: View {
         NavigationView{
             
             if isStart
-            //
-            ////            && isBreathingIntroStarted
-            ////
             {
                 if tokos.count < 1 {
                     WelcomeView()

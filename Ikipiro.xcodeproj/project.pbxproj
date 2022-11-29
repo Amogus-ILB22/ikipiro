@@ -55,6 +55,8 @@
 		7EB3C3A5291EC923006E2251 /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C3A4291EC923006E2251 /* AddProductView.swift */; };
 		7EB3C3A7291EC981006E2251 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */; };
 		7EB3C3AA291EDC42006E2251 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB3C3A9291EDC42006E2251 /* CodeScanner */; };
+		7EC9A07029361BFD008D3844 /* CustomShapeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A06F29361BFD008D3844 /* CustomShapeTabBar.swift */; };
+		7EC9A07229361C44008D3844 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A07129361C44008D3844 /* MainView.swift */; };
 		7EE868F7292E1D8F00C215C6 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE868F6292E1D8F00C215C6 /* TestView.swift */; };
 		DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */; };
 		DC2B6D1B291D4AC400CA6BE1 /* TokoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1A291D4AC400CA6BE1 /* TokoGridView.swift */; };
@@ -143,6 +145,8 @@
 		7EB3C3A2291EC848006E2251 /* DetailProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductView.swift; sourceTree = "<group>"; };
 		7EB3C3A4291EC923006E2251 /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 		7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		7EC9A06F29361BFD008D3844 /* CustomShapeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapeTabBar.swift; sourceTree = "<group>"; };
+		7EC9A07129361C44008D3844 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7EE868F6292E1D8F00C215C6 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		B24732F33201E3732F237ECB /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 		407D7CEA27024EBD00D2BA90 /* CoreDataCloudKitShare */ = {
 			isa = PBXGroup;
 			children = (
+				7EC9A07129361C44008D3844 /* MainView.swift */,
 				DC2B6D30291E256F00CA6BE1 /* ContentView.swift */,
 				407D7D072702502200D2BA90 /* CoreDataCloudKitShare.entitlements */,
 				407D7D3A2702A2A400D2BA90 /* PhotoPicker.swift */,
@@ -296,6 +301,7 @@
 				7E2FD7E22934DEB50007004C /* CustomFormStack.swift */,
 				7E2FD7E42934ED360007004C /* CustomTextField.swift */,
 				7E2FD7E62934EFB30007004C /* CustomTextEditor.swift */,
+				7EC9A06F29361BFD008D3844 /* CustomShapeTabBar.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -503,10 +509,12 @@
 				4074428B270FB2B5009CABC7 /* PersistenceController+Share.swift in Sources */,
 				7EB3C3A7291EC981006E2251 /* CategorySelectionView.swift in Sources */,
 				DC2B6D1E291D4FDC00CA6BE1 /* AddTokoView.swift in Sources */,
+				7EC9A07229361C44008D3844 /* MainView.swift in Sources */,
 				7E2FD7E32934DEB50007004C /* CustomFormStack.swift in Sources */,
 				40D68E942719101A00FB9B78 /* PersistenceController+Deduplicate.swift in Sources */,
 				407D7D0427024F5D00D2BA90 /* PersistenceController.swift in Sources */,
 				DC2B6D2D291E21BD00CA6BE1 /* OnboardingViewPure.swift in Sources */,
+				7EC9A07029361BFD008D3844 /* CustomShapeTabBar.swift in Sources */,
 				407D7D3B2702A2A400D2BA90 /* PhotoPicker.swift in Sources */,
 				DC2B6D31291E256F00CA6BE1 /* ContentView.swift in Sources */,
 				40744289270FAFB3009CABC7 /* ParticipantView.swift in Sources */,
