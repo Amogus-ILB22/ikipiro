@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 import UIKit
 
+
+
 enum EditProductSection: String, CaseIterable {
     case withBarcode = "Dengan Barcode"
     case withoutBarcode = "Tanpa Barcode"
@@ -24,6 +26,13 @@ enum UnitProduct: String, CaseIterable {
     case box = "Dus"
     case wrap = "Bungkus"
 }
+
+struct ProductResponse: Codable, Equatable {
+    var id: Int
+    var barcode: String
+    var nama: String
+}
+
 
 struct AddProductView: View {
     @EnvironmentObject var productViewModel: ProductViewModel
@@ -120,9 +129,27 @@ struct AddProductView: View {
                 CustomFormStack {
                     HStack() {
                         CustomTextField(fieldString: self.$productBarcode, title: "Kode Produk", asteriks: false, keyboardType: .numberPad)
+                            .onChange(of: self.productBarcode){ barcode in
+                                if barcode.count == 13 {
+                                    Task {
+                                        await productViewModel.fetchProductFromAPI(productBarcode: self.productBarcode)
+                                    }
+                                }
+                            }
+                        
+                            
+//                            .onReceive(productViewModel.productAutocomplete){
+
+//                            }
                         Spacer()
                     }
                     .padding()
+                }
+                .onChange(of: productViewModel.productAutocomplete){ productResponse in
+                    if(productResponse != nil){
+                        self.productName = productResponse?.nama ?? ""
+                    }
+                    
                 }
                 
                 CustomFormStack {

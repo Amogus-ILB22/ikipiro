@@ -19,6 +19,9 @@ class ProductViewModel: ObservableObject {
     @Published private var searchKeyword = ""
     @Published private var selectedCategory = ""
     
+    @Published var productAutocomplete: ProductResponse?
+    
+    
     private func fetchProduct(){
         let request = NSFetchRequest<Produk>(entityName: "Produk")
         
@@ -26,6 +29,46 @@ class ProductViewModel: ObservableObject {
             products = try persistenceController.persistentContainer.viewContext.fetch(request)
         }catch let error {
             print("Error Fetching. \(error)")
+        }
+    }
+    
+    func fetchProductFromAPI(productBarcode: String) async {
+        print("hellooo callled")
+        
+        let networkMonitor = NetworkMonitor()
+        
+        DispatchQueue.main.async {
+            self.productAutocomplete = nil
+          }
+        
+        
+        
+        if networkMonitor.isConnected {
+            print("connected callled")
+            //create url
+            guard let url = URL(string: "https://ikipiro.artesia.id/api/barcode/\(productBarcode)") else {
+                return
+            }
+            //fetch data from that url
+            do {
+                print("do callled")
+                let (data, _) = try await URLSession.shared.data(from: url)
+                print(data)
+                
+                
+                //decode data
+                if let decodedResponse = try? JSONDecoder().decode(ProductResponse.self, from: data){
+                    print("if let callled")
+                    DispatchQueue.main.async {
+                        self.productAutocomplete = decodedResponse
+                      }
+                    
+                    print(productAutocomplete?.nama ?? "GK NAMPIL")
+                }
+            } catch {
+                print("catch callled")
+                print("bad news, not valid data")
+            }
         }
     }
     

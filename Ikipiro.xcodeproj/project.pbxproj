@@ -57,6 +57,7 @@
 		7EB3C3AA291EDC42006E2251 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB3C3A9291EDC42006E2251 /* CodeScanner */; };
 		7EC9A07029361BFD008D3844 /* CustomShapeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A06F29361BFD008D3844 /* CustomShapeTabBar.swift */; };
 		7EC9A07229361C44008D3844 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A07129361C44008D3844 /* MainView.swift */; };
+		7EC9A0932936733F008D3844 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A0922936733F008D3844 /* NetworkMonitor.swift */; };
 		7EE868F7292E1D8F00C215C6 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE868F6292E1D8F00C215C6 /* TestView.swift */; };
 		DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */; };
 		DC2B6D1B291D4AC400CA6BE1 /* TokoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1A291D4AC400CA6BE1 /* TokoGridView.swift */; };
@@ -147,6 +148,7 @@
 		7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 		7EC9A06F29361BFD008D3844 /* CustomShapeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapeTabBar.swift; sourceTree = "<group>"; };
 		7EC9A07129361C44008D3844 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7EC9A0922936733F008D3844 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		7EE868F6292E1D8F00C215C6 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		B24732F33201E3732F237ECB /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -320,6 +322,14 @@
 			path = ScanView;
 			sourceTree = "<group>";
 		};
+		7EC9A0912936732E008D3844 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				7EC9A0922936733F008D3844 /* NetworkMonitor.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		8909BB0CE269AA3B6CDD6200 /* LICENSE */ = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +350,7 @@
 		DC2B6D28291E219F00CA6BE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7EC9A0912936732E008D3844 /* Helper */,
 				7E2FD7E12934DE880007004C /* CustomView */,
 				7EB3C39C291EC4B2006E2251 /* ScanView */,
 				DC2B6D32291E366700CA6BE1 /* MainView */,
@@ -532,6 +543,7 @@
 				DC2B6D34291E36F300CA6BE1 /* ProductListView.swift in Sources */,
 				407D7CEC27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift in Sources */,
 				40527E17270BBE3400DB2901 /* RatingView.swift in Sources */,
+				7EC9A0932936733F008D3844 /* NetworkMonitor.swift in Sources */,
 				7EB3C3A5291EC923006E2251 /* AddProductView.swift in Sources */,
 				DC2B6D2E291E21BD00CA6BE1 /* OnboardingDataModel.swift in Sources */,
 				DC2B6D38291EAC3E00CA6BE1 /* SettingView.swift in Sources */,
