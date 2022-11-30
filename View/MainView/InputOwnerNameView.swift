@@ -9,12 +9,9 @@
 import SwiftUI
 import CoreData
 
-struct CreateNewTokoView: View {
+struct InputOwnerNameView: View {
     
-    @State var namaToko : String = ""
-    @Binding var openCreateNewToko: Bool
-    let persistenceController = PersistenceController.shared
-    @State var namaPemilik = UserDefaults.standard.object(forKey: "ownerName") as? String ?? ""
+    @State var namaPemilik: String = ""
     
     var body: some View {
         NavigationView{
@@ -28,7 +25,7 @@ struct CreateNewTokoView: View {
                 
                 GeometryReader { geometry in
                     VStack{
-
+                        
                         VStack{
                             HStack{
                                 Image("mascot-create-toko")
@@ -45,12 +42,12 @@ struct CreateNewTokoView: View {
                             minHeight: 0,
                             maxHeight: .infinity,
                             alignment: .topLeading
-                          )
+                        )
                         VStack{
                             
                             VStack{
                                 VStack{
-                                    Text("Buat Toko")
+                                    Text("Hai, nama kamu siapa ?")
                                         .font(.system(.title,design: .rounded))
                                         .foregroundColor(Color("bistre"))
                                         .fontWeight(.semibold)
@@ -59,7 +56,7 @@ struct CreateNewTokoView: View {
                                     VStack(alignment: .leading, spacing: 12){
                                         
                                         
-                                        TextField("Nama Toko", text: $namaToko)
+                                        TextField("Nama", text: $namaPemilik)
                                             .frame(maxWidth: .infinity)
                                             .foregroundColor(Color("charcoal"))
                                         
@@ -88,65 +85,52 @@ struct CreateNewTokoView: View {
                                     .onTapGesture {
                                         withAnimation{
                                             
-                                            addToko()
+                                            inputOwnerName()
                                             
                                         }
                                     }                                    .padding([.leading, .trailing],16.0)
-                                    .disabled(namaToko.isEmpty || namaPemilik.isEmpty)
+                                        .disabled(namaPemilik.isEmpty)
                                     
                                     Spacer()
                                 }
                             }  .frame(height: geometry.size.height * 0.73)
-                        }.background(.white)  
-
+                        }.background(.white)
                             .frame(maxHeight:.infinity)
                         
                     }
                 } .frame(maxHeight: .infinity)
-                .navigationBarTitle(Text(""), displayMode: .inline)
-                    .navigationBarItems(leading: Button(action: {
-                        openCreateNewToko.toggle()
-                    }) {
-                        
-                        HStack(alignment: .center) {
-                            
-                            Image(systemName: "chevron.left").foregroundColor(Color("charcoal"))
                 
-                            Text("Kembali").font(.system(.body,design: .rounded)).foregroundColor(Color("charcoal")).bold()
-                        }.padding([.leading, .trailing],6.0)
-                            .padding(.vertical,8)
-                            .padding(.horizontal,10)
-                            .background(
-                                Capsule()
-                                    .fill(.white)
-                                    .shadow(color: Color("charcoal"), radius: 1, x: 2, y: 2)
-                            )
-                           
-                    })
             }
         }
         
     }
     
-    private func addToko() {
+    private func inputOwnerName() {
         
-        guard !namaToko.isEmpty else { return }
+        //        guard !namaToko.isEmpty else { return }
+        
         guard !namaPemilik.isEmpty else { return }
         
-        let controller = persistenceController
-        
-        let taskContext = controller.persistentContainer.newTaskContext()
-        taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            withAnimation {
-                PersistenceController.shared.addToko(namaToko: namaToko, namaPemilik: namaPemilik, context: taskContext)
-            }
+        withAnimation{
+            UserDefaults.standard.set(namaPemilik, forKey: "ownerName")
         }
+        
+        //
+        //        let controller = persistenceController
+        //
+        //        let taskContext = controller.persistentContainer.newTaskContext()
+        //        taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+        //            withAnimation {
+        //                PersistenceController.shared.addToko(namaToko: namaToko, namaPemilik: namaPemilik, context: taskContext)
+        //            }
+        //        }
+        //    }
     }
 }
 
-struct CreateNewTokoView_Previews: PreviewProvider {
+struct InputOwnerNameView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateNewTokoView( openCreateNewToko: .constant(false))
+        InputOwnerNameView()
     }
 }

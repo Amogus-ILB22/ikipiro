@@ -104,10 +104,12 @@ struct OnboardingViewPure: View {
                 .padding(.horizontal,13)
                 .background(
                     RoundedRectangle(cornerRadius: 8.0)
-                        .fill(Color("GreenButton"))
+                        .fill(Color("sunray"))
                 )
                 .onTapGesture {
+                    withAnimation{
                 doneFunction()
+                        }
                 }
                 .padding([.leading, .trailing],16.0)
 
@@ -134,7 +136,7 @@ struct OnboardingViewPure: View {
                 .padding(.horizontal,13)
                 .background(
                     RoundedRectangle(cornerRadius: 8.0)
-                        .fill(Color("GreenButton"))
+                        .fill(Color("sunray"))
                 )
             }
                 .padding(.trailing,24)

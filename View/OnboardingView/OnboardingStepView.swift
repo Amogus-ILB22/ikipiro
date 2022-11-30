@@ -15,7 +15,7 @@ struct OnboardingStepView: View {
             Image(data.image)
                 .resizable()
                 .scaledToFit()
-                .padding(.horizontal, 10)
+                .padding(.top, 10)
                 .frame(width: UIScreen.main.bounds.width * 1, height: UIScreen.main.bounds.width)
             
             Text(data.heading)
@@ -25,7 +25,7 @@ struct OnboardingStepView: View {
                 .padding(.horizontal, 45)
                 .padding(.bottom, 8)
                 .multilineTextAlignment(.center)
-                .foregroundColor(Color("SolidGreen"))
+                .foregroundColor(Color("bistre"))
                
             
             Text(data.text)
@@ -34,6 +34,7 @@ struct OnboardingStepView: View {
                 .padding(.horizontal, 45)
                 .lineSpacing(3)
                 .multilineTextAlignment(.center)
+                .foregroundColor(Color("charcoal"))
         }.frame(maxWidth: .infinity,maxHeight: .infinity)
             .padding(.top, -90)
     }
