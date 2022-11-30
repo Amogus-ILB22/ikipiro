@@ -49,6 +49,15 @@ struct MainProductListView: View {
                 }
                 .onAppear{
 //                    productViewModel.filteredProduct()
+                    if UserDefaults.standard.object(forKey: "selectedToko") as? String == nil {
+                        
+                        productViewModel.fetchTokos()
+                        
+                        UserDefaults.standard.set(productViewModel.tokos[0].objectID.uriRepresentation().absoluteString, forKey: "selectedToko")
+                        
+                        print("anjing \(productViewModel.tokos[0].objectID.uriRepresentation().absoluteString)")
+                    }
+                    
                     productViewModel.fetchProductWithToko()
                     
 //                    productViewModel.fetchTokos()
@@ -125,6 +134,7 @@ struct MainProductListView: View {
             .navigationBarTitleDisplayMode(.inline)
             
         }.navigationViewStyle(.stack)
+ 
     }
 }
 

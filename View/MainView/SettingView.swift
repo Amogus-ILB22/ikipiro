@@ -14,11 +14,10 @@ import CloudKit
 
 
 enum ShareSheet: Identifiable, Equatable {
-    
     case cloudSharingSheet(CKShare)
     case managingSharesView
     case participantView(CKShare)
-    
+
     /**
      Use the enumeration member name string as the identifier for Identifiable.
      In the case where an enumeration has an associated value, use the label, which is equal to the member name string.
@@ -37,14 +36,14 @@ enum ShareSheet: Identifiable, Equatable {
 struct SettingView: View {
 
     @State var shareTo: String = ""
-  
-    
-
+    @StateObject var productViewModel: ProductViewModel = .init()
+    @State var toko: Toko?
+    @State private var showStoreList: Bool = false
     
     @State private var shareSheet: ShareSheet?
     
     @State private var nextSheet: ShareSheet?
-    
+    @State var namaPemilik = UserDefaults.standard.object(forKey: "ownerName") as? String ?? ""
     
     
     @State var openShare: Bool = false
@@ -65,216 +64,230 @@ struct SettingView: View {
         
         NavigationView{
             VStack{
-                List{
+//                Form{
+                
+                VStack{
                     
-                    ForEach(tokos, id: \.self) { toko in
-
-                        if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
-
-
+                    
+                    HStack{
+                    
+                    Text("Hi,\(namaPemilik)!").font(.system(.title3, design: .rounded)).fontWeight(.bold)
+                    Spacer()
+                    }.padding(.bottom,10)
+//                    ForEach(tokos, id: \.self) { toko in
+                        
+                    if persistenceController.sharedPersistentStore.contains(manageObject: productViewModel.currentToko ?? Toko()) {
+                            
+                            
                         } else{
                             
                             
-                                        Section{
-                                            HStack(){
-                                                VStack(alignment: .leading){
-                                                    Image("account")
-                                                    .resizable()
-                                                    .aspectRatio(contentMode: .fit)
-                                                    .frame(maxWidth: 50, maxHeight: 50)
-                                                }
-                                                VStack(alignment: .leading){
-                                                    Text(tokos.first?.namaPemilik ?? "Bu Jeki Sumatupang").font(.system(.title2, design: .rounded))
-                                                    Text("Owner").font(.system(.callout, design: .rounded))
-                                                }.padding(.leading, 5)
-                                                
-                                                Spacer()
-                                            }.frame(maxWidth: .infinity)
-                                        }
+                            
+                            //                                        Section{
+                            HStack(){
+                                VStack(alignment: .leading){
+                                    Image("store-icon-fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: 50, maxHeight: 50)
+                                }
+                                
+                                VStack(alignment: .leading){
+                                    Text(productViewModel.currentToko?.namaToko ?? "Bu Jeki Sumatupang").font(.system(.title2, design: .rounded)).foregroundColor(Color("charcoal"))
+                                    //                                                    Text("Owner").font(.system(.callout, design: .rounded))
+                                }.padding(.leading, 5)
+                                
+                                Spacer()
+                                
+                                Button(
+                                    action: {   showStoreList.toggle()  },
+                                    label: {
+                                        Image(systemName: "chevron.right").foregroundColor(Color("charcoal"))
+                                        
+                                    }
+                                )
+                                
+                            }.frame(maxWidth: .infinity)
+                            
+                                .padding(.all,15)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8.0)
+                                        .fill(Color.white)
+                                )
+                                .padding(.vertical,5)
+                                    
+                            
+                            //                                        }
                             
                             
                             
+                            //                            Section{
                             
-                            
-                            VStack{
                                 //                        ZStack {
                                 //                            Image("card").scaledToFill()
                                 //
                                 //                               Text("Hello, world!")
                                 //                                   .padding()
                                 //                           }
-                                HStack(){
+                                
+                                
+                                //                                    Section{
+                                
+                                HStack(alignment: .center){
                                     
+                                    Button(
+                                        action: {        withAnimation{    createNewShare(toko: productViewModel.currentToko!) }},
+                                        label: {
+                                            Image(systemName: "paperplane.fill")
+                                                .foregroundColor(Color.white)
+                                        }
+                                    )
+                                    Text("Kirim Akses ke Admin Lain").foregroundColor(Color.white).font(.system(.headline, design: .rounded)).bold()
                                     
-                                    VStack(alignment: .trailing){
-                                        
-                                        Image("logoIkipiro").resizable()
-                                            .aspectRatio(contentMode: .fit).frame(height: 25)
-                                        
-                                    }.padding(.top,10)
-                                        .padding(.leading,240)
-                                        .frame(maxWidth:.infinity)
-                                }
-                                .frame(maxWidth:.infinity)
-                                
-                                
-                                
-                                VStack(alignment:.leading){
-                                    HStack(alignment: .firstTextBaseline){
-                                        Text(tokos.first?.namaToko ?? "Toko Sumber Barokah").foregroundColor(.white).font(.system(.title2, design: .rounded))
-                                            .fontWeight(.bold)
-                                            .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.4), radius: 5, x: 0, y: 0)
-                                            .padding(.bottom,5)
-                                            .padding(.top, 20)
-                                        
-                                        Spacer()
-                                        
-                                    }.frame(maxWidth:.infinity)
-                                }
-                                Section{
-                                    
-                                    HStack{
-                                        TextField("Tandai penerima undangan", text: $shareTo)
-                                            .textFieldStyle(.roundedBorder)
-                                        Button(
-                                            action: {          createNewShare(toko: tokos.first!) },
-                                            label: {
-                                                Image(systemName: "paperplane.fill")
-                                                    .foregroundColor(Color.white)
-                                            }
-                                        )
-                                        
-                                    }
-                           
-//                                        .modifier(TextFieldShareButton(text: $shareTo, selectedToko: toko))
-                                }.padding(.bottom, 15)
-                                
-                                
-                                VStack(alignment:.leading){
-                                    HStack(alignment: .firstTextBaseline){
-                                        
-                                        Text( "Dibuat pada tanggal \(((tokos.first?.dibuatPada ?? Date()).formatted(date: .numeric, time: .omitted)))")
-                                            .font(.system(.callout, design: .rounded))
-                                            .fontWeight(.semibold).foregroundColor(.white)
-                                            .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 5, x: 0, y: 0)
-                                            .padding(.bottom,10)
-                                            .padding(.leading,5)
-                                        
-                                        Spacer()
-                                        
-                                    }.frame(maxWidth:.infinity)
-                                }
-                                
-                                
-                                
-                            }.frame(maxWidth: .infinity).background(Image("card")).scaledToFit()
-                            
-                        }
-                    }
-                    
-                    Section(header: Text("TOKO SAYA")) {
-                        
-                        ForEach(tokos, id: \.self)  { toko in
-                            
-                            if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
-                            
-                                
-                            } else{
-                                
-                                HStack(){
-                                    VStack(alignment: .leading){
-                                        Image(systemName: "mappin.circle.fill")
-                                            .resizable()
-                                            .foregroundColor(Color("GreenButton"))
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(maxWidth: 35, maxHeight: 35)
-                                    }
-                                    VStack(alignment: .leading){
-                                        Text(toko.namaToko ?? "Nama Toko").font(.system(.title3, design: .rounded))
-                                        Text("\(((toko.dibuatPada ?? Date()).formatted(date: .numeric, time: .omitted)))").font(.system(.callout, design: .rounded)).foregroundColor(.gray)
-                                        
-                                    }.padding(.leading, 5)
-                                    
-                                    
-                                    Spacer()
-                                    
-                                    VStack(alignment: .leading){
-                                        
-                                        
-                                     Button(action: {
-                                         
-                                         persistenceController.deleteToko(toko: toko)
-                                         
-                                     }, label: {
-                                         
-                                         
-                                         Image(systemName: "minus.circle.fill")
-                                             .foregroundColor(Color.red)
-                                     })
-                                        
-                                    }.padding(.leading, 5)
                                 }.frame(maxWidth: .infinity)
-                                
-                            }
-                        }
-                            }
-                    Section(header: Text("TOKO BERSAMA")) {
-                        
-                        ForEach(tokos, id: \.self)  { toko in
-                            
-                            if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
-                            
-                                HStack(){
-                                    VStack(alignment: .leading){
-                                        Image(systemName: "mappin.circle.fill")
-                                            .resizable()
-                                            .foregroundColor(.orange)
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(maxWidth: 35, maxHeight: 35)
-                                    }
-                                    VStack(alignment: .leading){
-                                        Text(toko.namaToko ?? "Nama Toko").font(.system(.title3, design: .rounded))
-                                        Text("\(((toko.dibuatPada ?? Date()).formatted(date: .numeric, time: .omitted)))").font(.system(.callout, design: .rounded)).foregroundColor(.gray)
-                                        
-                                    }.padding(.leading, 5)
-                                    
-                                    Spacer()
-                                }.frame(maxWidth: .infinity)
-                                
-                            } else{
-                                
-          
-                                
-                            }
-                        }
-
-                    }
-
-                    
-                        
-                        HStack{
-                            Text("Atur pembagian data")
-                            
-                            Spacer()
-                    
-                            Button(
-                                action: {        shareSheet = .managingSharesView },
-                                label: {
-                                    Image(systemName: "chevron.right")
-                            
-                                }
+                  
+                            .padding(.vertical,15)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8.0)
+                                    .fill(Color("sunray"))
                             )
+                                
+                                //                                        .modifier(TextFieldShareButton(text: $shareTo, selectedToko: toko))
+                            
+                            
+                            
+                            
+                            
+                            //                                }
+                            //
+                            
+                            //                            }
                         }
+//                    }
+                    
+                    //                    Section(header: Text("TOKO SAYA")) {
+                    //
+                    //                        ForEach(tokos, id: \.self)  { toko in
+                    //
+                    //                            if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
+                    //
+                    //
+                    //                            } else{
+                    //
+                    //                                HStack(){
+                    //                                    VStack(alignment: .leading){
+                    //                                        Image(systemName: "mappin.circle.fill")
+                    //                                            .resizable()
+                    //                                            .foregroundColor(Color("GreenButton"))
+                    //                                            .aspectRatio(contentMode: .fit)
+                    //                                            .frame(maxWidth: 35, maxHeight: 35)
+                    //                                    }
+                    //                                    VStack(alignment: .leading){
+                    //                                        Text(toko.namaToko ?? "Nama Toko").font(.system(.title3, design: .rounded))
+                    //                                        Text("\(((toko.dibuatPada ?? Date()).formatted(date: .numeric, time: .omitted)))").font(.system(.callout, design: .rounded)).foregroundColor(.gray)
+                    //
+                    //                                    }.padding(.leading, 5)
+                    //
+                    //
+                    //                                    Spacer()
+                    //
+                    //                                    VStack(alignment: .leading){
+                    //
+                    //
+                    //                                     Button(action: {
+                    //
+                    //                                         persistenceController.deleteToko(toko: toko)
+                    //
+                    //                                     }, label: {
+                    //
+                    //
+                    //                                         Image(systemName: "minus.circle.fill")
+                    //                                             .foregroundColor(Color.red)
+                    //                                     })
+                    //
+                    //                                    }.padding(.leading, 5)
+                    //                                }.frame(maxWidth: .infinity)
+                    //
+                    //                            }
+                    //                        }
+                    //                            }
+                    //                    Section(header: Text("TOKO BERSAMA")) {
+                    //
+                    //                        ForEach(tokos, id: \.self)  { toko in
+                    //
+                    //                            if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
+                    //
+                    //                                HStack(){
+                    //                                    VStack(alignment: .leading){
+                    //                                        Image(systemName: "mappin.circle.fill")
+                    //                                            .resizable()
+                    //                                            .foregroundColor(.orange)
+                    //                                            .aspectRatio(contentMode: .fit)
+                    //                                            .frame(maxWidth: 35, maxHeight: 35)
+                    //                                    }
+                    //                                    VStack(alignment: .leading){
+                    //                                        Text(toko.namaToko ?? "Nama Toko").font(.system(.title3, design: .rounded))
+                    //                                        Text("\(((toko.dibuatPada ?? Date()).formatted(date: .numeric, time: .omitted)))").font(.system(.callout, design: .rounded)).foregroundColor(.gray)
+                    //
+                    //                                    }.padding(.leading, 5)
+                    //
+                    //                                    Spacer()
+                    //                                }.frame(maxWidth: .infinity)
+                    //
+                    //                            } else{
+                    //
+                    //
+                    //
+                    //                            }
+                    //                        }
+                    //
+                    //                    }
+                    
+                    
+                    
+                    HStack{
+                        Text("Pengaturan Data").foregroundColor(Color("charcoal"))
                         
-                    }
+                        Spacer()
+                        
+                        Button(
+                            action: {     withAnimation{   shareSheet = .managingSharesView }},
+                            label: {
+                                Image(systemName: "chevron.right").foregroundColor(Color("charcoal"))
+                                
+                            }
+                        )
+                    }.frame(maxWidth: .infinity)
+                    
+                        .padding(.all,15)
+                        .background(
+                            RoundedRectangle(cornerRadius: 8.0)
+                                .fill(Color.white)
+                        )
+                        .padding(.vertical,5)
+                            
+                    
+                    
+                }.padding(.top,20).padding(.horizontal, 30)
+                
+                Spacer()
+                    
                     
                          
-            } .navigationBarTitleDisplayMode(.inline)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.listHeaderBackground)
+                .fullScreenCover(isPresented: $showStoreList, content: {
+                    StoreListView(showStoreList: $showStoreList, productViewModel: productViewModel)
+                })
+                .onAppear{
+                    productViewModel.currentToko = productViewModel.fetchTokoByObjectID()
+//                    print("Anjay \(toko)")
+                }
+            .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         VStack(alignment: .leading) {
                             Text("Pengaturan")
-                                .font(.system(.title, design: .rounded)).fontWeight(.bold)
+                                .font(.system(.largeTitle, design: .rounded)).fontWeight(.bold)
                               .foregroundColor(Color.black)
                               
                             
@@ -331,7 +344,8 @@ struct SettingView: View {
         case .managingSharesView:
                     ManagingSharesView(activeSheet: $shareSheet, nextSheet: $nextSheet)
         case .participantView(let share):
-        ParticipantView(activeSheet: $shareSheet, share: share)
+            
+            ParticipantView(activeSheet: $shareSheet, share: share)
             
         }
         

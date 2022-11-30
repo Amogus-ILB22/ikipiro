@@ -9,43 +9,22 @@
 import SwiftUI
 import CoreData
 
-struct CreateNewTokoView: View {
+struct CreateNewTokoFromSettingView: View {
+    
+    @Binding var showCreateNewToko: Bool
     
     @State var namaToko : String = ""
-    @Binding var openCreateNewToko: Bool
+
     let persistenceController = PersistenceController.shared
     @State var namaPemilik = UserDefaults.standard.object(forKey: "ownerName") as? String ?? ""
     
     var body: some View {
         NavigationView{
-            ZStack{
-                Image("background-create-toko")
-                    .resizable()
-                    .aspectRatio( contentMode: .fill)
-                    .frame(minWidth:0, maxWidth: .infinity)
-                    .edgesIgnoringSafeArea(.all)
-                
+            VStack{
                 
                 GeometryReader { geometry in
                     VStack{
 
-                        VStack{
-                            HStack{
-                                Image("mascot-create-toko")
-                                    .resizable()
-                                    .aspectRatio( contentMode: .fit)
-                                    .frame(maxHeight: geometry.size.height * 0.25)
-                            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-                                .padding(.trailing,10)
-                                .padding(.bottom, -20)
-                            
-                        }.frame(
-                            minWidth: 0,
-                            maxWidth: .infinity,
-                            minHeight: 0,
-                            maxHeight: .infinity,
-                            alignment: .topLeading
-                          )
                         VStack{
                             
                             VStack{
@@ -90,6 +69,7 @@ struct CreateNewTokoView: View {
                                             
                                             addToko()
                                             
+                                            showCreateNewToko.toggle()
                                         }
                                     }                                    .padding([.leading, .trailing],16.0)
                                     .disabled(namaToko.isEmpty || namaPemilik.isEmpty)
@@ -97,33 +77,25 @@ struct CreateNewTokoView: View {
                                     Spacer()
                                 }
                             }  .frame(height: geometry.size.height * 0.73)
-                        }.background(.white)  
+                        }.background(.white)
 
                             .frame(maxHeight:.infinity)
                         
                     }
                 } .frame(maxHeight: .infinity)
-                .navigationBarTitle(Text(""), displayMode: .inline)
-                    .navigationBarItems(leading: Button(action: {
-                        openCreateNewToko.toggle()
-                    }) {
-                        
-                        HStack(alignment: .center) {
-                            
-                            Image(systemName: "chevron.left").foregroundColor(Color("charcoal"))
-                
-                            Text("Kembali").font(.system(.callout,design: .rounded)).foregroundColor(Color("charcoal")).fontWeight(.bold)
-                        }.padding([.leading, .trailing],6.0)
-                            .padding(.vertical,7)
-                            .padding(.horizontal,8)
-                            .background(
-                                Capsule()
-                                    .fill(.white)
-                                    .shadow(color: Color("charcoal"), radius: 1, x: 1, y: 1)
-                            )
-                           
-                    })
             }
+            .navigationBarTitle(Text("Tambah Toko"), displayMode: .inline)
+                .navigationBarItems(leading: Button(action: {
+                    self.showCreateNewToko.toggle()
+                }) {
+                    HStack{
+                        
+                        Text("Kembali").foregroundColor(Color("sunray"))
+                        
+                    }
+                })
+        
+            
         }
         
     }
@@ -145,7 +117,7 @@ struct CreateNewTokoView: View {
     }
 }
 
-struct CreateNewTokoView_Previews: PreviewProvider {
+struct CreateNewTokoFromSettingView_Previews: PreviewProvider {
     static var previews: some View {
         CreateNewTokoView( openCreateNewToko: .constant(false))
     }

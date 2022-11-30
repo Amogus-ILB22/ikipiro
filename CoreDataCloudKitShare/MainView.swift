@@ -18,6 +18,7 @@ struct MainView: View {
     @StateObject var productViewModel = ProductViewModel()
     
     @AppStorage("isStart") private var isStart: Bool = false
+    @AppStorage("selectedToko") private var selectedToko: String = ""
     @AppStorage("ownerName") private var ownerName: String = ""
     
     var categories: [String] = ["Makanan","Minuman","Alat Mandi", "Bahan Masak"]

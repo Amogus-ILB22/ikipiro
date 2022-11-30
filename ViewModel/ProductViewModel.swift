@@ -15,6 +15,7 @@ class ProductViewModel: ObservableObject {
     @Published var selectedBarcodeProduk = ""
     @Published var tokos: [Toko] = []
     @Published var currentToko: Toko?
+    @Published var currentTokoObjectID: NSManagedObjectID?
     
     @Published private var searchKeyword = ""
     @Published private var selectedCategory = ""
@@ -83,6 +84,7 @@ class ProductViewModel: ObservableObject {
         }
     }
     
+    
     func fetchProductInToko(toko: Toko) -> [Produk] {
         //        return toko.produk?.allObjects as! [Produk]
         
@@ -97,28 +99,59 @@ class ProductViewModel: ObservableObject {
     
     func fetchProductWithToko(){
         //        return toko.produk?.allObjects as! [Produk]
-        if(self.currentToko != nil){
-            let productsResult = self.currentToko!.produk?.allObjects as! [Produk]
-            
-            if(productsResult.isEmpty){
-                self.products = []
-            }else{
-                self.products = productsResult
-            }
-        }else{
+//        if(self.currentToko != nil){
+//            let productsResult = self.currentToko!.produk?.allObjects as! [Produk]
+//
+//            if(productsResult.isEmpty){
+//                self.products = []
+//            }else{
+//                self.products = productsResult
+//            }
+//        }else{
             fetchTokos()
+            var objectIDString = UserDefaults.standard.object(forKey: "selectedToko")
+            
+            
+//            if let objectIDURL = URL(string: objectIDString) {
+//                let coordinator: NSPersistentStoreCoordinator = <reference to your persistent store coordinator>
+//                let managedObjectID = coordinator.managedObjectID(forURIRepresentation: objectIDURL)
+//            }
+//
+//
+//            let object = persistenceController.persistentContainer.viewContext.existingObject(with: <#T##NSManagedObjectID#>)
+//
             self.currentToko = tokos.first!
-            if(self.currentToko != nil){
-                let productsResult = self.currentToko!.produk?.allObjects as! [Produk]
+            // Use the persistent store coordinator to transform the string back to an NSManagedObjectID.
+            if let objectIDURL = URL(string: objectIDString as! String) {
+                let coordinator: NSPersistentStoreCoordinator = persistenceController.persistentContainer.viewContext.persistentStoreCoordinator!
+                let managedObjectID = coordinator.managedObjectID(forURIRepresentation: objectIDURL)
                 
-                if(productsResult.isEmpty){
-                    self.products = []
-                }else{
-                    self.products = productsResult
+                let request = NSFetchRequest<Produk>(entityName: "Produk")
+                
+                request.predicate = NSPredicate(format: "toko == %@", managedObjectID!)
+                
+                do {
+                    products = try persistenceController.persistentContainer.viewContext.fetch(request)
+                }catch let error {
+                    print("Error Fetching. \(error)")
                 }
                 
+                
+                
             }
-        }
+            
+         
+//            if(self.currentToko != nil){
+//                let productsResult = self.currentToko!.produk?.allObjects as! [Produk]
+//                
+//                if(productsResult.isEmpty){
+//                    self.products = []
+//                }else{
+//                    self.products = productsResult
+//                }
+//                
+//            }
+//        }
     }
     
     func fetchTokos(){
@@ -173,6 +206,25 @@ class ProductViewModel: ObservableObject {
             return nil
         }
     }
+    func fetchTokoByObjectID() -> Toko? {
+        let request = NSFetchRequest<Toko>(entityName: "Toko")
+        self.getObjectID()
+        
+        request.predicate = NSPredicate(format: "self == %@", currentTokoObjectID!)
+    
+        do {
+            let toko = try persistenceController.persistentContainer.viewContext.fetch(request).first
+            
+            print("KONTOOOLLLLLL ANJINGG")
+            self.currentToko = toko
+            print(toko)
+            return toko
+        }catch let error {
+            print("Error Fetching. \(error)")
+            print("KONTOOOLLLLLL")
+            return nil
+        }
+    }
     
     func addProduct(nama: String,satuan: String, harga: Double, kode: Int64,kategori: String){
         guard let toko = self.currentToko else { return }
@@ -213,4 +265,32 @@ class ProductViewModel: ObservableObject {
             return nil
         }
     }
+    
+    func getObjectID(){
+        
+        var objectIDString = UserDefaults.standard.object(forKey: "selectedToko")
+        // Use the persistent store coordinator to transform the string back to an NSManagedObjectID.
+        if let objectIDURL = URL(string: objectIDString as! String) {
+            let coordinator: NSPersistentStoreCoordinator = persistenceController.persistentContainer.viewContext.persistentStoreCoordinator!
+            let managedObjectID = coordinator.managedObjectID(forURIRepresentation: objectIDURL)
+            
+//            let request = NSFetchRequest<Produk>(entityName: "Produk")
+//
+//            request.predicate = NSPredicate(format: "toko == %@", managedObjectID!)
+//
+//            do {
+//                products = try persistenceController.persistentContainer.viewContext.fetch(request)
+//            }catch let error {
+//                print("Error Fetching. \(error)")
+//            }
+            
+            self.currentTokoObjectID = managedObjectID
+            
+        }
+        
+     
+    }
 }
+
+
+
