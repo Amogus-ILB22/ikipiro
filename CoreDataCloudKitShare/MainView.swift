@@ -134,7 +134,7 @@ struct MainView: View {
                                 .padding(.top, 60)
                                 .background(.white)
                                 .clipShape(CustomShapeTabBar())
-                                .shadow(color: .gray, radius: 7, x: 0, y: 0)
+                                .shadow(color: Color("brigray"), radius: 7, x: 0, y: 0)
                             }
                         }
                         .ignoresSafeArea(edges: .bottom)

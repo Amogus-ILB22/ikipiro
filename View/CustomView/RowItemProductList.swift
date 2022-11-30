@@ -59,7 +59,7 @@ struct RowItemProductList: View {
         }
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 15))
-        .shadow(color: .gray, radius: 4, x: 0, y: 0)
+        .shadow(color: Color("brigray"), radius: 4, x: 0, y: 0)
     }
 }
 

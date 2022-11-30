@@ -43,7 +43,7 @@ struct MainProductListView: View {
                             .sheet(isPresented: self.$showDetailProduct, content: {
                                 DetailProductView(productBarcode: productViewModel.selectedBarcodeProduk)
                             })
-                            .padding()
+                            .padding(.horizontal)
                         }
                     }
                 }
@@ -78,7 +78,7 @@ struct MainProductListView: View {
                         .padding(EdgeInsets(top: 3, leading: 8, bottom: 3, trailing: 8))
                         .background(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
-                        .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                        .shadow(color: Color("brigray"), radius: 2, x: 0, y: 0)
                         
                     })
                     .fullScreenCover(isPresented: self.$showAddProductView, content: {
