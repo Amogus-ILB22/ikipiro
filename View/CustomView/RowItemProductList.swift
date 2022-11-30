@@ -29,37 +29,43 @@ struct RowItemProductList: View {
                         .frame(width: 30, height: 30)
                 }.frame(width: 60, height: 60)
                     .cornerRadius(10)
-                    .padding()
+                    .padding(.vertical)
+                .padding(.leading)
+                .padding(.trailing,5)
             }else{
                 Image(productImage!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 60, height: 60)
                     .cornerRadius(10)
-                    .padding()
+                    .padding(.vertical)
+                .padding(.leading)
+                .padding(.trailing,5)
             }
             
             VStack(alignment: .leading) {
                 Text(productName)
                     .font(.system(.title3))
                     .foregroundColor(Color("charcoal"))
+                    .padding(.bottom,3)
                 HStack(spacing: 0) {
                     Text(productPrice)
                         .foregroundColor(Color("sunray"))
-                        .font(.system(.title3).bold())
+                        .font(.system(.body).bold())
                     Text("/\(productUnit)")
-                        .foregroundColor(Color("charcoal"))
-                        .font(.system(.body))
+                        .foregroundColor(Color.gray)
+                        .font(.system(.footnote))
                     
                 }
             }
-            .padding()
+            .padding(.vertical)
+            .padding(.trailing)
             
             Spacer()
         }
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 15))
-        .shadow(color: Color("brigray"), radius: 4, x: 0, y: 0)
+        .shadow(color: Color("brigray"), radius: 3, x: 0, y: 0)
     }
 }
 
