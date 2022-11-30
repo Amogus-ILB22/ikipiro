@@ -31,13 +31,13 @@ struct CreateNewTokoView: View {
 
                         VStack{
                             HStack{
-                                Image("mascot-create-toko")
+                                Image("store")
                                     .resizable()
                                     .aspectRatio( contentMode: .fit)
                                     .frame(maxHeight: geometry.size.height * 0.25)
                             }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
                                 .padding(.trailing,10)
-                                .padding(.bottom, -20)
+                                .padding(.bottom, -30)
                             
                         }.frame(
                             minWidth: 0,

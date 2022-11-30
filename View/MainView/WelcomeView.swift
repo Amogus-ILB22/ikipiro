@@ -11,6 +11,7 @@ import SwiftUI
 struct WelcomeView: View {
     
     @State var openCreateNewToko: Bool = false
+    @State var openShareDataInstruction: Bool = false
     var body: some View {
             ZStack {
                 Image("welcome")
@@ -59,6 +60,7 @@ struct WelcomeView: View {
                         .onTapGesture{
                         withAnimation{
                             
+                            openShareDataInstruction.toggle()
                         }
                         }.padding(.top,5)
          
@@ -67,6 +69,9 @@ struct WelcomeView: View {
                 
             }.fullScreenCover(isPresented: $openCreateNewToko, content: {
                 CreateNewTokoView(openCreateNewToko: $openCreateNewToko)
+            })
+            .sheet(isPresented: $openShareDataInstruction, content: {
+                ShareDataInstructionView(openShareDataInstruction: $openShareDataInstruction)
             })
             
         

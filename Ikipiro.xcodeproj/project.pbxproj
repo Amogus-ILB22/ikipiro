@@ -80,6 +80,7 @@
 		DCB091E729360577000E4F53 /* InputOwnerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB091E629360577000E4F53 /* InputOwnerNameView.swift */; };
 		DCB091E929367FAA000E4F53 /* StoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB091E829367FAA000E4F53 /* StoreListView.swift */; };
 		DCB091EB29368B80000E4F53 /* CreateNewTokoFromSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB091EA29368B80000E4F53 /* CreateNewTokoFromSettingView.swift */; };
+		DCB091ED2937CA7C000E4F53 /* ShareDataInstructionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB091EC2937CA7C000E4F53 /* ShareDataInstructionView.swift */; };
 		DCF656F8291FEDD00053ABF5 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF656F7291FEDD00053ABF5 /* WelcomeView.swift */; };
 		DCF656FA291FF16C0053ABF5 /* CreateNewTokoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF656F9291FF16C0053ABF5 /* CreateNewTokoView.swift */; };
 /* End PBXBuildFile section */
@@ -180,6 +181,7 @@
 		DCB091E629360577000E4F53 /* InputOwnerNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputOwnerNameView.swift; sourceTree = "<group>"; };
 		DCB091E829367FAA000E4F53 /* StoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListView.swift; sourceTree = "<group>"; };
 		DCB091EA29368B80000E4F53 /* CreateNewTokoFromSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTokoFromSettingView.swift; sourceTree = "<group>"; };
+		DCB091EC2937CA7C000E4F53 /* ShareDataInstructionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareDataInstructionView.swift; sourceTree = "<group>"; };
 		DCF656F7291FEDD00053ABF5 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		DCF656F9291FF16C0053ABF5 /* CreateNewTokoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTokoView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -401,6 +403,7 @@
 				DCF656F9291FF16C0053ABF5 /* CreateNewTokoView.swift */,
 				DCB091EA29368B80000E4F53 /* CreateNewTokoFromSettingView.swift */,
 				DCB091E629360577000E4F53 /* InputOwnerNameView.swift */,
+				DCB091EC2937CA7C000E4F53 /* ShareDataInstructionView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				407D7D632703A27000D2BA90 /* PhotoGridItemView.swift in Sources */,
 				7EC9A09D2937C355008D3844 /* EditProductView.swift in Sources */,
 				DC2B6D1B291D4AC400CA6BE1 /* TokoGridView.swift in Sources */,
+				DCB091ED2937CA7C000E4F53 /* ShareDataInstructionView.swift in Sources */,
 				7E72B61C292C82050026BBE0 /* MainProductListView.swift in Sources */,
 				40C6211E2755AFB500015301 /* SharePickerView.swift in Sources */,
 				4026B868270A19390060F0F7 /* TaggingView.swift in Sources */,

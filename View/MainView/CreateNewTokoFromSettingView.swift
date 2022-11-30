@@ -21,7 +21,7 @@ struct CreateNewTokoFromSettingView: View {
     var body: some View {
         NavigationView{
             VStack{
-                
+                Divider()
                 GeometryReader { geometry in
                     VStack{
 

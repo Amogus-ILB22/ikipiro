@@ -62,89 +62,125 @@ struct SettingView: View {
                         Spacer()
                     }.padding(.bottom,10)
                     
-                    if persistenceController.sharedPersistentStore.contains(manageObject: productViewModel.currentToko ?? Toko()) {
-
-                    } else{
-                        HStack(){
+      
+                    
+                    Button(action: {
+                        withAnimation{  showStoreList.toggle()   }
+                    }, label: {
+                        HStack {
                             VStack(alignment: .leading){
                                 Image("store-icon-fill")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(maxWidth: 50, maxHeight: 50)
                             }
-                            
+
                             VStack(alignment: .leading){
                                 Text(productViewModel.currentToko?.namaToko ?? "Bu Jeki Sumatupang").font(.system(.title2, design: .rounded)).foregroundColor(Color("charcoal"))
                                 //                                                    Text("Owner").font(.system(.callout, design: .rounded))
                             }.padding(.leading, 5)
-                            
+
                             Spacer()
-                            
+
                             Button(
                                 action: {   showStoreList.toggle()  },
                                 label: {
                                     Image(systemName: "chevron.right").foregroundColor(Color("charcoal"))
-                                    
+
                                 }
                             )
-                            
-                        }.frame(maxWidth: .infinity)
+
+                        }.frame(maxWidth: .infinity,maxHeight: 60)
                         
-                            .padding(.all,15)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8.0)
-                                    .fill(Color.white)
-                            )
-                            .padding(.vertical,5)
+
+                    })
+                    .cornerRadius(10)
+                    .buttonStyle(.borderedProminent)
+                    .foregroundColor(.white)
+                    .tint(Color.white)
+                    .shadow(color: .gray, radius: 1, x: 0, y: 1)
+                    .padding(.vertical,5)
+              
+                    
+                    
+                    if persistenceController.sharedPersistentStore.contains(manageObject: productViewModel.currentToko ?? Toko()) {
+
+                    } else{
                         
-                        HStack(alignment: .center){
-                            
-                            Button(
-                                action: {        withAnimation{    createNewShare(toko: productViewModel.currentToko!) }},
-                                label: {
-                                    Image(systemName: "paperplane.fill")
-                                        .foregroundColor(Color.white)
-                                }
-                            )
-                            Text("Kirim Akses ke Admin Lain").foregroundColor(Color.white).font(.system(.headline, design: .rounded)).bold()
-                            
-                        }.frame(maxWidth: .infinity)
+                        Button(action: {
+                            withAnimation{ createNewShare(toko: productViewModel.currentToko!) }
+                        }, label: {
+                            HStack {
+                                Image(systemName: "paperplane.fill")
+                                Text("Kirim Akses ke Admin Lain")
+                                    .font(.body)
+                                    .bold()
+                            }.frame(maxWidth: .infinity)
+                                .frame(maxHeight: 35)
+                        })
+                        .cornerRadius(10)
+                        .buttonStyle(.borderedProminent)
+                        .foregroundColor(.white)
+                        .tint(Color("sunray"))
+                        .shadow(color: .gray, radius: 1, x: 0, y: 1)
+                        .padding(.vertical,3)
                         
-                            .padding(.vertical,15)
-                            .background(
-                                RoundedRectangle(cornerRadius: 8.0)
-                                    .fill(Color("sunray"))
-                            )
                     }
                     
-                    HStack{
-                        Text("Pengaturan Data").foregroundColor(Color("charcoal"))
-                        
-                        Spacer()
-                        
-                        Button(
-                            action: {     withAnimation{   shareSheet = .managingSharesView }},
-                            label: {
-                                Image(systemName: "chevron.right").foregroundColor(Color("charcoal"))
-                                
-                            }
-                        )
-                    }.frame(maxWidth: .infinity)
+                    Button(action: {
+                        withAnimation{  showStoreList.toggle()   }
+                    }, label: {
+                        HStack {
+                            Text("Pengaturan Data").foregroundColor(Color("charcoal"))
+
+                                                    Spacer()
+                            
+                                                    Button(
+                                                        action: {     withAnimation{   shareSheet = .managingSharesView }},
+                                                        label: {
+                                                            Image(systemName: "chevron.right").foregroundColor(Color("charcoal"))
+                            
+                                                        })
+                        }.frame(maxWidth: .infinity)
+                            .frame(maxHeight: 35)
+
+                    })
+                    .cornerRadius(10)
+                    .buttonStyle(.borderedProminent)
+                    .foregroundColor(.white)
+                    .tint(Color.white)
+                    .shadow(color: .gray, radius: 1, x: 0, y: 1)
+                    .padding(.vertical,5)
                     
-                        .padding(.all,15)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8.0)
-                                .fill(Color.white)
-                        )
-                        .padding(.vertical,5)
-                    
+//
+//                    HStack{
+//                        Text("Pengaturan Data").foregroundColor(Color("charcoal"))
+//
+//                        Spacer()
+//
+//                        Button(
+//                            action: {     withAnimation{   shareSheet = .managingSharesView }},
+//                            label: {
+//                                Image(systemName: "chevron.right").foregroundColor(Color("charcoal"))
+//
+//                            }
+//                        )
+//                    }.frame(maxWidth: .infinity)
+//
+//                        .padding(.all,15)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 8.0)
+//                                .fill(Color.white)
+//                        )
+//                        .padding(.vertical,5)
+//
                 }.padding(.top,20).padding(.horizontal, 30)
                 
                 Spacer()
                 
                 
                 
-            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.listHeaderBackground)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.white)
                 .fullScreenCover(isPresented: $showStoreList, content: {
                     StoreListView(showStoreList: $showStoreList)
                 })
