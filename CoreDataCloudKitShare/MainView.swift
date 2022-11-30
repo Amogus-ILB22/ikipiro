@@ -145,7 +145,7 @@ struct MainView: View {
             else
             
             {
-                
+
                 OnboardingViewPure(data: ContentView.sample, doneFunction: {
                     
                     withAnimation{

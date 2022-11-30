@@ -41,12 +41,11 @@ struct ProductUnitSelection: View {
                     
                 }).buttonStyle(.borderedProminent)
                     .foregroundColor(.white)
-                    .tint(.green)
+                    .tint(Color("sunray"))
                     .padding()
                     .sheet(isPresented: self.$showNewProductUnitModal, content: {
                         AddProductUnitModalView()
                     })
-                
             }
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){
@@ -54,7 +53,7 @@ struct ProductUnitSelection: View {
                         self.showProductUnit.toggle()
                     }, label: {
                         Text("Kembali")
-                    }).foregroundColor(.green)
+                    }).foregroundColor(Color("sunray"))
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
@@ -63,7 +62,7 @@ struct ProductUnitSelection: View {
                         }
                     }, label: {
                         Text("Selesai")
-                    }).foregroundColor(.green)
+                    }).foregroundColor(Color("sunray"))
                         
                 }
             }

@@ -31,7 +31,6 @@ struct ProductResponse: Codable, Equatable {
     var nama: String
 }
 
-
 struct AddProductView: View {
     @EnvironmentObject var productViewModel: ProductViewModel
     @State var segmentationSelection: EditProductSection = .withBarcode
@@ -138,9 +137,9 @@ struct AddProductView: View {
                     Divider()
                     
                     TextEditor(text: self.$productDescription)
-                    .padding()
-                    .frame(maxHeight: 100)
-                    .colorMultiply(Color("cultured"))
+                        .padding()
+                        .frame(maxHeight: 100)
+                        .colorMultiply(Color("cultured"))
                     
                     Divider()
                 }
@@ -166,9 +165,10 @@ struct AddProductView: View {
                     })
                     
                 }.padding()
-    
+                
                 Spacer()
             }
+            .ignoresSafeArea(.keyboard)
             .padding()
             .toolbar{
                 ToolbarItem(placement: .navigationBarLeading){

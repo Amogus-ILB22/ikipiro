@@ -116,7 +116,7 @@ struct DetailProductView: View {
                         }).foregroundColor(Color("sunray"))
                         
                             .fullScreenCover(isPresented: self.$showAddProductView, content: {
-                                EditProductView(currentProduct: self.currentProduct!, showAddProductView: self.$showAddProductView)
+                                EditProductView(currentProduct: self.currentProduct!, showEditProductView: self.$showAddProductView)
                             })
                     }
                 }
