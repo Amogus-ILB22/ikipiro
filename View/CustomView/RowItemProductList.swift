@@ -39,9 +39,6 @@ struct RowItemProductList: View {
                     .padding()
             }
             
-            
-            
-            
             VStack(alignment: .leading) {
                 Text(productName)
                     .font(.system(.title3))
@@ -56,7 +53,7 @@ struct RowItemProductList: View {
                     
                 }
             }
-            .padding(.vertical)
+            .padding()
             
             Spacer()
         }
