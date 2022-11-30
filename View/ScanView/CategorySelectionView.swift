@@ -11,7 +11,6 @@ import SwiftUI
 
 struct CategorySelectionView: View {
     @State var showNewCategoryModal: Bool = false
-    
     @Binding var showCategory: Bool
     @Binding var productCategory: String
 //    @State var categories = UserDefaults.standard.array(forKey: "categories") as? [String]
@@ -125,28 +124,6 @@ struct AddCategoryModelView: View {
         }
     }
 }
-
-struct SelectionRow: View {
-    let title: String
-    @Binding var selectedItem: String
-    
-    var body: some View {
-        Button(action: {
-            self.selectedItem = self.title
-        }, label: {
-            HStack {
-                Text(title).foregroundColor(.black)
-                Spacer()
-                if title == selectedItem {
-                    Image(systemName: "checkmark")
-                        .foregroundColor(.green)
-                }
-            }
-            .contentShape(Rectangle())
-        })
-    }
-}
-
 
 struct CategorySelection_Previews: PreviewProvider {
     static var previews: some View {

@@ -12,23 +12,18 @@ import CloudKit
 
 
 struct StoreListView: View {
+    @EnvironmentObject var productViewModel: ProductViewModel
     @Binding var showStoreList: Bool
-    @ObservedObject var  productViewModel: ProductViewModel
-
-    
     @State var showCreateNewToko: Bool = false
-    
     @State var selectedToko = UserDefaults.standard.object(forKey: "selectedToko") as? String ?? ""
-
-//    @State var categories = UserDefaults.standard.array(forKey: "categories") as? [String]
-
+    
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [SortDescriptor(\.namaPemilik)],
                   animation: .default
     ) private var tokos: FetchedResults<Toko>
     
     private let persistenceController = PersistenceController.shared
- 
+    
     var body: some View {
         NavigationView{
             VStack{
@@ -36,14 +31,14 @@ struct StoreListView: View {
                     Section(header: Text("TOKO SAYA").font(.system(.body, design: .rounded)).foregroundColor(Color("sunray")).fontWeight(.semibold)) {
                         List {
                             ForEach(tokos, id:\.self){ toko in
-                                                            if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
-                                
-                                
-                                                            } else{
-                                                                Button(action: {}, label: {
-                                                                    SelectionToko(objectID: toko.objectID.uriRepresentation().absoluteString, selectedToko: $selectedToko, productViewModel: productViewModel)
-                                                                })
-                                                            }
+                                if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
+                                } else{
+                                    Button(action: {
+                                        print("Bacott")
+                                    }, label: {
+                                        SelectionToko(objectID: toko.objectID.uriRepresentation().absoluteString, selectedToko: $selectedToko)
+                                    })
+                                }
                             }
                         }
                     }
@@ -51,13 +46,13 @@ struct StoreListView: View {
                     Section(header: Text("TOKO Bersama").font(.system(.body, design: .rounded)).foregroundColor(Color("sunray")).fontWeight(.semibold)) {
                         List {
                             ForEach(tokos, id:\.self){ toko in
-                                                            if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
-                                
-                                                                Text(toko.objectID.uriRepresentation().absoluteString).foregroundColor(.black)
-                                
-                                                            } else{
-                                                  
-                                                            }
+                                if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
+                                    
+                                    Text(toko.objectID.uriRepresentation().absoluteString).foregroundColor(.black)
+                                    
+                                } else{
+                                    
+                                }
                             }
                         }
                     }
@@ -82,7 +77,7 @@ struct StoreListView: View {
                     CreateNewTokoFromSettingView(showCreateNewToko: $showCreateNewToko)
                 })
             
-            .navigationBarTitle(Text("Daftar Toko"), displayMode: .inline)
+                .navigationBarTitle(Text("Daftar Toko"), displayMode: .inline)
                 .navigationBarItems(leading: Button(action: {
                     self.showStoreList.toggle()
                 }) {
@@ -94,45 +89,13 @@ struct StoreListView: View {
                         
                     }
                 })
-               
-            
-    
             
         }.onReceive(NotificationCenter.default.storeDidChangePublisher) { notification in
             processStoreChangeNotification(notification)
         }
-
-
+        
+        
     }
-    
-    
-    struct SelectionToko: View {
-        let objectID: String
-        @Binding var selectedToko: String
-        @ObservedObject var  productViewModel: ProductViewModel
-
-        var body: some View {
-            Button(action: {
-                self.selectedToko = self.objectID
-                
-                UserDefaults.standard.set(selectedToko, forKey: "selectedToko")
-                
-                productViewModel.currentToko = productViewModel.fetchTokoByObjectID()
-            }, label: {
-                HStack {
-                    Text(objectID).foregroundColor(.black)
-                    Spacer()
-                    if selectedToko == objectID {
-                        Image(systemName: "checkmark")
-                            .foregroundColor(.green)
-                    }
-                }
-                .contentShape(Rectangle())
-            })
-        }
-    }
-
-    
     
     private func processStoreChangeNotification(_ notification: Notification) {
         guard let storeUUID = notification.userInfo?[UserInfoKey.storeUUID] as? String,
@@ -149,8 +112,35 @@ struct StoreListView: View {
     
 }
 
+struct SelectionToko: View {
+    let objectID: String
+    @Binding var selectedToko: String
+    @EnvironmentObject var  productViewModel: ProductViewModel
+    
+    var body: some View {
+        Button(action: {
+            self.selectedToko = self.objectID
+            
+            UserDefaults.standard.set(selectedToko, forKey: "selectedToko")
+            
+            productViewModel.currentToko = productViewModel.fetchTokoByObjectID()
+            print("selection toko \(productViewModel.currentToko?.namaToko ?? "gk Nampilll di selection toko")")
+        }, label: {
+            HStack {
+                Text(objectID).foregroundColor(.black)
+                Spacer()
+                if selectedToko == objectID {
+                    Image(systemName: "checkmark")
+                        .foregroundColor(.green)
+                }
+            }
+            .contentShape(Rectangle())
+        })
+    }
+}
+
 struct StoreListView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreListView(showStoreList: .constant(true), productViewModel: ProductViewModel() ,selectedToko: "")
+        StoreListView(showStoreList: .constant(true) ,selectedToko: "")
     }
 }

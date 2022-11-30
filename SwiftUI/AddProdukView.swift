@@ -13,7 +13,7 @@ struct AddProdukView: View {
     
     
     @State var nama: String = ""
-    @State var kategori: String = ""
+    @State var deskripsi: String = ""
     @State var satuan: String = ""
     @State var kode: Double = 0
     @State var harga: Double = 0
@@ -39,7 +39,7 @@ struct AddProdukView: View {
                     .textContentType(.name).padding()
                 TextField("Harga", value:  $harga, formatter: NumberFormatter())
                     .keyboardType(.numberPad).padding()
-                TextField("kategori", text: $kategori).padding()
+                TextField("deskripsi", text: $deskripsi).padding()
                 TextField("kode", value: $kode, formatter: NumberFormatter() )             .keyboardType(.numberPad).padding()
                 TextField("satuan", text: $satuan).padding()
 
@@ -48,7 +48,7 @@ struct AddProdukView: View {
                 
                 Button("Save", action: { addProduk()
                 })
-                    .disabled(nama.isEmpty || harga.isZero  || satuan.isEmpty  || kategori.isEmpty || kode.isZero)
+                    .disabled(nama.isEmpty || harga.isZero  || satuan.isEmpty  || deskripsi.isEmpty || kode.isZero)
                 
             }
             .padding()
@@ -60,7 +60,7 @@ struct AddProdukView: View {
 //                }
 //                ToolbarItem(placement: .confirmationAction) {
 //                    Button("Save", action: { print("wada")   })
-//                        .disabled(nama.isEmpty || harga.isEmpty  || satuan.isEmpty  || kategori.isEmpty  || kode.isEmpty)
+//                        .disabled(nama.isEmpty || harga.isEmpty  || satuan.isEmpty  || deskripsi.isEmpty  || kode.isEmpty)
 //                }
 //            }
         }
@@ -75,7 +75,7 @@ struct AddProdukView: View {
         taskContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             withAnimation {
-                PersistenceController.shared.addProduk(nama: nama, satuan: satuan, harga: harga, kode: Int64(kode), kategori: kategori,relateTo: tokoModel.selectedToko)
+                PersistenceController.shared.addProduk(nama: nama, satuan: satuan, harga: harga, kode: Int64(kode), deskripsi: deskripsi,relateTo: tokoModel.selectedToko)
                    
                    tokoModel.openAddProduk.toggle()
               

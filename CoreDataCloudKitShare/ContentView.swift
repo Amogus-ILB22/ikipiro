@@ -80,6 +80,9 @@ struct ContentView: View {
                                     Image(systemName: "testtube.2").renderingMode(.template)
                                     Text("Test")
                                 }
+                                .onAppear{
+                                    UserDefaults.standard.set(categories, forKey: "categories")
+                                }
                             
                         }
                         .accentColor(Color("GreenButton"))

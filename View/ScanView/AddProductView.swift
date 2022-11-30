@@ -10,8 +10,6 @@ import Foundation
 import SwiftUI
 import UIKit
 
-
-
 enum EditProductSection: String, CaseIterable {
     case withBarcode = "Dengan Barcode"
     case withoutBarcode = "Tanpa Barcode"
@@ -40,10 +38,9 @@ struct AddProductView: View {
     @State var productBarcode: String = ""
     @State var productName: String = ""
     @State var productPrice: String = ""
-    @State var productCategory: String = ""
+    @State var productUnit: String = ""
     @State var productDescription: String = "Deskripsi Produk"
-    @State var productUnit: UnitProduct = .dozen
-    @State var showCategory = false
+    @State var showProductUnit = false
     @State var showScanView = false
     @Binding var showAddProductView: Bool
     
@@ -79,11 +76,6 @@ struct AddProductView: View {
                                     }
                                 }
                             }
-                        
-                            
-//                            .onReceive(productViewModel.productAutocomplete){
-
-//                            }
                         Spacer()
                     }
                     .padding()
@@ -113,7 +105,7 @@ struct AddProductView: View {
                     Divider()
                     
                     Button(action: {
-                        self.showCategory.toggle()
+                        self.showProductUnit.toggle()
                         
                     }, label: {
                         
@@ -125,19 +117,21 @@ struct AddProductView: View {
                                 .font(.system(.body))
                                 .foregroundColor(.red)
                             Spacer()
-                            if self.productCategory.isEmpty {
+                            if self.productUnit.isEmpty {
                                 Text("Pilih Satuan")
                                     .font(.system(.body))
                                     .foregroundColor(Color("sunray"))
                                     .padding(.trailing)
                             }else{
-                                Text(self.productCategory)
+                                Text(self.productUnit)
+                                    .font(.system(.body))
+                                    .foregroundColor(Color("sunray"))
                                     .padding(.trailing)
                             }
                         }
                     })
-                    .fullScreenCover(isPresented: self.$showCategory, content: {
-                        CategorySelectionView(showCategory: self.$showCategory, productCategory: self.$productCategory)
+                    .fullScreenCover(isPresented: self.$showProductUnit, content: {
+                        ProductUnitSelection(showProductUnit: self.$showProductUnit, productUnit: self.$productUnit)
                     })
                     .padding()
                     
@@ -149,7 +143,6 @@ struct AddProductView: View {
                     .colorMultiply(Color("cultured"))
                     
                     Divider()
-                    
                 }
                 
                 CustomFormStack {
@@ -173,7 +166,7 @@ struct AddProductView: View {
                     })
                     
                 }.padding()
-                
+    
                 Spacer()
             }
             .padding()
@@ -192,8 +185,8 @@ struct AddProductView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
-                        if(!productBarcode.isEmpty && !productCategory.isEmpty && !productName.isEmpty && !productPrice.isEmpty){
-                            productViewModel.addProduct(nama: productName, satuan: productUnit.rawValue, harga: Double(productPrice) ?? 0, kode: Int64(productBarcode) ?? 0, kategori: productCategory)
+                        if(!productBarcode.isEmpty && !productDescription.isEmpty && !productName.isEmpty && !productPrice.isEmpty){
+                            productViewModel.addProduct(nama: productName, satuan: productUnit, harga: Double(productPrice) ?? 0, kode: Int64(productBarcode) ?? 0, deskripsi: productDescription)
                             self.showAddProductView.toggle()
                             productViewModel.filteredProduct()
                         }

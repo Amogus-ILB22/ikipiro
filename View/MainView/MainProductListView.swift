@@ -48,54 +48,19 @@ struct MainProductListView: View {
                     }
                 }
                 .onAppear{
-//                    productViewModel.filteredProduct()
-                    if UserDefaults.standard.object(forKey: "selectedToko") as? String == nil {
-                        
-                        productViewModel.fetchTokos()
-                        
-                        UserDefaults.standard.set(productViewModel.tokos[0].objectID.uriRepresentation().absoluteString, forKey: "selectedToko")
-                        
-                        print("anjing \(productViewModel.tokos[0].objectID.uriRepresentation().absoluteString)")
+                    if productViewModel.getCurrentTokoIDFromUserDefault() == nil {
+                        productViewModel.setCurrentTokoForFirst()
+                        productViewModel.setCurrentTokoToUserDefault()
+                    }else{
+                        let objectTokoId = productViewModel.getCurrentTokoIDFromUserDefault()
+                        productViewModel.setCurrentTokoById(objectIDString: objectTokoId!)
                     }
-                    
-                    productViewModel.fetchProductWithToko()
-                    
-//                    productViewModel.fetchTokos()
-//                    print(productViewModel.tokos)
-                    
-                    print(productViewModel.products)
-                    
+                    productViewModel.fetchProductFromCurrentToko()
                 }
-                .onChange(of: self.searchText){ value in
-//                    productViewModel.filteredProduct(searchKey: value)
-                    productViewModel.fetchProductWithToko()
-                }
-                .onChange(of: self.selectedCategory){ value in
-//                    productViewModel.filteredProduct(category: value)
-                    productViewModel.fetchProductWithToko()
-                }
-                .onChange(of: self.showDetailProduct){ _ in
-//                    productViewModel.filteredProduct()
-                    productViewModel.fetchProductWithToko()
-                }
-                .onChange(of: self.showAddProductView){ _ in
-//                    productViewModel.filteredProduct()
-                    productViewModel.fetchProductWithToko()
-                }
+
             }
-                        
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button(action: {
-//                        self.showProductFilter.toggle()
-//
-//                    }) {
-//                        Label("", systemImage: "line.3.horizontal.decrease.circle").labelStyle(.iconOnly).foregroundColor(Color("GreenButton"))
-//                    }
-//                    .sheet(isPresented: self.$showProductFilter, content: {
-//                        ProductFilterByCategoryView(showProductFilter: self.$showProductFilter ,selectedItem: self.$selectedCategory)
-//                    })
-                    
                     Button (action: {
                         withAnimation {
                             self.showAddProductView.toggle()
@@ -134,7 +99,6 @@ struct MainProductListView: View {
             .navigationBarTitleDisplayMode(.inline)
             
         }.navigationViewStyle(.stack)
- 
     }
 }
 

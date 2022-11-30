@@ -21,7 +21,6 @@ struct AddBarcodeProductView: View {
     
     var body: some View {
         
-        
         ZStack(alignment: .center) {
             if(self.toggleCamera){
                 CodeScannerView(codeTypes: [.ean13, .ean8, .code128, .code39], scanMode: .continuous,isTorchOn: isTorchOn, videoCaptureDevice:  AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .front),
@@ -110,9 +109,6 @@ struct AddBarcodeProductView: View {
                     .background(Color.black.opacity(0.5))
             }
         }
-        
-        
-        
     }
 }
 

@@ -16,7 +16,6 @@ struct DetailProductView: View {
     @State var productBarcode: String
     @State var currentProduct: Produk? = nil
     
-    
     @State var showAddProductView = false
     
     var body: some View {
@@ -36,7 +35,6 @@ struct DetailProductView: View {
                     .frame(maxHeight: 200)
                     .cornerRadius(15)
                     .padding(EdgeInsets(top: 30, leading: 30, bottom: 20, trailing: 30))
-                    
                     
                     CustomFormStack {
                         HStack() {
@@ -85,7 +83,7 @@ struct DetailProductView: View {
                                 .font(.system(.body).bold())
                                 .foregroundColor(Color("charcoal"))
                             Spacer()
-                            Text("\(currentProduct?.kategori ?? "")")
+                            Text("\(currentProduct?.deskripsi ?? "")")
                                 .font(.system(.body))
                                 .foregroundColor(Color("charcoal"))
                         }
@@ -132,8 +130,6 @@ struct DetailProductView: View {
         .onChange(of: self.showAddProductView){ _ in
             self.currentProduct = vm.getProduct(productBarcode: productBarcode) ?? Produk()
         }
-        
-        
     }
     
     static func df2so(_ price: Double) -> String{

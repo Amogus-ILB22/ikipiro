@@ -118,14 +118,13 @@ struct EditProductView: View {
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button(action: {
                         if(!productBarcode.isEmpty && !productCategory.isEmpty && !productName.isEmpty && !productPrice.isEmpty){
-                            productViewModel.editProduct(nama: self.productName, satuan: self.productUnit.rawValue, harga: Double(self.productPrice) ?? 0, kategori: self.productCategory, product: self.currentProduct)
+                            productViewModel.editProduct(nama: self.productName, satuan: self.productUnit.rawValue, harga: Double(self.productPrice) ?? 0, deskripsi: self.productCategory, product: self.currentProduct)
                             
                             self.showAddProductView.toggle()
                         }
                     }, label: {
                         Text("Selesai")
                     }).foregroundColor(.green)
-                        
                 }
             }
             .navigationTitle("Ubah Produk")
@@ -135,7 +134,7 @@ struct EditProductView: View {
             self.productBarcode = String(currentProduct.kode)
             self.productName = currentProduct.nama ?? ""
             self.productPrice = String(currentProduct.harga)
-            self.productCategory = currentProduct.kategori ?? ""
+            self.productCategory = currentProduct.deskripsi ?? ""
             self.productUnit = UnitProduct.init(rawValue: currentProduct.satuan ?? "")!
         }
     }

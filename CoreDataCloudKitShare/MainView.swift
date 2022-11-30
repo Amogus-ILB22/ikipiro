@@ -21,7 +21,7 @@ struct MainView: View {
     @AppStorage("selectedToko") private var selectedToko: String = ""
     @AppStorage("ownerName") private var ownerName: String = ""
     
-    var categories: [String] = ["Makanan","Minuman","Alat Mandi", "Bahan Masak"]
+    var units: [String] = ["Pcs","Liter","Kg", "Paket"]
     static let sample = OnboardingDataModel.data
     
     @State var selectedTab: Int = 0
@@ -152,8 +152,8 @@ struct MainView: View {
                         UserDefaults.standard.set(true, forKey: "isStart")
                     }
                     
-                }).onAppear() {
-                    UserDefaults.standard.set(categories, forKey: "categories")
+                }).onAppear{
+                    UserDefaults.standard.set(units, forKey: "units")
                 }
                 
             }

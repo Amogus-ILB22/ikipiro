@@ -12,7 +12,7 @@ import CodeScanner
 import AVFoundation
 
 struct MainScanBarcodeView: View {
-    @StateObject var vm = ProductViewModel()
+    @EnvironmentObject var productViewModel: ProductViewModel
     
     @State var isTorchOn = false
     @State var cameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .front)
@@ -26,11 +26,12 @@ struct MainScanBarcodeView: View {
     
     var body: some View {
         ZStack(alignment: .center) {
+            
             if(self.toggleCamera){
                 CodeScannerView(codeTypes: [.ean13, .ean8, .code128, .code39], scanMode: .continuous,isTorchOn: isTorchOn, videoCaptureDevice:  AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .front), completion: { result in
                     if case let .success(code) = result {
                         self.productBarcode = code.string
-                        if vm.containsProduct(productBarcode: code.string){
+                        if productViewModel.containsProduct(productBarcode: code.string){
                             self.showDetailProduct.toggle()
                         }else{
                             self.showAlert.toggle()
@@ -42,7 +43,7 @@ struct MainScanBarcodeView: View {
                                 completion: { result in
                     if case let .success(code) = result {
                         self.productBarcode = code.string
-                        if vm.containsProduct(productBarcode: code.string){
+                        if productViewModel.containsProduct(productBarcode: code.string){
                             self.showDetailProduct.toggle()
                         }else{
                             self.showAlert.toggle()
