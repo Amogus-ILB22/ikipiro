@@ -58,6 +58,7 @@
 		7EC9A07029361BFD008D3844 /* CustomShapeTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A06F29361BFD008D3844 /* CustomShapeTabBar.swift */; };
 		7EC9A07229361C44008D3844 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A07129361C44008D3844 /* MainView.swift */; };
 		7EC9A0932936733F008D3844 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A0922936733F008D3844 /* NetworkMonitor.swift */; };
+		7EC9A09529372EBD008D3844 /* RowItemProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A09429372EBD008D3844 /* RowItemProductList.swift */; };
 		7EE868F7292E1D8F00C215C6 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE868F6292E1D8F00C215C6 /* TestView.swift */; };
 		DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */; };
 		DC2B6D1B291D4AC400CA6BE1 /* TokoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1A291D4AC400CA6BE1 /* TokoGridView.swift */; };
@@ -149,6 +150,7 @@
 		7EC9A06F29361BFD008D3844 /* CustomShapeTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShapeTabBar.swift; sourceTree = "<group>"; };
 		7EC9A07129361C44008D3844 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7EC9A0922936733F008D3844 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		7EC9A09429372EBD008D3844 /* RowItemProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowItemProductList.swift; sourceTree = "<group>"; };
 		7EE868F6292E1D8F00C215C6 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		B24732F33201E3732F237ECB /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				7E2FD7E42934ED360007004C /* CustomTextField.swift */,
 				7E2FD7E62934EFB30007004C /* CustomTextEditor.swift */,
 				7EC9A06F29361BFD008D3844 /* CustomShapeTabBar.swift */,
+				7EC9A09429372EBD008D3844 /* RowItemProductList.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -546,6 +549,7 @@
 				7EC9A0932936733F008D3844 /* NetworkMonitor.swift in Sources */,
 				7EB3C3A5291EC923006E2251 /* AddProductView.swift in Sources */,
 				DC2B6D2E291E21BD00CA6BE1 /* OnboardingDataModel.swift in Sources */,
+				7EC9A09529372EBD008D3844 /* RowItemProductList.swift in Sources */,
 				DC2B6D38291EAC3E00CA6BE1 /* SettingView.swift in Sources */,
 				407D7D5F2703878000D2BA90 /* PersistenceController+Photo.swift in Sources */,
 				DC2B6D25291D80CE00CA6BE1 /* AddProdukView.swift in Sources */,

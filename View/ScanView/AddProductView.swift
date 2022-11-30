@@ -50,6 +50,51 @@ struct AddProductView: View {
     var body: some View {
         NavigationView{
             VStack {
+                Button(action: {
+                    self.showScanView.toggle()
+                }, label: {
+                    HStack {
+                        Image(systemName: "barcode.viewfinder")
+                        Text("Pindai Kode Batang")
+                            .font(.body)
+                            .bold()
+                    }.frame(maxWidth: .infinity)
+                        .frame(maxHeight: 35)
+                }).sheet(isPresented: self.$showScanView, content: {
+                    AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.productBarcode)
+                })
+                .cornerRadius(10)
+                .buttonStyle(.borderedProminent)
+                .foregroundColor(.white)
+                .tint(Color("sunray"))
+                .padding()
+                
+                CustomFormStack {
+                    HStack() {
+                        CustomTextField(fieldString: self.$productBarcode, title: "Kode Produk", asteriks: false, keyboardType: .numberPad)
+                            .onChange(of: self.productBarcode){ barcode in
+                                if barcode.count == 13 {
+                                    Task {
+                                        await productViewModel.fetchProductFromAPI(productBarcode: self.productBarcode)
+                                    }
+                                }
+                            }
+                        
+                            
+//                            .onReceive(productViewModel.productAutocomplete){
+
+//                            }
+                        Spacer()
+                    }
+                    .padding()
+                }
+                .onChange(of: productViewModel.productAutocomplete){ productResponse in
+                    if(productResponse != nil){
+                        self.productName = productResponse?.nama ?? ""
+                    }
+                }
+                .padding(.bottom)
+                
                 CustomFormStack {
                     HStack() {
                         CustomTextField(fieldString: self.$productName, title: "Nama Produk", asteriks: true)
@@ -104,51 +149,6 @@ struct AddProductView: View {
                     .colorMultiply(Color("cultured"))
                     
                     Divider()
-                    
-                }
-                
-                Button(action: {
-                    self.showScanView.toggle()
-                }, label: {
-                    HStack {
-                        Image(systemName: "barcode.viewfinder")
-                        Text("Pindai Kode Batang")
-                            .font(.body)
-                            .bold()
-                    }.frame(maxWidth: .infinity)
-                        .frame(maxHeight: 35)
-                }).sheet(isPresented: self.$showScanView, content: {
-                    AddBarcodeProductView(showScanView: self.$showScanView, productBarcode: self.productBarcode)
-                })
-                .cornerRadius(10)
-                .buttonStyle(.borderedProminent)
-                .foregroundColor(.white)
-                .tint(Color("sunray"))
-                .padding()
-                
-                CustomFormStack {
-                    HStack() {
-                        CustomTextField(fieldString: self.$productBarcode, title: "Kode Produk", asteriks: false, keyboardType: .numberPad)
-                            .onChange(of: self.productBarcode){ barcode in
-                                if barcode.count == 13 {
-                                    Task {
-                                        await productViewModel.fetchProductFromAPI(productBarcode: self.productBarcode)
-                                    }
-                                }
-                            }
-                        
-                            
-//                            .onReceive(productViewModel.productAutocomplete){
-
-//                            }
-                        Spacer()
-                    }
-                    .padding()
-                }
-                .onChange(of: productViewModel.productAutocomplete){ productResponse in
-                    if(productResponse != nil){
-                        self.productName = productResponse?.nama ?? ""
-                    }
                     
                 }
                 

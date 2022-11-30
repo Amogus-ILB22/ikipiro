@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 
+
+
 struct MainProductListView: View {
 //    @StateObject var productViewModel = ProductViewModel()
     @EnvironmentObject var productViewModel: ProductViewModel
@@ -36,55 +38,12 @@ struct MainProductListView: View {
                                 self.showDetailProduct.toggle()
                                 
                             }, label: {
-                                HStack(){
-                                    HStack(){
-                                        VStack(alignment: .leading){
-                                            Text(produk.nama ?? "")
-                                                .frame(maxWidth: .infinity,alignment: .leading)
-                                                .multilineTextAlignment(.leading)
-                                                .font(.system(.title3, design: .rounded))
-
-                                            Text(produk.kategori ?? "")
-                                                .frame(maxWidth: .infinity,alignment: .leading)
-                                                .multilineTextAlignment(.leading)
-                                                .foregroundColor(.gray)
-                                                .font(.system(.callout, design: .rounded))
-                                            
-                                        }
-                                        .padding(.leading, 10)
-                                        .frame(maxWidth: .infinity)
-                                        
-                                        VStack(alignment : .trailing){
-                                            Text(DetailProductView.df2so(produk.harga))
-                                                .font(.system(.title3, design: .rounded))
-                                                .foregroundColor(Color("GreenButton"))
-                                                .fontWeight(.bold)
-                                                .frame(maxWidth: .infinity,alignment: .trailing)
-                                                .multilineTextAlignment(.leading)
-                                                .lineLimit(1)
-                                            
-                                            Text("/\(produk.satuan ?? "") ")
-                                                .font(.system(.caption, design: .rounded))
-                                                .fontWeight(.bold)
-                                                .foregroundColor(Color("GreenButton"))
-                                                .frame(maxWidth: .infinity,alignment: .trailing)
-                                                .font(.caption)
-                                            
-                                        }.padding(.trailing, 5)
-                                    }
-                                    .padding()
-                                    .frame(width : UIScreen.main.bounds.width*18/20, alignment: .center)
-                                    .background(Color.white)
-                                    
-                                    .cornerRadius(10)
-                                    .shadow(color: Color(hue: 1.0, saturation: 1.0, brightness: 0.001, opacity: 0.1), radius: 10, x: 0, y: 0)
-                                    .padding(.bottom,5)
-                                    
-                                }.frame(width : UIScreen.main.bounds.width*1, alignment: .center)
+                                RowItemProductList(productName: produk.nama ?? "", productImage: nil, productPrice: DetailProductView.df2so(produk.harga), productUnit: produk.satuan ?? "")
                             })
                             .sheet(isPresented: self.$showDetailProduct, content: {
                                 DetailProductView(productBarcode: productViewModel.selectedBarcodeProduk)
                             })
+                            .padding()
                         }
                     }
                 }
