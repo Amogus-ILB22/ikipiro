@@ -209,9 +209,9 @@ extension PersistenceController {
              record zone, which can lead to duplicated tags.
              */
             if existingShare != nil {
-                if let tagObjectIDs = objectIDs?.filter({ $0.entity.name == "Tag" }), !tagObjectIDs.isEmpty {
-                    self.deduplicateAndWait(tagObjectIDs: Array(tagObjectIDs))
-                }
+//                if let tagObjectIDs = objectIDs?.filter({ $0.entity.name == "Tag" }), !tagObjectIDs.isEmpty {
+//                    self.deduplicateAndWait(tagObjectIDs: Array(tagObjectIDs))
+//                }
             } else {
                 self.configure(share: share)
             }

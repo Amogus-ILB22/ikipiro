@@ -114,9 +114,9 @@ extension PersistenceController {
                 }
             }
         }
-        if !newTagObjectIDs.isEmpty {
-            deduplicateAndWait(tagObjectIDs: newTagObjectIDs)
-        }
+//        if !newTagObjectIDs.isEmpty {
+//            deduplicateAndWait(tagObjectIDs: newTagObjectIDs)
+//        }
     }
     
     /**

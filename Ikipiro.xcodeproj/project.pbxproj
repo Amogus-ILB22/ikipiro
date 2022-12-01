@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		403177D82742F4F70048F2DC /* SwiftUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403177D72742F4F70048F2DC /* SwiftUIHelper.swift */; };
-		40527E19270BC8FE00DB2901 /* PersistenceController+Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40527E18270BC8FE00DB2901 /* PersistenceController+Rating.swift */; };
 		40744289270FAFB3009CABC7 /* ParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40744288270FAFB3009CABC7 /* ParticipantView.swift */; };
 		4074428B270FB2B5009CABC7 /* PersistenceController+Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4074428A270FB2B5009CABC7 /* PersistenceController+Share.swift */; };
 		407A0CDE2707D0CD00F481C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6A2704334400D2BA90 /* SceneDelegate.swift */; };
@@ -25,7 +24,6 @@
 		407D7D0427024F5D00D2BA90 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D0027024F5D00D2BA90 /* PersistenceController.swift */; };
 		407D7D0A2702502400D2BA90 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407D7D092702502400D2BA90 /* CloudKit.framework */; };
 		407D7D5F2703878000D2BA90 /* PersistenceController+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D5E2703878000D2BA90 /* PersistenceController+Photo.swift */; };
-		407D7D612703880E00D2BA90 /* PersistenceController+Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D602703880E00D2BA90 /* PersistenceController+Tag.swift */; };
 		407D7D6B2704334400D2BA90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6A2704334400D2BA90 /* SceneDelegate.swift */; };
 		407D7D6D2704335A00D2BA90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6C2704335A00D2BA90 /* AppDelegate.swift */; };
 		408BD4DC2713F0F400294A81 /* ManagingSharesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408BD4DB2713F0F400294A81 /* ManagingSharesView.swift */; };
@@ -93,7 +91,6 @@
 
 /* Begin PBXFileReference section */
 		403177D72742F4F70048F2DC /* SwiftUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHelper.swift; sourceTree = "<group>"; };
-		40527E18270BC8FE00DB2901 /* PersistenceController+Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Rating.swift"; sourceTree = "<group>"; };
 		40744288270FAFB3009CABC7 /* ParticipantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantView.swift; sourceTree = "<group>"; };
 		4074428A270FB2B5009CABC7 /* PersistenceController+Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Share.swift"; sourceTree = "<group>"; };
 		407A0CF62707D0CD00F481C5 /* InitializeCloudKitSchema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InitializeCloudKitSchema.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +106,6 @@
 		407D7D36270262C500D2BA90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		407D7D38270262EF00D2BA90 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		407D7D5E2703878000D2BA90 /* PersistenceController+Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Photo.swift"; sourceTree = "<group>"; };
-		407D7D602703880E00D2BA90 /* PersistenceController+Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Tag.swift"; sourceTree = "<group>"; };
 		407D7D6A2704334400D2BA90 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		407D7D6C2704335A00D2BA90 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		408BD4DB2713F0F400294A81 /* ManagingSharesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSharesView.swift; sourceTree = "<group>"; };
@@ -245,8 +241,6 @@
 				40AE53F02719F98C00B978CA /* CoreDataHelper.swift */,
 				407D7D0027024F5D00D2BA90 /* PersistenceController.swift */,
 				407D7D5E2703878000D2BA90 /* PersistenceController+Photo.swift */,
-				407D7D602703880E00D2BA90 /* PersistenceController+Tag.swift */,
-				40527E18270BC8FE00DB2901 /* PersistenceController+Rating.swift */,
 				40BF672C273B17A200ED9D2D /* PersistenceController+History.swift */,
 				40D68E932719101A00FB9B78 /* PersistenceController+Deduplicate.swift */,
 				4074428A270FB2B5009CABC7 /* PersistenceController+Share.swift */,
@@ -496,9 +490,7 @@
 				7EB3C3A3291EC848006E2251 /* DetailProductView.swift in Sources */,
 				403177D82742F4F70048F2DC /* SwiftUIHelper.swift in Sources */,
 				408BD4DC2713F0F400294A81 /* ManagingSharesView.swift in Sources */,
-				40527E19270BC8FE00DB2901 /* PersistenceController+Rating.swift in Sources */,
 				7E2FD7E72934EFB30007004C /* CustomTextEditor.swift in Sources */,
-				407D7D612703880E00D2BA90 /* PersistenceController+Tag.swift in Sources */,
 				DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */,
 				DCB091E729360577000E4F53 /* InputOwnerNameView.swift in Sources */,
 				7E74FA292921056000F3D2E4 /* MainScanBarcodeView.swift in Sources */,

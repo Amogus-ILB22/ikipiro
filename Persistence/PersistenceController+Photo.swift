@@ -11,29 +11,7 @@ import CoreData
 // MARK: - Convenient methods for managing photos.
 //
 extension PersistenceController {
-    func addPhoto(photoData: Data, thumbnailData: Data, tagNames: [String] = [], context: NSManagedObjectContext) {
-        context.perform {
-            let photo = Photo(context: context)
-            photo.uniqueName = UUID().uuidString
-            
-            let thumbnail = Thumbnail(context: context)
-            thumbnail.data = thumbnailData
-            thumbnail.photo = photo
-            
-            let photoDataObject = PhotoData(context: context)
-            photoDataObject.data = photoData
-            photoDataObject.photo = photo
-            
-            for tagName in tagNames {
-                let existingTag = Tag.tagIfExists(with: tagName, context: context)
-                let tag = existingTag ?? Tag(context: context)
-                tag.name = tagName
-                tag.addToPhotos(photo)
-            }
 
-            context.save(with: .addPhoto)
-        }
-    }
     
     func delete(photo: Photo) {
         if let context = photo.managedObjectContext {
