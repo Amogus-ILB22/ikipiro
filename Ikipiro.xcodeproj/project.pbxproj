@@ -42,13 +42,13 @@
 		40BF672F273B17A900ED9D2D /* PersistenceController+History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF672C273B17A200ED9D2D /* PersistenceController+History.swift */; };
 		40C6211E2755AFB500015301 /* SharePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C6211D2755AFB500015301 /* SharePickerView.swift */; };
 		40D68E942719101A00FB9B78 /* PersistenceController+Deduplicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D68E932719101A00FB9B78 /* PersistenceController+Deduplicate.swift */; };
+		7E1BE1182938AB810075541B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1BE1172938AB810075541B /* ImagePicker.swift */; };
 		7E2FD7E02934D2040007004C /* CustomFormCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2FD7DF2934D2040007004C /* CustomFormCellView.swift */; };
 		7E2FD7E32934DEB50007004C /* CustomFormStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2FD7E22934DEB50007004C /* CustomFormStack.swift */; };
 		7E2FD7E52934ED360007004C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2FD7E42934ED360007004C /* CustomTextField.swift */; };
 		7E2FD7E72934EFB30007004C /* CustomTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2FD7E62934EFB30007004C /* CustomTextEditor.swift */; };
 		7E72B61C292C82050026BBE0 /* MainProductListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E72B61B292C82050026BBE0 /* MainProductListView.swift */; };
 		7E74FA292921056000F3D2E4 /* MainScanBarcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E74FA282921055F00F3D2E4 /* MainScanBarcodeView.swift */; };
-		7E74FA2D29211BFA00F3D2E4 /* EditProduksssView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E74FA2C29211BFA00F3D2E4 /* EditProduksssView.swift */; };
 		7E978978292B7B9F001A80B1 /* ProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E978977292B7B9F001A80B1 /* ProductViewModel.swift */; };
 		7EB3C39E291EC53A006E2251 /* AddBarcodeProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C39D291EC53A006E2251 /* AddBarcodeProductView.swift */; };
 		7EB3C3A3291EC848006E2251 /* DetailProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB3C3A2291EC848006E2251 /* DetailProductView.swift */; };
@@ -142,13 +142,13 @@
 		40BF672C273B17A200ED9D2D /* PersistenceController+History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+History.swift"; sourceTree = "<group>"; };
 		40C6211D2755AFB500015301 /* SharePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePickerView.swift; sourceTree = "<group>"; };
 		40D68E932719101A00FB9B78 /* PersistenceController+Deduplicate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Deduplicate.swift"; sourceTree = "<group>"; };
+		7E1BE1172938AB810075541B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7E2FD7DF2934D2040007004C /* CustomFormCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormCellView.swift; sourceTree = "<group>"; };
 		7E2FD7E22934DEB50007004C /* CustomFormStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFormStack.swift; sourceTree = "<group>"; };
 		7E2FD7E42934ED360007004C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		7E2FD7E62934EFB30007004C /* CustomTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditor.swift; sourceTree = "<group>"; };
 		7E72B61B292C82050026BBE0 /* MainProductListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainProductListView.swift; sourceTree = "<group>"; };
 		7E74FA282921055F00F3D2E4 /* MainScanBarcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScanBarcodeView.swift; sourceTree = "<group>"; };
-		7E74FA2C29211BFA00F3D2E4 /* EditProduksssView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProduksssView.swift; sourceTree = "<group>"; };
 		7E978977292B7B9F001A80B1 /* ProductViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewModel.swift; sourceTree = "<group>"; };
 		7EB3C39D291EC53A006E2251 /* AddBarcodeProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBarcodeProductView.swift; sourceTree = "<group>"; };
 		7EB3C3A2291EC848006E2251 /* DetailProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailProductView.swift; sourceTree = "<group>"; };
@@ -322,8 +322,9 @@
 				7EC9A06F29361BFD008D3844 /* CustomShapeTabBar.swift */,
 				7EC9A09429372EBD008D3844 /* RowItemProductList.swift */,
 				7EC9A0962937AECD008D3844 /* ProductUnitSelection.swift */,
-				7EC9A0982937AF88008D3844 /* SelectionRow.swift */,
 				7EC9A09A2937B857008D3844 /* AddProductUnitModalView.swift */,
+				7EC9A0982937AF88008D3844 /* SelectionRow.swift */,
+				7E1BE1172938AB810075541B /* ImagePicker.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -335,7 +336,6 @@
 				7EB3C3A2291EC848006E2251 /* DetailProductView.swift */,
 				7EB3C3A4291EC923006E2251 /* AddProductView.swift */,
 				7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */,
-				7E74FA2C29211BFA00F3D2E4 /* EditProduksssView.swift */,
 				7EE868F6292E1D8F00C215C6 /* TestView.swift */,
 				7E2FD7DF2934D2040007004C /* CustomFormCellView.swift */,
 				7EC9A09C2937C355008D3844 /* EditProductView.swift */,
@@ -533,7 +533,6 @@
 				407D7D6D2704335A00D2BA90 /* AppDelegate.swift in Sources */,
 				40BF672F273B17A900ED9D2D /* PersistenceController+History.swift in Sources */,
 				408BD4DA2713B29900294A81 /* AddToExistingShareView.swift in Sources */,
-				7E74FA2D29211BFA00F3D2E4 /* EditProduksssView.swift in Sources */,
 				7E2FD7E02934D2040007004C /* CustomFormCellView.swift in Sources */,
 				4058316A2767DCDE0044E86D /* FullImageView.swift in Sources */,
 				7E978978292B7B9F001A80B1 /* ProductViewModel.swift in Sources */,
@@ -572,6 +571,7 @@
 				7EC9A09B2937B857008D3844 /* AddProductUnitModalView.swift in Sources */,
 				7EC9A0932936733F008D3844 /* NetworkMonitor.swift in Sources */,
 				7EB3C3A5291EC923006E2251 /* AddProductView.swift in Sources */,
+				7E1BE1182938AB810075541B /* ImagePicker.swift in Sources */,
 				DC2B6D2E291E21BD00CA6BE1 /* OnboardingDataModel.swift in Sources */,
 				7EC9A09529372EBD008D3844 /* RowItemProductList.swift in Sources */,
 				DC2B6D38291EAC3E00CA6BE1 /* SettingView.swift in Sources */,

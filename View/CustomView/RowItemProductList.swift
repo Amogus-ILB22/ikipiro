@@ -11,15 +11,18 @@ import SwiftUI
 
 
 struct RowItemProductList: View {
-    var productName: String
-    var productImage: String?
-    var productPrice: String
-    var productUnit: String
+    @EnvironmentObject var productViewModel: ProductViewModel
+    
+    @State var productName: String
+    @State var productImage: Data?
+    @State var productPrice: String
+    @State var productUnit: String
+    @State var image: UIImage?
 
     var body: some View {
         HStack {
             
-            if(productImage == nil){
+            if(image == nil){
                 ZStack {
                     Color("biege")
                     Image(systemName: "video.slash.fill")
@@ -33,9 +36,10 @@ struct RowItemProductList: View {
                 .padding(.leading)
                 .padding(.trailing,5)
             }else{
-                Image(productImage!)
+                Image(uiImage: self.image!)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFill()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 60, height: 60)
                     .cornerRadius(10)
                     .padding(.vertical)
@@ -63,14 +67,20 @@ struct RowItemProductList: View {
             
             Spacer()
         }
+        .onAppear{
+            if(self.productImage != nil){
+                image = UIImage(data: self.productImage!)
+                print("kepanggil")
+            }
+        }
         .background(.white)
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .shadow(color: Color("brigray"), radius: 3, x: 0, y: 0)
     }
 }
 
-struct RowItemProductList_Previews: PreviewProvider {
-    static var previews: some View {
-        RowItemProductList(productName: "Botol Minum", productImage: "plus", productPrice: "5000", productUnit: "pcs")
-    }
-}
+//struct RowItemProductList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RowItemProductList(productName: "Botol Minum", productImage: "plus", productPrice: "5000", productUnit: "pcs")
+//    }
+//}

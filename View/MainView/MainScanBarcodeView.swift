@@ -61,7 +61,7 @@ struct MainScanBarcodeView: View {
                         Image(systemName: self.isTorchOn ? "bolt.fill" : "bolt.slash.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 30, alignment: .center)
+                            .frame(height: 20, alignment: .center)
                     }).disabled(self.toggleCamera)
                         .foregroundColor(.white)
                     Spacer()
@@ -71,14 +71,14 @@ struct MainScanBarcodeView: View {
                         Image(systemName: "gobackward")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 30, alignment: .centerLastTextBaseline)
+                            .frame(height: 20, alignment: .centerLastTextBaseline)
                     })
                     .foregroundColor(.white)
                 }.frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.black.opacity(0.5))
                 Spacer()
-                Spacer()
+
                 
                 Image("rect_barcode")
                     .resizable()
@@ -86,26 +86,13 @@ struct MainScanBarcodeView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.horizontal, 60)
                 
-                
-                Spacer()
-                
+     
                 Text(self.productBarcode)
                     .font(.system(.title3)).bold()
-                    .foregroundColor(.white)
+                    .foregroundColor(.clear)
                 
                 Spacer()
-                
-                HStack{
                     
-                }.frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.black.opacity(0.5))
-                    .sheet(isPresented: self.$showDetailProduct, content: {
-                        DetailProductView(productBarcode: self.productBarcode)
-                    })
-                    .sheet(isPresented: self.$showAddProduct, content: {
-                        AddProductView(productBarcode: productBarcode, showAddProductView: self.$showAddProduct)
-                    })
                 
             }
             .alert("Kode Produk Tidak Ditemukan", isPresented: self.$showAlert, actions: {
@@ -133,6 +120,12 @@ struct MainScanBarcodeView: View {
                 
             })
         }
+        .sheet(isPresented: self.$showDetailProduct, content: {
+            DetailProductView(productBarcode: self.productBarcode)
+        })
+        .sheet(isPresented: self.$showAddProduct, content: {
+            AddProductView(productBarcode: productBarcode, showAddProductView: self.$showAddProduct)
+        })
     }
 }
 

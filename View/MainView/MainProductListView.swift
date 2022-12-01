@@ -13,7 +13,7 @@ import SwiftUI
 
 
 struct MainProductListView: View {
-//    @StateObject var productViewModel = ProductViewModel()
+    //    @StateObject var productViewModel = ProductViewModel()
     @EnvironmentObject var productViewModel: ProductViewModel
     @State private var searchText = ""
     @State private var selectedCategory = ""
@@ -35,7 +35,7 @@ struct MainProductListView: View {
                                         .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
                                 }.frame(maxHeight: .infinity,alignment: .center)
                             }
-        
+                            
                             .frame(width: geometry.size.width)      // Make the scroll view full-width
                             .frame(minHeight: geometry.size.height)
                             
@@ -49,12 +49,13 @@ struct MainProductListView: View {
                                         self.showDetailProduct.toggle()
                                         
                                     }, label: {
-                                        RowItemProductList(productName: produk.nama ?? "", productImage: nil, productPrice: DetailProductView.df2so(produk.harga), productUnit: produk.satuan ?? "")
+                                        RowItemProductList(productName: produk.nama ?? "", productImage: produk.photo, productPrice: DetailProductView.df2so(produk.harga), productUnit: produk.satuan ?? "")
                                     })
                                     .sheet(isPresented: self.$showDetailProduct, content: {
                                         DetailProductView(productBarcode: productViewModel.selectedBarcodeProduk)
                                     })
                                     .padding(.horizontal)
+                                    
                                 }
                             }.padding(.top, 5)
                         }
@@ -111,6 +112,12 @@ struct MainProductListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .onChange(of: self.searchText){ keyword in
                 productViewModel.fetchProductFromCurrentToko(searchKey: keyword)
+            }
+            .onChange(of: self.showDetailProduct){ _ in
+                productViewModel.fetchProductFromCurrentToko()
+            }
+            .onChange(of: self.productViewModel.products){ _ in
+                productViewModel.fetchProductFromCurrentToko()
             }
             
         }.navigationViewStyle(.stack)

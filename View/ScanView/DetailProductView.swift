@@ -15,7 +15,8 @@ struct DetailProductView: View {
     
     @State var productBarcode: String
     @State var currentProduct: Produk? = nil
-    
+    @State var showAlert: Bool = false
+    @State var image: UIImage?
     @State var showAddProductView = false
     
     var body: some View {
@@ -24,17 +25,27 @@ struct DetailProductView: View {
                 VStack {
                     Divider()
                     
-                    ZStack(alignment: .center){
-                        Color("biege")
-                        Image(systemName: "video.slash.fill")
+                    if image == nil {
+                        ZStack(alignment: .center){
+                            Color("biege")
+                            Image(systemName: "video.slash.fill")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 50)
+                                .foregroundColor(Color("sunray"))
+                        }
+                        .frame(maxHeight: 200)
+                        .cornerRadius(15)
+                        .padding(EdgeInsets(top: 30, leading: 30, bottom: 20, trailing: 30))
+                    }else{
+                        Image(uiImage: image!)
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 50)
-                            .foregroundColor(Color("sunray"))
+                            .scaledToFill()
+                            .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 200)
+                            .aspectRatio(contentMode: .fill)
+                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            .padding(EdgeInsets(top: 30, leading: 30, bottom: 20, trailing: 30))
                     }
-                    .frame(maxHeight: 200)
-                    .cornerRadius(15)
-                    .padding(EdgeInsets(top: 30, leading: 30, bottom: 20, trailing: 30))
                     
                     CustomFormStack {
                         HStack() {
@@ -78,19 +89,48 @@ struct DetailProductView: View {
                         
                         Divider()
                         
-                        HStack() {
-                            Text("Keterangan Produk")
+                        VStack(alignment:.leading, spacing: 10) {
+                            Text("Keterangan Produk :")
                                 .font(.system(.body).bold())
                                 .foregroundColor(Color("charcoal"))
-                            Spacer()
                             Text("\(currentProduct?.deskripsi ?? "")")
                                 .font(.system(.body))
                                 .foregroundColor(Color("charcoal"))
                         }
                         .padding()
-                        
                     }
                     .padding(EdgeInsets(top: 0, leading: 30, bottom: 20, trailing: 30))
+                    
+                    Button(action: {
+                        self.showAlert = true
+                    }, label: {
+                        HStack {
+                            Image(systemName: "trash")
+                            Text("Hapus Produk")
+                                .font(.body)
+                                .bold()
+                        }.frame(maxWidth: .infinity)
+                            .frame(maxHeight: 35)
+                    })
+                    .cornerRadius(10)
+                    .buttonStyle(.borderedProminent)
+                    .foregroundColor(.red)
+                    .tint(.white)
+                    .padding(EdgeInsets(top: 0, leading: 30, bottom: 20, trailing: 30))
+                    .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                    .alert("Hapus Produk", isPresented: self.$showAlert, actions: {
+                        Button("Ya", role: .destructive) {
+                            vm.deleteProduct(product: self.currentProduct!)
+                            dismiss()
+                        }
+                        
+                        Button("Batal", role: .cancel) {
+                            
+                        }
+                        
+                    }, message: {
+                        Text("Yakin ingin hapus produk ini?")
+                    })
                     
                     Spacer()
                 }
@@ -126,9 +166,19 @@ struct DetailProductView: View {
         }
         .onAppear{
             self.currentProduct = vm.getProduct(productBarcode: productBarcode) ?? Produk()
+            if(self.currentProduct?.photo != nil){
+                image = UIImage(data: (currentProduct?.photo)!)
+            }
         }
         .onChange(of: self.showAddProductView){ _ in
             self.currentProduct = vm.getProduct(productBarcode: productBarcode) ?? Produk()
+        }
+        .onChange(of: self.currentProduct?.photo){ newValue in
+            if(newValue != nil){
+                image = UIImage(data: newValue!)
+                
+                vm.fetchProductFromCurrentToko()
+            }
         }
     }
     

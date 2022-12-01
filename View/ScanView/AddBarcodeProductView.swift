@@ -15,9 +15,8 @@ struct AddBarcodeProductView: View {
     @State var isTorchOn = false
     @State var cameraDevice = AVCaptureDevice.default(.builtInWideAngleCamera , for: .video, position: .front)
     @State var toggleCamera = false
-    
     @Binding var showScanView: Bool
-    @State var productBarcode: String = ""
+    @Binding var productBarcode: String
     
     var body: some View {
         
@@ -27,6 +26,7 @@ struct AddBarcodeProductView: View {
                                 completion: { result in
                     if case let .success(code) = result {
                         self.productBarcode = code.string
+                        self.showScanView = false
                     }
                 })
             }else{
@@ -34,20 +34,32 @@ struct AddBarcodeProductView: View {
                                 completion: { result in
                     if case let .success(code) = result {
                         self.productBarcode = code.string
+                        self.showScanView = false
                     }
                 })
             }
             
             VStack{
                 HStack {
+                    Button(action: {
+                        self.showScanView.toggle()
+                    }, label: {
+                            Image(systemName: "chevron.left")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 20, alignment: .center)
+                    })
+                    .foregroundColor(.white)
+                    
                     Spacer()
+
                     Button(action: {
                         self.isTorchOn.toggle()
                     }, label: {
                         Image(systemName: self.isTorchOn ? "bolt.fill" : "bolt.slash.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 30, alignment: .center)
+                            .frame(height: 20, alignment: .center)
                     }).disabled(self.toggleCamera)
                         .foregroundColor(.white)
                     Spacer()
@@ -57,13 +69,12 @@ struct AddBarcodeProductView: View {
                         Image(systemName: "gobackward")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 30, alignment: .centerLastTextBaseline)
+                            .frame(height: 20, alignment: .centerLastTextBaseline)
                     })
                     .foregroundColor(.white)
                 }.frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.black.opacity(0.5))
-                Spacer()
                 Spacer()
                 
                 Image("rect_barcode")
@@ -72,43 +83,11 @@ struct AddBarcodeProductView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
                     .padding(.horizontal, 60)
                 
-                
                 Spacer()
-                
-                Text(self.productBarcode)
-                    .font(.system(.title3)).bold()
-                    .foregroundColor(.white)
-                
                 Spacer()
-                
-                HStack{
-                    Spacer()
-                    Button(action: {
-                        self.showScanView.toggle()
-                    }, label: {
-                        Text("Kembali")
-                            .font(.system(.body))
-                            .foregroundColor(.white)
-                    })
-                    
-                    Spacer()
-                    Button(action: {
-                        if !self.productBarcode.isEmpty{
-                            self.showScanView.toggle()
-                        }
-                    }, label: {
-                        Color.white
-                            .frame(width: 50,height: 50)
-                            .clipShape(Circle())
-                    })
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                }.frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.black.opacity(0.5))
             }
         }
+        .ignoresSafeArea(.all)
     }
 }
 

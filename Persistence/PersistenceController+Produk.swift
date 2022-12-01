@@ -12,7 +12,7 @@ import CoreData
 //
 extension PersistenceController {
    
-    func addProduk(nama: String,satuan: String, harga: Double, kode: Int64, deskripsi: String , relateTo toko: Toko) {
+    func addProduk(nama: String,satuan: String, harga: Double, kode: Int64, deskripsi: String , image: Data?, relateTo toko: Toko) {
         if let context = toko.managedObjectContext {
             context.performAndWait {
                 let produk = Produk(context: context)
@@ -21,8 +21,8 @@ extension PersistenceController {
                 produk.satuan = satuan
                 produk.harga = harga
                 produk.kode = kode
-//                produk.kategori = kategori
                 produk.deskripsi = deskripsi
+                produk.photo = image
                 
                 context.save(with: .addProduk)
                 
@@ -32,13 +32,14 @@ extension PersistenceController {
         }
     }
     
-    func editProduk(produk: Produk,nama: String, satuan: String, harga: Double , deskripsi: String){
+    func editProduk(produk: Produk,nama: String, satuan: String, harga: Double , deskripsi: String, image: Data?){
         if let context = produk.toko!.managedObjectContext {
             context.performAndWait {
                 produk.nama = nama
                 produk.deskripsi = deskripsi
                 produk.satuan = satuan
                 produk.harga = harga
+                produk.photo = image
                 context.save(with: .updateProduk)
                 
             }

@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class ProductViewModel: ObservableObject {
     private let persistenceController = PersistenceController.shared
@@ -42,7 +43,7 @@ class ProductViewModel: ObservableObject {
         
         DispatchQueue.main.async {
             self.productAutocomplete = nil
-          }
+        }
         
         
         
@@ -64,7 +65,7 @@ class ProductViewModel: ObservableObject {
                     print("if let callled")
                     DispatchQueue.main.async {
                         self.productAutocomplete = decodedResponse
-                      }
+                    }
                     
                     print(productAutocomplete?.nama ?? "GK NAMPIL")
                 }
@@ -124,36 +125,34 @@ class ProductViewModel: ObservableObject {
     
     func fetchProductWithToko(){
         //        return toko.produk?.allObjects as! [Produk]
-//        if(self.currentToko != nil){
-//            let productsResult = self.currentToko!.produk?.allObjects as! [Produk]
-//
-//            if(productsResult.isEmpty){
-//                self.products = []
-//            }else{
-//                self.products = productsResult
-//            }
-//        }else{
-            fetchTokos()
-            var objectIDString = UserDefaults.standard.object(forKey: "selectedToko")
-
-            // Use the persistent store coordinator to transform the string back to an NSManagedObjectID.
-            if let objectIDURL = URL(string: objectIDString as! String) {
-                let coordinator: NSPersistentStoreCoordinator = persistenceController.persistentContainer.viewContext.persistentStoreCoordinator!
-                let managedObjectID = coordinator.managedObjectID(forURIRepresentation: objectIDURL)
-                
-                let request = NSFetchRequest<Produk>(entityName: "Produk")
-                
-                request.predicate = NSPredicate(format: "toko == %@", managedObjectID!)
-                
-                do {
-                    products = try persistenceController.persistentContainer.viewContext.fetch(request)
-                }catch let error {
-                    print("Error Fetching. \(error)")
-                }
-                
-                
-                
+        //        if(self.currentToko != nil){
+        //            let productsResult = self.currentToko!.produk?.allObjects as! [Produk]
+        //
+        //            if(productsResult.isEmpty){
+        //                self.products = []
+        //            }else{
+        //                self.products = productsResult
+        //            }
+        //        }else{
+        fetchTokos()
+        var objectIDString = UserDefaults.standard.object(forKey: "selectedToko")
+        
+        // Use the persistent store coordinator to transform the string back to an NSManagedObjectID.
+        if let objectIDURL = URL(string: objectIDString as! String) {
+            let coordinator: NSPersistentStoreCoordinator = persistenceController.persistentContainer.viewContext.persistentStoreCoordinator!
+            let managedObjectID = coordinator.managedObjectID(forURIRepresentation: objectIDURL)
+            
+            let request = NSFetchRequest<Produk>(entityName: "Produk")
+            
+            request.predicate = NSPredicate(format: "toko == %@", managedObjectID!)
+            
+            do {
+                products = try persistenceController.persistentContainer.viewContext.fetch(request)
+            }catch let error {
+                print("Error Fetching. \(error)")
             }
+            
+        }
     }
     
     func fetchTokos(){
@@ -167,7 +166,12 @@ class ProductViewModel: ObservableObject {
     
     func setCurrentTokoForFirst(){
         fetchTokos()
-        self.currentToko = tokos.first!
+        
+        if(tokos.first == nil){
+            self.currentToko = nil
+        }else{
+            self.currentToko = tokos.first!
+        }
     }
     
     func setCurrentTokoToUserDefault(){
@@ -195,7 +199,7 @@ class ProductViewModel: ObservableObject {
             
             let request = NSFetchRequest<Toko>(entityName: "Toko")
             request.predicate = NSPredicate(format: "self == %@", managedObjectID!)
-        
+            
             do {
                 let toko = try persistenceController.persistentContainer.viewContext.fetch(request).first
                 
@@ -211,10 +215,8 @@ class ProductViewModel: ObservableObject {
         }
     }
     
-    func deleteProduct(indexSet: IndexSet){
-        guard let index = indexSet.first else { return }
-        let currentProduct = products[index]
-        persistenceController.deleteProduk(currentProduct)
+    func deleteProduct(product: Produk){
+        persistenceController.deleteProduk(product)
         
     }
     
@@ -233,31 +235,26 @@ class ProductViewModel: ObservableObject {
         self.getObjectID()
         
         request.predicate = NSPredicate(format: "self == %@", currentTokoObjectID!)
-    
+        
         do {
             let toko = try persistenceController.persistentContainer.viewContext.fetch(request).first
-            
-            print("KONTOOOLLLLLL ANJINGG")
+
             self.currentToko = toko
-            print(toko)
             return toko
         }catch let error {
             print("Error Fetching. \(error)")
-            print("KONTOOOLLLLLL")
             return nil
         }
     }
     
-    func addProduct(nama: String,satuan: String, harga: Double, kode: Int64, deskripsi: String){
+    func addProduct(nama: String,satuan: String, harga: Double, kode: Int64, deskripsi: String, image: Data?){
         guard let toko = self.currentToko else { return }
         
-        print(toko.namaToko ?? "GK NAMPIL")
-        
-        persistenceController.addProduk(nama: nama, satuan: satuan, harga: harga, kode: kode, deskripsi: deskripsi, relateTo: toko)
+        persistenceController.addProduk(nama: nama, satuan: satuan, harga: harga, kode: kode, deskripsi: deskripsi, image: image, relateTo: toko)
     }
     
-    func editProduct(nama: String,satuan: String, harga: Double, deskripsi: String, product: Produk){
-        persistenceController.editProduk(produk: product, nama: nama, satuan: satuan, harga: harga, deskripsi: deskripsi)
+    func editProduct(nama: String,satuan: String, harga: Double, deskripsi: String, image: Data? , product: Produk){
+        persistenceController.editProduk(produk: product, nama: nama, satuan: satuan, harga: harga, deskripsi: deskripsi, image: image)
     }
     
     func containsProduct(productBarcode: String) -> Bool {
@@ -290,6 +287,19 @@ class ProductViewModel: ObservableObject {
         }
     }
     
+    func convertImageToData(image: UIImage?) -> Data?{
+        if(image == nil){
+            return nil
+        }else{
+            guard let imageData = image!.jpegData(compressionQuality: 1) else {
+                print("failed to retrieve jpg image")
+                return nil
+            }
+            
+            return imageData
+        }
+    }
+    
     func getObjectID(){
         
         var objectIDString = UserDefaults.standard.object(forKey: "selectedToko")
@@ -298,21 +308,21 @@ class ProductViewModel: ObservableObject {
             let coordinator: NSPersistentStoreCoordinator = persistenceController.persistentContainer.viewContext.persistentStoreCoordinator!
             let managedObjectID = coordinator.managedObjectID(forURIRepresentation: objectIDURL)
             
-//            let request = NSFetchRequest<Produk>(entityName: "Produk")
-//
-//            request.predicate = NSPredicate(format: "toko == %@", managedObjectID!)
-//
-//            do {
-//                products = try persistenceController.persistentContainer.viewContext.fetch(request)
-//            }catch let error {
-//                print("Error Fetching. \(error)")
-//            }
+            //            let request = NSFetchRequest<Produk>(entityName: "Produk")
+            //
+            //            request.predicate = NSPredicate(format: "toko == %@", managedObjectID!)
+            //
+            //            do {
+            //                products = try persistenceController.persistentContainer.viewContext.fetch(request)
+            //            }catch let error {
+            //                print("Error Fetching. \(error)")
+            //            }
             
             self.currentTokoObjectID = managedObjectID
             
         }
         
-     
+        
     }
 }
 
