@@ -188,6 +188,7 @@ struct AddProductView: View {
                         if(!productBarcode.isEmpty && !productDescription.isEmpty && !productName.isEmpty && !productPrice.isEmpty){
                             productViewModel.addProduct(nama: productName, satuan: productUnit, harga: Double(productPrice) ?? 0, kode: Int64(productBarcode) ?? 0, deskripsi: productDescription)
                             self.showAddProductView.toggle()
+                            
                             productViewModel.fetchProductFromCurrentToko()
                         }
                     }, label: {
@@ -197,10 +198,6 @@ struct AddProductView: View {
             }
             .navigationTitle("Tambah Produk")
             .navigationBarTitleDisplayMode(.inline)
-        }
-        .onAppear{
-            UITableView.appearance().backgroundColor = .clear
-            UITableViewCell.appearance().backgroundColor = UIColor.clear
         }
     }
 }

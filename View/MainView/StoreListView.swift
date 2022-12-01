@@ -28,27 +28,32 @@ struct StoreListView: View {
         NavigationView{
             VStack{
                 Form {
-                    Section(header: Text("TOKO SAYA").font(.system(.body, design: .rounded)).foregroundColor(Color("sunray")).fontWeight(.semibold)) {
+                    Section(header: Text("Toko Saya").font(.system(.callout, design: .rounded)).foregroundColor(Color("sunray")).fontWeight(.semibold)) {
                         List {
                             ForEach(tokos, id:\.self){ toko in
                                 if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
+                                    
                                 } else{
                                     Button(action: {
-                                        print("Bacott")
+                                 
                                     }, label: {
-                                        SelectionToko(objectID: toko.objectID.uriRepresentation().absoluteString, selectedToko: $selectedToko)
+                                        SelectionToko(objectID: toko.objectID.uriRepresentation().absoluteString, toko: toko, selectedToko: $selectedToko)
                                     })
                                 }
                             }
                         }
                     }
                     
-                    Section(header: Text("TOKO Bersama").font(.system(.body, design: .rounded)).foregroundColor(Color("sunray")).fontWeight(.semibold)) {
+                    Section(header: Text("Toko Bersama").font(.system(.callout, design: .rounded)).foregroundColor(Color("sunray")).fontWeight(.semibold)) {
                         List {
                             ForEach(tokos, id:\.self){ toko in
                                 if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
                                     
-                                    Text(toko.objectID.uriRepresentation().absoluteString).foregroundColor(.black)
+                                    Button(action: {
+        
+                                    }, label: {
+                                        SelectionToko(objectID: toko.objectID.uriRepresentation().absoluteString, toko: toko, selectedToko: $selectedToko)
+                                    })
                                     
                                 } else{
                                     
@@ -57,22 +62,38 @@ struct StoreListView: View {
                         }
                     }
                 }
+//                Button(action: {
+//                    withAnimation {
+//                        self.showCreateNewToko.toggle()
+//                    }
+//                }) {
+//                    Text("Buat Toko Baru")
+//                        .font(.system(.headline, design: .rounded))
+//                        .padding()
+//                        .frame(maxWidth: .infinity)
+//                        .foregroundColor(.white)
+//                        .background(Color("sunray"))
+//                        .cornerRadius(10)
+//                }.padding(.horizontal,30)
+//                    .padding(.bottom,10)
+//
                 Button(action: {
                     withAnimation {
                         self.showCreateNewToko.toggle()
                     }
-                }) {
+                }, label: {
                     Text("Buat Toko Baru")
-                        .font(.system(.headline, design: .rounded))
-                        .padding()
+                        .font(.body)
+                        .bold()
                         .frame(maxWidth: .infinity)
-                        .foregroundColor(.white)
-                        .background(Color("sunray"))
-                        .cornerRadius(10)
-                }.padding(.horizontal,30)
-                    .padding(.bottom,10)
-                
-            }.background(Color.listHeaderBackground)
+                        .frame(maxHeight: 35)
+                    
+                }).buttonStyle(.borderedProminent)
+                    .foregroundColor(.white)
+                    .tint(Color("sunray"))
+                    .padding()
+              
+            }
                 .sheet(isPresented: $showCreateNewToko, content: {
                     CreateNewTokoFromSettingView(showCreateNewToko: $showCreateNewToko)
                 })
@@ -114,6 +135,7 @@ struct StoreListView: View {
 
 struct SelectionToko: View {
     let objectID: String
+    let toko: Toko
     @Binding var selectedToko: String
     @EnvironmentObject var  productViewModel: ProductViewModel
     
@@ -127,7 +149,7 @@ struct SelectionToko: View {
             print("selection toko \(productViewModel.currentToko?.namaToko ?? "gk Nampilll di selection toko")")
         }, label: {
             HStack {
-                Text(objectID).foregroundColor(.black)
+                Text(toko.namaToko ?? "a").foregroundColor(.black)
                 Spacer()
                 if selectedToko == objectID {
                     Image(systemName: "checkmark")

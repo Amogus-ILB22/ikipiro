@@ -25,25 +25,38 @@ struct MainProductListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                ScrollView {
-                    if productViewModel.products.isEmpty {
-                        Spacer()
-                        Text("Tambahkan produk di toko anda.").padding()
-                            .multilineTextAlignment(.center)
-                        Spacer()
-                    } else {
-                        ForEach(productViewModel.products, id: \.self) { produk in
-                            Button(action: {
-                                productViewModel.selectedBarcodeProduk = String(produk.kode)
-                                self.showDetailProduct.toggle()
-                                
-                            }, label: {
-                                RowItemProductList(productName: produk.nama ?? "", productImage: nil, productPrice: DetailProductView.df2so(produk.harga), productUnit: produk.satuan ?? "")
-                            })
-                            .sheet(isPresented: self.$showDetailProduct, content: {
-                                DetailProductView(productBarcode: productViewModel.selectedBarcodeProduk)
-                            })
-                            .padding(.horizontal)
+                GeometryReader { geometry in
+                    ScrollView {
+                        if productViewModel.products.isEmpty {
+                            VStack{
+                                HStack(alignment: .center, spacing: 0) {
+                                    Image("mascot-empty").resizable()
+                                        .aspectRatio( contentMode: .fit)
+                                        .frame(maxWidth: UIScreen.main.bounds.width * 0.9)
+                                }.frame(maxHeight: .infinity,alignment: .center)
+                            }
+        
+                            .frame(width: geometry.size.width)      // Make the scroll view full-width
+                            .frame(minHeight: geometry.size.height)
+                            
+                            
+                            
+                        } else {
+                            VStack{
+                                ForEach(productViewModel.products, id: \.self) { produk in
+                                    Button(action: {
+                                        productViewModel.selectedBarcodeProduk = String(produk.kode)
+                                        self.showDetailProduct.toggle()
+                                        
+                                    }, label: {
+                                        RowItemProductList(productName: produk.nama ?? "", productImage: nil, productPrice: DetailProductView.df2so(produk.harga), productUnit: produk.satuan ?? "")
+                                    })
+                                    .sheet(isPresented: self.$showDetailProduct, content: {
+                                        DetailProductView(productBarcode: productViewModel.selectedBarcodeProduk)
+                                    })
+                                    .padding(.horizontal)
+                                }
+                            }.padding(.top, 5)
                         }
                     }
                 }
