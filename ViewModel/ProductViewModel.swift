@@ -99,9 +99,13 @@ class ProductViewModel: ObservableObject {
         }
     }
     
-    func fetchProductFromCurrentToko(){
+    func fetchProductFromCurrentToko(searchKey: String? = nil){
+        if searchKey != nil {
+            self.searchKeyword = searchKey!
+        }
+        
         if (self.currentToko != nil){
-            let productsResult = self.currentToko!.produk?.allObjects as [Produk]
+            let productsResult = self.currentToko!.produk?.allObjects as! [Produk]
             
             if(productsResult.isEmpty){
                 self.products = []
@@ -110,6 +114,10 @@ class ProductViewModel: ObservableObject {
             }
         }else{
             self.products = []
+        }
+        
+        if !self.searchKeyword.isEmpty {
+            self.products = self.products.filter{ ($0.nama?.contains(self.searchKeyword))!}
         }
     }
     
@@ -202,32 +210,6 @@ class ProductViewModel: ObservableObject {
             }
         }
     }
-    
-    func filteredProduct(searchKey: String? = nil, category: String? = nil){
-        if searchKey != nil {
-            self.searchKeyword = searchKey!
-        }
-        
-        if category != nil {
-            self.selectedCategory = category!
-        }
-        
-        fetchProduct()
-        if(self.searchKeyword.isEmpty){
-            if(self.selectedCategory.isEmpty){
-                
-            }else{
-//                products = products.filter { $0.kategori == category}
-            }
-        }else{
-            if(self.selectedCategory.isEmpty){
-                products = products.filter{ ($0.nama?.contains(self.searchKeyword))!}
-            }else{
-//                products = products.filter{(($0.nama?.contains(self.searchKeyword))! && $0.kategori == self.selectedCategory)}
-            }
-        }
-    }
-    
     
     func deleteProduct(indexSet: IndexSet){
         guard let index = indexSet.first else { return }
