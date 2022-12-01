@@ -63,7 +63,6 @@
 		7EC9A0992937AF88008D3844 /* SelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A0982937AF88008D3844 /* SelectionRow.swift */; };
 		7EC9A09B2937B857008D3844 /* AddProductUnitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A09A2937B857008D3844 /* AddProductUnitModalView.swift */; };
 		7EC9A09D2937C355008D3844 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A09C2937C355008D3844 /* EditProductView.swift */; };
-		7EE868F7292E1D8F00C215C6 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE868F6292E1D8F00C215C6 /* TestView.swift */; };
 		DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */; };
 		DC2B6D1B291D4AC400CA6BE1 /* TokoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1A291D4AC400CA6BE1 /* TokoGridView.swift */; };
 		DC2B6D1E291D4FDC00CA6BE1 /* AddTokoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1D291D4FDC00CA6BE1 /* AddTokoView.swift */; };
@@ -74,7 +73,6 @@
 		DC2B6D2D291E21BD00CA6BE1 /* OnboardingViewPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D2A291E21BD00CA6BE1 /* OnboardingViewPure.swift */; };
 		DC2B6D2E291E21BD00CA6BE1 /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D2B291E21BD00CA6BE1 /* OnboardingDataModel.swift */; };
 		DC2B6D2F291E21BD00CA6BE1 /* OnboardingStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D2C291E21BD00CA6BE1 /* OnboardingStepView.swift */; };
-		DC2B6D31291E256F00CA6BE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D30291E256F00CA6BE1 /* ContentView.swift */; };
 		DC2B6D36291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D35291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift */; };
 		DC2B6D38291EAC3E00CA6BE1 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D37291EAC3E00CA6BE1 /* SettingView.swift */; };
 		DCB091E729360577000E4F53 /* InputOwnerNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB091E629360577000E4F53 /* InputOwnerNameView.swift */; };
@@ -162,7 +160,6 @@
 		7EC9A0982937AF88008D3844 /* SelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionRow.swift; sourceTree = "<group>"; };
 		7EC9A09A2937B857008D3844 /* AddProductUnitModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductUnitModalView.swift; sourceTree = "<group>"; };
 		7EC9A09C2937C355008D3844 /* EditProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductView.swift; sourceTree = "<group>"; };
-		7EE868F6292E1D8F00C215C6 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		B24732F33201E3732F237ECB /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Toko.swift"; sourceTree = "<group>"; };
@@ -175,7 +172,6 @@
 		DC2B6D2A291E21BD00CA6BE1 /* OnboardingViewPure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewPure.swift; sourceTree = "<group>"; };
 		DC2B6D2B291E21BD00CA6BE1 /* OnboardingDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
 		DC2B6D2C291E21BD00CA6BE1 /* OnboardingStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingStepView.swift; sourceTree = "<group>"; };
-		DC2B6D30291E256F00CA6BE1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC2B6D35291E9EB000CA6BE1 /* ProductFilterByCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductFilterByCategoryView.swift; sourceTree = "<group>"; };
 		DC2B6D37291EAC3E00CA6BE1 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		DCB091E629360577000E4F53 /* InputOwnerNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputOwnerNameView.swift; sourceTree = "<group>"; };
@@ -265,7 +261,6 @@
 			isa = PBXGroup;
 			children = (
 				7EC9A07129361C44008D3844 /* MainView.swift */,
-				DC2B6D30291E256F00CA6BE1 /* ContentView.swift */,
 				407D7D072702502200D2BA90 /* CoreDataCloudKitShare.entitlements */,
 				407D7D3A2702A2A400D2BA90 /* PhotoPicker.swift */,
 				407D7CEB27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift */,
@@ -336,7 +331,6 @@
 				7EB3C3A2291EC848006E2251 /* DetailProductView.swift */,
 				7EB3C3A4291EC923006E2251 /* AddProductView.swift */,
 				7EB3C3A6291EC981006E2251 /* CategorySelectionView.swift */,
-				7EE868F6292E1D8F00C215C6 /* TestView.swift */,
 				7E2FD7DF2934D2040007004C /* CustomFormCellView.swift */,
 				7EC9A09C2937C355008D3844 /* EditProductView.swift */,
 			);
@@ -551,7 +545,6 @@
 				7EC9A07029361BFD008D3844 /* CustomShapeTabBar.swift in Sources */,
 				7EC9A0972937AECD008D3844 /* ProductUnitSelection.swift in Sources */,
 				407D7D3B2702A2A400D2BA90 /* PhotoPicker.swift in Sources */,
-				DC2B6D31291E256F00CA6BE1 /* ContentView.swift in Sources */,
 				40744289270FAFB3009CABC7 /* ParticipantView.swift in Sources */,
 				7EB3C3A3291EC848006E2251 /* DetailProductView.swift in Sources */,
 				403177D82742F4F70048F2DC /* SwiftUIHelper.swift in Sources */,
@@ -560,7 +553,6 @@
 				40527E19270BC8FE00DB2901 /* PersistenceController+Rating.swift in Sources */,
 				7E2FD7E72934EFB30007004C /* CustomTextEditor.swift in Sources */,
 				407D7D612703880E00D2BA90 /* PersistenceController+Tag.swift in Sources */,
-				7EE868F7292E1D8F00C215C6 /* TestView.swift in Sources */,
 				DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */,
 				DCB091E729360577000E4F53 /* InputOwnerNameView.swift in Sources */,
 				7E74FA292921056000F3D2E4 /* MainScanBarcodeView.swift in Sources */,
