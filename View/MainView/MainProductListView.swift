@@ -76,7 +76,6 @@ struct MainProductListView: View {
                     }
                     productViewModel.fetchProductFromCurrentToko()
                 }
-
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -153,8 +152,11 @@ struct MainProductListView: View {
                                             }
                 }
             }
-            .searchable(text: $searchText)
+            .searchable(text: self.$searchText)
             .navigationBarTitleDisplayMode(.inline)
+            .onChange(of: self.searchText){ keyword in
+                productViewModel.fetchProductFromCurrentToko(searchKey: keyword)
+            }
             
         }.navigationViewStyle(.stack)
     }
