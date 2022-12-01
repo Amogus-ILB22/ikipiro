@@ -12,14 +12,11 @@ import CloudKit
 
 
 struct StoreListView: View {
-    
-    
     @EnvironmentObject var productViewModel: ProductViewModel
     @Binding var showStoreList: Bool
     @State private var editMode = EditMode.inactive
     
     @State var isEditing = false
-    
     
     @State var showCreateNewToko: Bool = false
     @State var selectedToko = UserDefaults.standard.object(forKey: "selectedToko") as? String ?? ""

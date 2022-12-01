@@ -8,6 +8,8 @@
 
 import Foundation
 import SwiftUI
+import CloudKit
+import CoreData
 
 
 
@@ -174,8 +176,25 @@ struct MainProductListView: View {
                 }
                 
             }
+            .onReceive(NotificationCenter.default.storeDidChangePublisher) { notification in
+                processStoreChangeNotification(notification)
+                productViewModel.fetchProductFromCurrentToko()
+            }
             
         }.navigationViewStyle(.stack)
+    }
+    
+    private func processStoreChangeNotification(_ notification: Notification) {
+        guard let storeUUID = notification.userInfo?[UserInfoKey.storeUUID] as? String,
+              storeUUID == PersistenceController.shared.privatePersistentStore.identifier else {
+            return
+        }
+        guard let transactions = notification.userInfo?[UserInfoKey.transactions] as? [NSPersistentHistoryTransaction],
+              transactions.isEmpty else {
+            return
+        }
+        //        isPhotoShared = (PersistenceController.shared.existingShare(photo: photo) != nil)
+        //        hasAnyShare = PersistenceController.shared.shareTitles().isEmpty ? false : true
     }
 }
 

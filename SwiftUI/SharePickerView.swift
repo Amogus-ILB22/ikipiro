@@ -26,11 +26,11 @@ struct SharePickerView<ActionView: View>: View {
         NavigationView {
             VStack {
                if shareTitles.isEmpty {
-                   Text("No share exists. Please create a new share for a photo, then try again.").padding()
+                   Text("Anda belum membagikan data, silakan tambahkan pembagian yang baru").padding()
                    Spacer()
                } else {
                    Form {
-                       Section(header: Text("Pick a share")) {
+                       Section(header: Text("Pilih Pembagian Data")) {
                            ShareListView(selection: $selection, shareTitles: $shareTitles)
                        }
                        Section {
@@ -41,11 +41,17 @@ struct SharePickerView<ActionView: View>: View {
             }
             .toolbar {
                 ToolbarItem(placement: .automatic) {
-                    Button("Dismiss") { activeSheet = nil }
+                    Button(action: {
+                        activeSheet = nil
+                    }, label: {
+                        Text("Batal")
+                    })
+                    .foregroundColor(Color("sunray"))
                 }
             }
             .listStyle(.plain)
-            .navigationTitle("Shares")
+            .navigationTitle("Pembagian Data")
+            .navigationBarTitleDisplayMode(.inline)
         }
         .onReceive(NotificationCenter.default.storeDidChangePublisher) { notification in
             processStoreChangeNotification(notification)

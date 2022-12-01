@@ -18,112 +18,114 @@ struct CreateNewTokoView: View {
     
     var body: some View {
         NavigationView{
-            ZStack{
-                Image("background-create-toko")
-                    .resizable()
-                    .aspectRatio( contentMode: .fill)
-                    .frame(minWidth:0, maxWidth: .infinity)
-                    .edgesIgnoringSafeArea(.all)
-                
-                
-                GeometryReader { geometry in
-                    VStack{
-
+//            ScrollView {
+                ZStack{
+                    Image("background-create-toko")
+                        .resizable()
+                        .aspectRatio( contentMode: .fill)
+                        .frame(minWidth:0, maxWidth: .infinity)
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    
+                    GeometryReader { geometry in
                         VStack{
-                            HStack{
-                                Image("store")
-                                    .resizable()
-                                    .aspectRatio( contentMode: .fit)
-                                    .frame(maxHeight: geometry.size.height * 0.25)
-                            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-                                .padding(.trailing,10)
-                                .padding(.bottom, -30)
-                            
-                        }.frame(
-                            minWidth: 0,
-                            maxWidth: .infinity,
-                            minHeight: 0,
-                            maxHeight: .infinity,
-                            alignment: .topLeading
-                          )
-                        VStack{
-                            
                             VStack{
-                                VStack{
-                                    Text("Buat Toko")
-                                        .font(.system(.title,design: .rounded))
-                                        .foregroundColor(Color("bistre"))
-                                        .fontWeight(.semibold)
-                                        .padding(.bottom, 35)
-                                    
-                                    VStack(alignment: .leading, spacing: 12){
-                                        
-                                        
-                                        TextField("Nama Toko", text: $namaToko)
-                                            .frame(maxWidth: .infinity)
-                                            .foregroundColor(Color("charcoal"))
-                                        
-                                        Divider().overlay(Color("bistre"))
-                                        
-                                    }.padding(.all, 30)
-                                    
-                                }.padding(.vertical,50)
+                                HStack{
+                                    Image("store")
+                                        .resizable()
+                                        .aspectRatio( contentMode: .fit)
+                                        .frame(maxHeight: geometry.size.height * 0.25)
+                                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                                    .padding(.trailing,10)
+                                    .padding(.bottom, -30)
                                 
+                            }.frame(
+                                minWidth: 0,
+                                maxWidth: .infinity,
+                                minHeight: 0,
+                                maxHeight: .infinity,
+                                alignment: .topLeading
+                              )
+                            VStack{
                                 
                                 VStack{
+                                    VStack{
+                                        Text("Buat Toko")
+                                            .font(.system(.title,design: .rounded))
+                                            .foregroundColor(Color("bistre"))
+                                            .fontWeight(.semibold)
+                                            .padding(.bottom, 35)
+                                        
+                                        VStack(alignment: .leading, spacing: 12){
+                                            
+                                            
+                                            TextField("Nama Toko", text: $namaToko)
+                                                .frame(maxWidth: .infinity)
+                                                .foregroundColor(Color("charcoal"))
+                                            
+                                            Divider().overlay(Color("bistre"))
+                                            
+                                        }.padding(.all, 30)
+                                        
+                                    }.padding(.vertical,50)
                                     
-                                    HStack(alignment: .center) {
-                                        Text("Buat")
-                                            .fontWeight(.bold)
-                                            .foregroundColor(.white)
-                                            .frame(maxWidth: UIScreen.main.bounds.width * 0.53, alignment: .center)
-                                    }
-                                    .padding([.leading, .trailing],6.0)
-                                    .padding(.vertical,13)
-                                    .padding(.horizontal,13)
-                                    .background(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .fill(Color("sunray"))
-                                    )
-                                    .onTapGesture {
-                                        withAnimation{
-                                            
-                                            addToko()
-                                            
+                                    
+                                    VStack{
+                                        
+                                        HStack(alignment: .center) {
+                                            Text("Buat")
+                                                .fontWeight(.bold)
+                                                .foregroundColor(.white)
+                                                .frame(maxWidth: UIScreen.main.bounds.width * 0.53, alignment: .center)
                                         }
-                                    }                                    .padding([.leading, .trailing],16.0)
-                                    .disabled(namaToko.isEmpty || namaPemilik.isEmpty)
-                                    
-                                    Spacer()
-                                }
-                            }  .frame(height: geometry.size.height * 0.73)
-                        }.background(.white)  
+                                        .padding([.leading, .trailing],6.0)
+                                        .padding(.vertical,13)
+                                        .padding(.horizontal,13)
+                                        .background(
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .fill(Color("sunray"))
+                                        )
+                                        .onTapGesture {
+                                            withAnimation{
+                                                
+                                                addToko()
+                                                
+                                            }
+                                        }                                    .padding([.leading, .trailing],16.0)
+                                        .disabled(namaToko.isEmpty || namaPemilik.isEmpty)
+                                        
+                                        Spacer()
+                                    }
+                                }  .frame(height: geometry.size.height * 0.73)
+                            }.background(.white)
 
-                            .frame(maxHeight:.infinity)
-                        
-                    }
-                } .frame(maxHeight: .infinity)
-                .navigationBarTitle(Text(""), displayMode: .inline)
-                    .navigationBarItems(leading: Button(action: {
-                        openCreateNewToko.toggle()
-                    }) {
-                        
-                        HStack(alignment: .center) {
+                                .frame(maxHeight:.infinity)
                             
-                            Image(systemName: "chevron.left").foregroundColor(Color("charcoal"))
-                
-                            Text("Kembali").font(.system(.callout,design: .rounded)).foregroundColor(Color("charcoal")).fontWeight(.bold)
-                        }.padding([.leading, .trailing],6.0)
-                            .padding(.vertical,7)
-                            .padding(.horizontal,8)
-                            .background(
-                                Capsule()
-                                    .fill(.white)
-                                    .shadow(color: Color("charcoal"), radius: 1, x: 1, y: 1)
-                            )
-                           
-                    })
-            }
+                        }
+                    } .frame(maxHeight: .infinity)
+                    .navigationBarTitle(Text(""), displayMode: .inline)
+                        .navigationBarItems(leading: Button(action: {
+                            openCreateNewToko.toggle()
+                        }) {
+                            
+                            HStack(alignment: .center) {
+                                
+                                Image(systemName: "chevron.left").foregroundColor(Color("charcoal"))
+                    
+                                Text("Kembali").font(.system(.callout,design: .rounded)).foregroundColor(Color("charcoal")).fontWeight(.bold)
+                            }.padding([.leading, .trailing],6.0)
+                                .padding(.vertical,7)
+                                .padding(.horizontal,8)
+                                .background(
+                                    Capsule()
+                                        .fill(.white)
+                                        .shadow(color: Color("charcoal"), radius: 1, x: 1, y: 1)
+                                )
+                               
+                        })
+                }
+                .ignoresSafeArea(edges: .top)
+//            }
         }
         
     }

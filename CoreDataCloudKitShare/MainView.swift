@@ -75,13 +75,13 @@ struct MainView: View {
                                     Button(action : {
                                         self.selectedTab = 0
                                     }){
-                                        VStack(spacing: 0) {
+                                        VStack {
                                             Image(selectedTab == 0 ? "box_active": "box_inactive")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(maxWidth: 30)
                                             Text("Produk")
-                                                .font(.system(.callout, design: .rounded))
+                                                .font(.system(.caption, design: .rounded))
                                                 .padding(.bottom, 25)
                                         }
                                         .frame(width: 100)
@@ -93,13 +93,13 @@ struct MainView: View {
                                     Button(action: {
                                         self.selectedTab = 1
                                     }){
-                                        VStack(spacing: 0) {
+                                        VStack {
                                             Image(selectedTab == 1 ? "barcode_active": "barcode_inactive")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(maxWidth: 35)
                                             Text("Pindai")
-                                                .font(.system(.callout, design: .rounded))
+                                                .font(.system(.caption, design: .rounded))
                                             
                                         }
                                         .frame(width: 80, height: 80)
@@ -115,13 +115,13 @@ struct MainView: View {
                                     Button(action : {
                                         self.selectedTab = 2
                                     }){
-                                        VStack(spacing: 0) {
+                                        VStack {
                                             Image(selectedTab == 2 ? "person_active": "person_inactive")
                                                 .resizable()
                                                 .aspectRatio(contentMode: .fit)
                                                 .frame(maxWidth: 30)
                                             Text("Pengaturan")
-                                                .font(.system(.callout, design: .rounded))
+                                                .font(.system(.caption, design: .rounded))
                                                 .padding(.bottom, 25)
                                         }
                                         .frame(width: 100, height: 100)

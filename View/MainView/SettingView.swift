@@ -129,19 +129,17 @@ struct SettingView: View {
                     }
                     
                     Button(action: {
-                        withAnimation{  showStoreList.toggle()   }
+                        withAnimation{   shareSheet = .managingSharesView }
                     }, label: {
                         HStack {
                             Text("Pengaturan Data").foregroundColor(Color("charcoal"))
 
                                                     Spacer()
                             
-                                                    Button(
-                                                        action: {     withAnimation{   shareSheet = .managingSharesView }},
-                                                        label: {
+                                                    
                                                             Image(systemName: "chevron.right").foregroundColor(Color("charcoal"))
                             
-                                                        })
+                                                      
                         }.frame(maxWidth: .infinity)
                             .frame(maxHeight: 35)
 

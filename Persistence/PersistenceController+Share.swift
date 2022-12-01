@@ -330,8 +330,7 @@ extension CKShare {
         formatter.dateStyle = .short
         formatter.timeStyle = .short
         
-        let ownerName = UserDefaults.standard.object(forKey: "ownerName")
-        return ownerName as! String + "Share-" + formatter.string(from: date)
+        return "Share-" + formatter.string(from: date)
     }
     
     var persistentStore: NSPersistentStore? {
