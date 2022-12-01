@@ -12,8 +12,15 @@ import CloudKit
 
 
 struct StoreListView: View {
+    
+    
     @EnvironmentObject var productViewModel: ProductViewModel
     @Binding var showStoreList: Bool
+    @State private var editMode = EditMode.inactive
+    
+    @State var isEditing = false
+    
+    
     @State var showCreateNewToko: Bool = false
     @State var selectedToko = UserDefaults.standard.object(forKey: "selectedToko") as? String ?? ""
     
@@ -26,10 +33,16 @@ struct StoreListView: View {
     
     var body: some View {
         NavigationView{
+      
             VStack{
+          
                 Form {
+                  
+      
+
                     Section(header: Text("Toko Saya").font(.system(.callout, design: .rounded)).foregroundColor(Color("sunray")).fontWeight(.semibold)) {
                         List {
+                            
                             ForEach(tokos, id:\.self){ toko in
                                 if persistenceController.sharedPersistentStore.contains(manageObject: toko) {
                                     
@@ -40,7 +53,7 @@ struct StoreListView: View {
                                         SelectionToko(objectID: toko.objectID.uriRepresentation().absoluteString, toko: toko, selectedToko: $selectedToko)
                                     })
                                 }
-                            }
+                            }.onDelete(perform: onDelete)
                         }
                     }
                     
@@ -93,7 +106,14 @@ struct StoreListView: View {
                     .tint(Color("sunray"))
                     .padding()
               
-            }
+            }            .navigationBarItems(trailing:    Button(action: {
+                self.isEditing.toggle()
+            }) {
+                Text(isEditing ? "Selesai" : "Hapus toko").foregroundColor(Color("sunray"))
+
+            })
+            // 4.
+            .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive)).animation(Animation.spring())
                 .sheet(isPresented: $showCreateNewToko, content: {
                     CreateNewTokoFromSettingView(showCreateNewToko: $showCreateNewToko)
                 })
@@ -131,6 +151,38 @@ struct StoreListView: View {
         //        hasAnyShare = PersistenceController.shared.shareTitles().isEmpty ? false : true
     }
     
+    private func onDelete(at offset:IndexSet) {
+        withAnimation{
+            var now = tokos[0]
+            
+            
+            productViewModel.getObjectID()
+            
+            var objectIDString = UserDefaults.standard.object(forKey: "selectedToko")
+            
+            productViewModel.setCurrentTokoById(objectIDString: objectIDString as! String)
+            
+            
+            offset.map{ tokos[$0] }.forEach(persistenceController.persistentContainer.viewContext.delete)
+            do {
+                try persistenceController.persistentContainer.viewContext.save()
+                
+                self.selectedToko =  UserDefaults.standard.object(forKey: "selectedToko") as! String
+                
+                let objectTokoId = productViewModel.getCurrentTokoIDFromUserDefault()
+              
+                productViewModel.setCurrentTokoById(objectIDString: objectTokoId!)
+                
+                self.selectedToko = productViewModel.currentToko?.objectID.uriRepresentation().absoluteString ?? ""
+//                UserDefaults.standard.set(selectedToko, forKey: "selectedToko")
+                
+//                  productViewModel.fetchTokoByObjectID()
+//                taskModel.loadSubtasks(task: taskModel.detailTask!)
+            }catch{
+                print(error.localizedDescription)
+            }
+        }
+     }
 }
 
 struct SelectionToko: View {
@@ -153,7 +205,7 @@ struct SelectionToko: View {
                 Spacer()
                 if selectedToko == objectID {
                     Image(systemName: "checkmark")
-                        .foregroundColor(.green)
+                        .foregroundColor(Color("sunray"))
                 }
             }
             .contentShape(Rectangle())

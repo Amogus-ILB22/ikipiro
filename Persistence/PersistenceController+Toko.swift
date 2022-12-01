@@ -22,6 +22,8 @@ extension PersistenceController {
     }
 
     func deleteToko(toko: Toko) {
+        
+        
         if let context = toko.managedObjectContext {
             context.perform {
                 context.delete(toko)

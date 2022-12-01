@@ -22,7 +22,7 @@ struct SelectionRow: View {
                 Spacer()
                 if title == selectedItem {
                     Image(systemName: "checkmark")
-                        .foregroundColor(.green)
+                        .foregroundColor(Color("sunray"))
                 }
             }
             .contentShape(Rectangle())

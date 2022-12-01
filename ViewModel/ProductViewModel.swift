@@ -26,7 +26,7 @@ class ProductViewModel: ObservableObject {
     @Published var satuan = UserDefaults.standard.array(forKey: "units") as? [String]
     
     
-    private func fetchProduct(){
+     func fetchProduct(){
         let request = NSFetchRequest<Produk>(entityName: "Produk")
         
         do {
@@ -205,7 +205,10 @@ class ProductViewModel: ObservableObject {
                 
                 if toko == nil {
                     fetchTokos()
-                    self.currentToko = tokos.first!
+                    if (tokos.first != nil){
+                        self.currentToko = tokos.first!
+                        UserDefaults.standard.set( self.currentToko?.objectID.uriRepresentation().absoluteString, forKey: "selectedToko")
+                    }
                 }else {
                     self.currentToko = toko
                 }
