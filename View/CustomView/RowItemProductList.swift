@@ -56,7 +56,7 @@ struct RowItemProductList: View {
                     Text(productPrice)
                         .foregroundColor(Color("sunray"))
                         .font(.system(.body).bold())
-                    Text("/\(productUnit)")
+                    Text("/\(productUnit.lowercased())")
                         .foregroundColor(Color.gray)
                         .font(.system(.footnote))
                     
