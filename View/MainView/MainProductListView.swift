@@ -27,6 +27,7 @@ struct MainProductListView: View {
     @State private var showDetailProduct = false
     @State private var showAddProductView = false
     @State private var showProductFilter = false
+    @State private var showStoreList = false
     
     var body: some View {
         NavigationView {
@@ -134,7 +135,6 @@ struct MainProductListView: View {
 //                                Spacer()
 //                            }
                         HStack{
-                            
                             VStack{
                                 Text("Toko").font(.system(.caption, design: .rounded)).fontWeight(.bold).foregroundColor(Color.gray).frame(maxWidth: .infinity, alignment: .leading)
                                 
@@ -147,10 +147,14 @@ struct MainProductListView: View {
                                 
                             }.frame(maxWidth: .infinity, alignment: .leading)
                             
-           
-                            
                         }.frame(maxWidth: .infinity, alignment: .leading)
-                                            }
+                            .onTapGesture {
+                                self.showStoreList = true
+                            }
+                            .fullScreenCover(isPresented: $showStoreList, content: {
+                                StoreListView(showStoreList: $showStoreList)
+                            })
+                    }
                 }
             }
             .searchable(text: self.$searchText)
@@ -163,6 +167,12 @@ struct MainProductListView: View {
             }
             .onChange(of: self.productViewModel.products){ _ in
                 productViewModel.fetchProductFromCurrentToko()
+            }
+            .onChange(of: self.showStoreList){ new_value in
+                if(!new_value){
+                    productViewModel.fetchProductFromCurrentToko()
+                }
+                
             }
             
         }.navigationViewStyle(.stack)

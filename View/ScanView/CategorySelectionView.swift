@@ -67,9 +67,7 @@ struct CategorySelectionView: View {
             .navigationTitle("Pilih Kategori")
             .navigationBarTitleDisplayMode(.inline)
         }.onAppear{
-            
             tokoModel.categories = UserDefaults.standard.array(forKey: "categories") as? [String]
-            
         }
         
     }
