@@ -63,11 +63,7 @@
 		7EC9A09B2937B857008D3844 /* AddProductUnitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A09A2937B857008D3844 /* AddProductUnitModalView.swift */; };
 		7EC9A09D2937C355008D3844 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A09C2937C355008D3844 /* EditProductView.swift */; };
 		DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */; };
-		DC2B6D1B291D4AC400CA6BE1 /* TokoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1A291D4AC400CA6BE1 /* TokoGridView.swift */; };
 		DC2B6D1E291D4FDC00CA6BE1 /* AddTokoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1D291D4FDC00CA6BE1 /* AddTokoView.swift */; };
-		DC2B6D20291D5ADB00CA6BE1 /* DetailTokoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1F291D5ADB00CA6BE1 /* DetailTokoView.swift */; };
-		DC2B6D23291D5D9400CA6BE1 /* TokoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D22291D5D9400CA6BE1 /* TokoViewModel.swift */; };
-		DC2B6D25291D80CE00CA6BE1 /* AddProdukView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D24291D80CE00CA6BE1 /* AddProdukView.swift */; };
 		DC2B6D27291D816100CA6BE1 /* PersistenceController+Produk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D26291D816100CA6BE1 /* PersistenceController+Produk.swift */; };
 		DC2B6D2D291E21BD00CA6BE1 /* OnboardingViewPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D2A291E21BD00CA6BE1 /* OnboardingViewPure.swift */; };
 		DC2B6D2E291E21BD00CA6BE1 /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D2B291E21BD00CA6BE1 /* OnboardingDataModel.swift */; };
@@ -160,11 +156,7 @@
 		987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		B24732F33201E3732F237ECB /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Toko.swift"; sourceTree = "<group>"; };
-		DC2B6D1A291D4AC400CA6BE1 /* TokoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokoGridView.swift; sourceTree = "<group>"; };
 		DC2B6D1D291D4FDC00CA6BE1 /* AddTokoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokoView.swift; sourceTree = "<group>"; };
-		DC2B6D1F291D5ADB00CA6BE1 /* DetailTokoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTokoView.swift; sourceTree = "<group>"; };
-		DC2B6D22291D5D9400CA6BE1 /* TokoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokoViewModel.swift; sourceTree = "<group>"; };
-		DC2B6D24291D80CE00CA6BE1 /* AddProdukView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProdukView.swift; sourceTree = "<group>"; };
 		DC2B6D26291D816100CA6BE1 /* PersistenceController+Produk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Produk.swift"; sourceTree = "<group>"; };
 		DC2B6D2A291E21BD00CA6BE1 /* OnboardingViewPure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewPure.swift; sourceTree = "<group>"; };
 		DC2B6D2B291E21BD00CA6BE1 /* OnboardingDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
@@ -220,10 +212,7 @@
 				408BD4D92713B29900294A81 /* AddToExistingShareView.swift */,
 				40C6211D2755AFB500015301 /* SharePickerView.swift */,
 				405831692767DCDE0044E86D /* FullImageView.swift */,
-				DC2B6D1A291D4AC400CA6BE1 /* TokoGridView.swift */,
-				DC2B6D1F291D5ADB00CA6BE1 /* DetailTokoView.swift */,
 				DC2B6D1D291D4FDC00CA6BE1 /* AddTokoView.swift */,
-				DC2B6D24291D80CE00CA6BE1 /* AddProdukView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -351,7 +340,6 @@
 		DC2B6D21291D5D7E00CA6BE1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				DC2B6D22291D5D9400CA6BE1 /* TokoViewModel.swift */,
 				7E978977292B7B9F001A80B1 /* ProductViewModel.swift */,
 			);
 			path = ViewModel;
@@ -524,8 +512,6 @@
 				7E2FD7E02934D2040007004C /* CustomFormCellView.swift in Sources */,
 				4058316A2767DCDE0044E86D /* FullImageView.swift in Sources */,
 				7E978978292B7B9F001A80B1 /* ProductViewModel.swift in Sources */,
-				DC2B6D20291D5ADB00CA6BE1 /* DetailTokoView.swift in Sources */,
-				DC2B6D23291D5D9400CA6BE1 /* TokoViewModel.swift in Sources */,
 				4035B60E27150DA100F46D6B /* PhotoContextMenu.swift in Sources */,
 				DC2B6D2F291E21BD00CA6BE1 /* OnboardingStepView.swift in Sources */,
 				4074428B270FB2B5009CABC7 /* PersistenceController+Share.swift in Sources */,
@@ -560,7 +546,6 @@
 				7EC9A09529372EBD008D3844 /* RowItemProductList.swift in Sources */,
 				DC2B6D38291EAC3E00CA6BE1 /* SettingView.swift in Sources */,
 				407D7D5F2703878000D2BA90 /* PersistenceController+Photo.swift in Sources */,
-				DC2B6D25291D80CE00CA6BE1 /* AddProdukView.swift in Sources */,
 				7EC9A0992937AF88008D3844 /* SelectionRow.swift in Sources */,
 				DCF656FA291FF16C0053ABF5 /* CreateNewTokoView.swift in Sources */,
 				7EB3C39E291EC53A006E2251 /* AddBarcodeProductView.swift in Sources */,
@@ -568,7 +553,6 @@
 				407D7CF827024EBE00D2BA90 /* CoreDataCloudKitShare.xcdatamodeld in Sources */,
 				407D7D632703A27000D2BA90 /* PhotoGridItemView.swift in Sources */,
 				7EC9A09D2937C355008D3844 /* EditProductView.swift in Sources */,
-				DC2B6D1B291D4AC400CA6BE1 /* TokoGridView.swift in Sources */,
 				DCB091ED2937CA7C000E4F53 /* ShareDataInstructionView.swift in Sources */,
 				7E72B61C292C82050026BBE0 /* MainProductListView.swift in Sources */,
 				40C6211E2755AFB500015301 /* SharePickerView.swift in Sources */,

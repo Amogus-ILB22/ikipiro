@@ -256,8 +256,4 @@ struct AddProductView: View {
     }
 }
 
-struct EditProduct_Previews: PreviewProvider {
-    static var previews: some View {
-        AddProdukView()
-    }
-}
+
