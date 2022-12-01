@@ -25,7 +25,7 @@ struct RowItemProductList: View {
             if(image == nil){
                 ZStack {
                     Color("biege")
-                    Image(systemName: "video.slash.fill")
+                    Image("camera_slash")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .foregroundColor(Color("sunray"))

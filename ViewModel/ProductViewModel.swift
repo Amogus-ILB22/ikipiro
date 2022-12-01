@@ -67,7 +67,6 @@ class ProductViewModel: ObservableObject {
                         self.productAutocomplete = decodedResponse
                     }
                     
-                    print(productAutocomplete?.nama ?? "GK NAMPIL")
                 }
             } catch {
                 print("catch callled")

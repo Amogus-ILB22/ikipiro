@@ -37,7 +37,7 @@ struct EditProductView: View {
                         self.showScanView.toggle()
                     }, label: {
                         HStack {
-                            Image(systemName: "barcode.viewfinder")
+                            Image("scan")
                             Text("Pindai Kode Batang")
                                 .font(.body)
                                 .bold()
@@ -121,7 +121,7 @@ struct EditProductView: View {
                         }, label: {
                             if image == nil {
                                 VStack{
-                                    Image(systemName: "camera.shutter.button.fill")
+                                    Image(systemName: "camera_add")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(height: 60)

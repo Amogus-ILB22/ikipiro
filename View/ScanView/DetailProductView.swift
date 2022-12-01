@@ -28,7 +28,7 @@ struct DetailProductView: View {
                     if image == nil {
                         ZStack(alignment: .center){
                             Color("biege")
-                            Image(systemName: "video.slash.fill")
+                            Image("camera_slash")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 50)

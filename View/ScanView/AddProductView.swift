@@ -59,7 +59,7 @@ struct AddProductView: View {
                         self.showScanView.toggle()
                     }, label: {
                         HStack {
-                            Image(systemName: "barcode.viewfinder")
+                            Image("scan")
                             Text("Pindai Kode Batang")
                                 .font(.body)
                                 .bold()
@@ -125,16 +125,23 @@ struct AddProductView: View {
                                     .font(.system(.body))
                                     .foregroundColor(.red)
                                 Spacer()
-                                if self.productUnit.isEmpty {
-                                    Text("Pilih Satuan")
-                                        .font(.system(.body))
+                                HStack{
+                                    
+                                    if self.productUnit.isEmpty {
+                                        
+                                        Text("Pilih Satuan")
+                                            .font(.system(.body))
+                                            .foregroundColor(Color("sunray"))
+                                        
+                                        
+                                    }else{
+                                        Text(self.productUnit)
+                                            .font(.system(.body))
+                                            .foregroundColor(Color("sunray"))
+                                        
+                                    }
+                                    Image(systemName: "chevron.right")
                                         .foregroundColor(Color("sunray"))
-                                        .padding(.trailing)
-                                }else{
-                                    Text(self.productUnit)
-                                        .font(.system(.body))
-                                        .foregroundColor(Color("sunray"))
-                                        .padding(.trailing)
                                 }
                             }
                         })
@@ -160,7 +167,7 @@ struct AddProductView: View {
                         }, label: {
                             if image == nil {
                                 VStack{
-                                    Image(systemName: "camera.shutter.button.fill")
+                                    Image("camera_add")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(height: 60)
@@ -205,7 +212,7 @@ struct AddProductView: View {
                                     self.image = nil
                                 },
                                 .cancel()
-    //                            .cancel()
+                                //                            .cancel()
                             ])
                         }
                         .sheet(isPresented: $showImagePicker) {
