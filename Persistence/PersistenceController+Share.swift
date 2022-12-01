@@ -321,6 +321,7 @@ extension CKShare.ParticipantAcceptanceStatus {
 }
 
 extension CKShare {
+
     var title: String {
         guard let date = creationDate else {
             return "Share-\(UUID().uuidString)"
@@ -328,7 +329,9 @@ extension CKShare {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .short
-        return "Share-" + formatter.string(from: date)
+        
+        let ownerName = UserDefaults.standard.object(forKey: "ownerName")
+        return ownerName as! String + "Share-" + formatter.string(from: date)
     }
     
     var persistentStore: NSPersistentStore? {

@@ -14,6 +14,12 @@ import SwiftUI
 
 struct MainProductListView: View {
 //    @StateObject var productViewModel = ProductViewModel()
+    
+    init(){
+        Theme.navigationBarColors(background: .white, titleColor: .black)
+    }
+
+    
     @EnvironmentObject var productViewModel: ProductViewModel
     @State private var searchText = ""
     @State private var selectedCategory = ""
@@ -100,12 +106,51 @@ struct MainProductListView: View {
                 }
                 
                 ToolbarItem(placement: .cancellationAction) {
-                    VStack(alignment: .leading) {
-                        Text("Produk")
-                            .font(.system(.title, design: .rounded)).fontWeight(.bold)
-                            .foregroundColor(Color.black)
-                        Spacer()
-                    }
+                    VStack{
+               
+               
+//                            HStack{
+//
+////                                HStack{
+////                                    Text("Toko").font(.system(.caption, design: .rounded)).bold().padding(5).padding(.horizontal,8).foregroundColor(.white)
+////                                }     .background(
+////                                    Capsule()
+////                                        .fill(LinearGradient(
+////                                            colors: [Color("sunray"), Color("bistre")],
+////                                            startPoint: .bottomLeading,
+////                                            endPoint: .topTrailing
+////
+////                                        ))
+////                                        .shadow(color: Color("charcoal"), radius: 1, x: 1, y: 1)
+////                                ).offset(x: -8, y: -18)
+////                                .frame(alignment: .leading)
+//
+//                                HStack{
+//                                    Text("Toko").font(.system(.caption, design: .rounded)).fontWeight(.bold).padding(5).padding(.horizontal,8).foregroundColor(Color.gray)
+//                                    Spacer()
+//                                }  .offset(x: 0, y: -18)
+//                                .frame(alignment: .leading)
+//
+//                                Spacer()
+//                            }
+                        HStack{
+                            
+                            VStack{
+                                Text("Toko").font(.system(.caption, design: .rounded)).fontWeight(.bold).foregroundColor(Color.gray).frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                Text(productViewModel.currentToko?.namaToko ?? "Nama Toko")
+                                    .font(.system(.callout, design: .rounded)).fontWeight(.bold)
+                                    .foregroundColor(Color.black).frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.trailing,5)
+                                
+                                Spacer()
+                                
+                            }.frame(maxWidth: .infinity, alignment: .leading)
+                            
+           
+                            
+                        }.frame(maxWidth: .infinity, alignment: .leading)
+                                            }
                 }
             }
             .searchable(text: $searchText)

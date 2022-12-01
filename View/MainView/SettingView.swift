@@ -55,6 +55,7 @@ struct SettingView: View {
     var body: some View {
         NavigationView{
             VStack{
+                Divider()
                 VStack{
                     HStack{
                         
@@ -180,7 +181,7 @@ struct SettingView: View {
                 
                 
                 
-            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.white)
+            }.frame(maxWidth: .infinity, maxHeight: .infinity).background(Color.listHeaderBackground)
                 .fullScreenCover(isPresented: $showStoreList, content: {
                     StoreListView(showStoreList: $showStoreList)
                 })
