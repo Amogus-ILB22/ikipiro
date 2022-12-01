@@ -24,7 +24,6 @@
 		407D7CF827024EBE00D2BA90 /* CoreDataCloudKitShare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407D7CF627024EBE00D2BA90 /* CoreDataCloudKitShare.xcdatamodeld */; };
 		407D7D0427024F5D00D2BA90 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D0027024F5D00D2BA90 /* PersistenceController.swift */; };
 		407D7D0A2702502400D2BA90 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407D7D092702502400D2BA90 /* CloudKit.framework */; };
-		407D7D3B2702A2A400D2BA90 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D3A2702A2A400D2BA90 /* PhotoPicker.swift */; };
 		407D7D5F2703878000D2BA90 /* PersistenceController+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D5E2703878000D2BA90 /* PersistenceController+Photo.swift */; };
 		407D7D612703880E00D2BA90 /* PersistenceController+Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D602703880E00D2BA90 /* PersistenceController+Tag.swift */; };
 		407D7D6B2704334400D2BA90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6A2704334400D2BA90 /* SceneDelegate.swift */; };
@@ -109,7 +108,6 @@
 		407D7D092702502400D2BA90 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		407D7D36270262C500D2BA90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		407D7D38270262EF00D2BA90 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
-		407D7D3A2702A2A400D2BA90 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		407D7D5E2703878000D2BA90 /* PersistenceController+Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Photo.swift"; sourceTree = "<group>"; };
 		407D7D602703880E00D2BA90 /* PersistenceController+Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Tag.swift"; sourceTree = "<group>"; };
 		407D7D6A2704334400D2BA90 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 			children = (
 				7EC9A07129361C44008D3844 /* MainView.swift */,
 				407D7D072702502200D2BA90 /* CoreDataCloudKitShare.entitlements */,
-				407D7D3A2702A2A400D2BA90 /* PhotoPicker.swift */,
 				407D7CEB27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift */,
 				407D7D6C2704335A00D2BA90 /* AppDelegate.swift */,
 				407D7D6A2704334400D2BA90 /* SceneDelegate.swift */,
@@ -495,7 +492,6 @@
 				DC2B6D2D291E21BD00CA6BE1 /* OnboardingViewPure.swift in Sources */,
 				7EC9A07029361BFD008D3844 /* CustomShapeTabBar.swift in Sources */,
 				7EC9A0972937AECD008D3844 /* ProductUnitSelection.swift in Sources */,
-				407D7D3B2702A2A400D2BA90 /* PhotoPicker.swift in Sources */,
 				40744289270FAFB3009CABC7 /* ParticipantView.swift in Sources */,
 				7EB3C3A3291EC848006E2251 /* DetailProductView.swift in Sources */,
 				403177D82742F4F70048F2DC /* SwiftUIHelper.swift in Sources */,
