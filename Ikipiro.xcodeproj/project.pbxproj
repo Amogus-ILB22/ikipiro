@@ -7,12 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4026B868270A19390060F0F7 /* TaggingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4026B867270A19390060F0F7 /* TaggingView.swift */; };
 		403177D82742F4F70048F2DC /* SwiftUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403177D72742F4F70048F2DC /* SwiftUIHelper.swift */; };
-		4035B60E27150DA100F46D6B /* PhotoContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4035B60D27150DA100F46D6B /* PhotoContextMenu.swift */; };
-		40527E17270BBE3400DB2901 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40527E16270BBE3400DB2901 /* RatingView.swift */; };
 		40527E19270BC8FE00DB2901 /* PersistenceController+Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40527E18270BC8FE00DB2901 /* PersistenceController+Rating.swift */; };
-		4058316A2767DCDE0044E86D /* FullImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405831692767DCDE0044E86D /* FullImageView.swift */; };
 		40744289270FAFB3009CABC7 /* ParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40744288270FAFB3009CABC7 /* ParticipantView.swift */; };
 		4074428B270FB2B5009CABC7 /* PersistenceController+Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4074428A270FB2B5009CABC7 /* PersistenceController+Share.swift */; };
 		407A0CDE2707D0CD00F481C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6A2704334400D2BA90 /* SceneDelegate.swift */; };
@@ -23,7 +19,6 @@
 		407A0CEF2707D0CD00F481C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407D7CF227024EBE00D2BA90 /* Preview Assets.xcassets */; };
 		407A0CF02707D0CD00F481C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407D7CEF27024EBE00D2BA90 /* Assets.xcassets */; };
 		407D7CEC27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7CEB27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift */; };
-		407D7CEE27024EBD00D2BA90 /* PhotoGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7CED27024EBD00D2BA90 /* PhotoGridView.swift */; };
 		407D7CF027024EBE00D2BA90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407D7CEF27024EBE00D2BA90 /* Assets.xcassets */; };
 		407D7CF327024EBE00D2BA90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407D7CF227024EBE00D2BA90 /* Preview Assets.xcassets */; };
 		407D7CF827024EBE00D2BA90 /* CoreDataCloudKitShare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407D7CF627024EBE00D2BA90 /* CoreDataCloudKitShare.xcdatamodeld */; };
@@ -32,10 +27,8 @@
 		407D7D3B2702A2A400D2BA90 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D3A2702A2A400D2BA90 /* PhotoPicker.swift */; };
 		407D7D5F2703878000D2BA90 /* PersistenceController+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D5E2703878000D2BA90 /* PersistenceController+Photo.swift */; };
 		407D7D612703880E00D2BA90 /* PersistenceController+Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D602703880E00D2BA90 /* PersistenceController+Tag.swift */; };
-		407D7D632703A27000D2BA90 /* PhotoGridItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D622703A27000D2BA90 /* PhotoGridItemView.swift */; };
 		407D7D6B2704334400D2BA90 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6A2704334400D2BA90 /* SceneDelegate.swift */; };
 		407D7D6D2704335A00D2BA90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6C2704335A00D2BA90 /* AppDelegate.swift */; };
-		408BD4DA2713B29900294A81 /* AddToExistingShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408BD4D92713B29900294A81 /* AddToExistingShareView.swift */; };
 		408BD4DC2713F0F400294A81 /* ManagingSharesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408BD4DB2713F0F400294A81 /* ManagingSharesView.swift */; };
 		40AE53F12719F98C00B978CA /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AE53F02719F98C00B978CA /* CoreDataHelper.swift */; };
 		40BF6728273B0B7400ED9D2D /* CoreDataCloudKitShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7CEB27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift */; };
@@ -63,7 +56,6 @@
 		7EC9A09B2937B857008D3844 /* AddProductUnitModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A09A2937B857008D3844 /* AddProductUnitModalView.swift */; };
 		7EC9A09D2937C355008D3844 /* EditProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC9A09C2937C355008D3844 /* EditProductView.swift */; };
 		DC2B6D18291D479100CA6BE1 /* PersistenceController+Toko.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */; };
-		DC2B6D1E291D4FDC00CA6BE1 /* AddTokoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D1D291D4FDC00CA6BE1 /* AddTokoView.swift */; };
 		DC2B6D27291D816100CA6BE1 /* PersistenceController+Produk.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D26291D816100CA6BE1 /* PersistenceController+Produk.swift */; };
 		DC2B6D2D291E21BD00CA6BE1 /* OnboardingViewPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D2A291E21BD00CA6BE1 /* OnboardingViewPure.swift */; };
 		DC2B6D2E291E21BD00CA6BE1 /* OnboardingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC2B6D2B291E21BD00CA6BE1 /* OnboardingDataModel.swift */; };
@@ -101,18 +93,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4026B867270A19390060F0F7 /* TaggingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaggingView.swift; sourceTree = "<group>"; };
 		403177D72742F4F70048F2DC /* SwiftUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHelper.swift; sourceTree = "<group>"; };
-		4035B60D27150DA100F46D6B /* PhotoContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoContextMenu.swift; sourceTree = "<group>"; };
-		40527E16270BBE3400DB2901 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		40527E18270BC8FE00DB2901 /* PersistenceController+Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Rating.swift"; sourceTree = "<group>"; };
-		405831692767DCDE0044E86D /* FullImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageView.swift; sourceTree = "<group>"; };
 		40744288270FAFB3009CABC7 /* ParticipantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantView.swift; sourceTree = "<group>"; };
 		4074428A270FB2B5009CABC7 /* PersistenceController+Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Share.swift"; sourceTree = "<group>"; };
 		407A0CF62707D0CD00F481C5 /* InitializeCloudKitSchema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InitializeCloudKitSchema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		407D7CE827024EBD00D2BA90 /* Ikipiro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ikipiro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		407D7CEB27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCloudKitShareApp.swift; sourceTree = "<group>"; };
-		407D7CED27024EBD00D2BA90 /* PhotoGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridView.swift; sourceTree = "<group>"; };
 		407D7CEF27024EBE00D2BA90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		407D7CF227024EBE00D2BA90 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		407D7CF727024EBE00D2BA90 /* CoreDataCloudKitShare.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataCloudKitShare.xcdatamodel; sourceTree = "<group>"; };
@@ -125,10 +112,8 @@
 		407D7D3A2702A2A400D2BA90 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		407D7D5E2703878000D2BA90 /* PersistenceController+Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Photo.swift"; sourceTree = "<group>"; };
 		407D7D602703880E00D2BA90 /* PersistenceController+Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Tag.swift"; sourceTree = "<group>"; };
-		407D7D622703A27000D2BA90 /* PhotoGridItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGridItemView.swift; sourceTree = "<group>"; };
 		407D7D6A2704334400D2BA90 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		407D7D6C2704335A00D2BA90 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		408BD4D92713B29900294A81 /* AddToExistingShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToExistingShareView.swift; sourceTree = "<group>"; };
 		408BD4DB2713F0F400294A81 /* ManagingSharesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagingSharesView.swift; sourceTree = "<group>"; };
 		40AE53F02719F98C00B978CA /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		40BF672C273B17A200ED9D2D /* PersistenceController+History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+History.swift"; sourceTree = "<group>"; };
@@ -156,7 +141,6 @@
 		987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = SampleCode.xcconfig; path = Configuration/SampleCode.xcconfig; sourceTree = "<group>"; };
 		B24732F33201E3732F237ECB /* LICENSE.txt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DC2B6D17291D479100CA6BE1 /* PersistenceController+Toko.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Toko.swift"; sourceTree = "<group>"; };
-		DC2B6D1D291D4FDC00CA6BE1 /* AddTokoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTokoView.swift; sourceTree = "<group>"; };
 		DC2B6D26291D816100CA6BE1 /* PersistenceController+Produk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Produk.swift"; sourceTree = "<group>"; };
 		DC2B6D2A291E21BD00CA6BE1 /* OnboardingViewPure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewPure.swift; sourceTree = "<group>"; };
 		DC2B6D2B291E21BD00CA6BE1 /* OnboardingDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingDataModel.swift; sourceTree = "<group>"; };
@@ -203,16 +187,8 @@
 			isa = PBXGroup;
 			children = (
 				403177D72742F4F70048F2DC /* SwiftUIHelper.swift */,
-				407D7CED27024EBD00D2BA90 /* PhotoGridView.swift */,
-				407D7D622703A27000D2BA90 /* PhotoGridItemView.swift */,
-				4035B60D27150DA100F46D6B /* PhotoContextMenu.swift */,
-				4026B867270A19390060F0F7 /* TaggingView.swift */,
-				40527E16270BBE3400DB2901 /* RatingView.swift */,
 				40744288270FAFB3009CABC7 /* ParticipantView.swift */,
-				408BD4D92713B29900294A81 /* AddToExistingShareView.swift */,
 				40C6211D2755AFB500015301 /* SharePickerView.swift */,
-				405831692767DCDE0044E86D /* FullImageView.swift */,
-				DC2B6D1D291D4FDC00CA6BE1 /* AddTokoView.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -508,14 +484,10 @@
 				40AE53F12719F98C00B978CA /* CoreDataHelper.swift in Sources */,
 				407D7D6D2704335A00D2BA90 /* AppDelegate.swift in Sources */,
 				40BF672F273B17A900ED9D2D /* PersistenceController+History.swift in Sources */,
-				408BD4DA2713B29900294A81 /* AddToExistingShareView.swift in Sources */,
 				7E2FD7E02934D2040007004C /* CustomFormCellView.swift in Sources */,
-				4058316A2767DCDE0044E86D /* FullImageView.swift in Sources */,
 				7E978978292B7B9F001A80B1 /* ProductViewModel.swift in Sources */,
-				4035B60E27150DA100F46D6B /* PhotoContextMenu.swift in Sources */,
 				DC2B6D2F291E21BD00CA6BE1 /* OnboardingStepView.swift in Sources */,
 				4074428B270FB2B5009CABC7 /* PersistenceController+Share.swift in Sources */,
-				DC2B6D1E291D4FDC00CA6BE1 /* AddTokoView.swift in Sources */,
 				7EC9A07229361C44008D3844 /* MainView.swift in Sources */,
 				7E2FD7E32934DEB50007004C /* CustomFormStack.swift in Sources */,
 				40D68E942719101A00FB9B78 /* PersistenceController+Deduplicate.swift in Sources */,
@@ -527,7 +499,6 @@
 				40744289270FAFB3009CABC7 /* ParticipantView.swift in Sources */,
 				7EB3C3A3291EC848006E2251 /* DetailProductView.swift in Sources */,
 				403177D82742F4F70048F2DC /* SwiftUIHelper.swift in Sources */,
-				407D7CEE27024EBD00D2BA90 /* PhotoGridView.swift in Sources */,
 				408BD4DC2713F0F400294A81 /* ManagingSharesView.swift in Sources */,
 				40527E19270BC8FE00DB2901 /* PersistenceController+Rating.swift in Sources */,
 				7E2FD7E72934EFB30007004C /* CustomTextEditor.swift in Sources */,
@@ -537,7 +508,6 @@
 				7E74FA292921056000F3D2E4 /* MainScanBarcodeView.swift in Sources */,
 				DCB091EB29368B80000E4F53 /* CreateNewTokoFromSettingView.swift in Sources */,
 				407D7CEC27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift in Sources */,
-				40527E17270BBE3400DB2901 /* RatingView.swift in Sources */,
 				7EC9A09B2937B857008D3844 /* AddProductUnitModalView.swift in Sources */,
 				7EC9A0932936733F008D3844 /* NetworkMonitor.swift in Sources */,
 				7EB3C3A5291EC923006E2251 /* AddProductView.swift in Sources */,
@@ -551,12 +521,10 @@
 				7EB3C39E291EC53A006E2251 /* AddBarcodeProductView.swift in Sources */,
 				DC2B6D27291D816100CA6BE1 /* PersistenceController+Produk.swift in Sources */,
 				407D7CF827024EBE00D2BA90 /* CoreDataCloudKitShare.xcdatamodeld in Sources */,
-				407D7D632703A27000D2BA90 /* PhotoGridItemView.swift in Sources */,
 				7EC9A09D2937C355008D3844 /* EditProductView.swift in Sources */,
 				DCB091ED2937CA7C000E4F53 /* ShareDataInstructionView.swift in Sources */,
 				7E72B61C292C82050026BBE0 /* MainProductListView.swift in Sources */,
 				40C6211E2755AFB500015301 /* SharePickerView.swift in Sources */,
-				4026B868270A19390060F0F7 /* TaggingView.swift in Sources */,
 				DCB091E929367FAA000E4F53 /* StoreListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
