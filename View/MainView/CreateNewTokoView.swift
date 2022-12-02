@@ -10,11 +10,16 @@ import SwiftUI
 import CoreData
 
 struct CreateNewTokoView: View {
-    
+    @EnvironmentObject var productViewModel: ProductViewModel
     @State var namaToko : String = ""
     @Binding var openCreateNewToko: Bool
     let persistenceController = PersistenceController.shared
     @State var namaPemilik = UserDefaults.standard.object(forKey: "ownerName") as? String ?? ""
+    
+    init(openCreateNewToko: Binding<Bool>){
+        self._openCreateNewToko = openCreateNewToko
+        Theme.navigationBarColors(background: .clear, titleColor: .black)
+    }
     
     var body: some View {
         NavigationView{
@@ -147,8 +152,8 @@ struct CreateNewTokoView: View {
     }
 }
 
-struct CreateNewTokoView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateNewTokoView( openCreateNewToko: .constant(false))
-    }
-}
+//struct CreateNewTokoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateNewTokoView( openCreateNewToko: .constant(false))
+//    }
+//}

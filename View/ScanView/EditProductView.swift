@@ -152,6 +152,7 @@ struct EditProductView: View {
                         .frame(height: 130)
                         
                     }.padding()
+                        .shadow(color: Color("brigray"), radius: 2, x: 0, y: 0)
                         .actionSheet(isPresented: self.$showCameraSheet){
                             ActionSheet(title: Text("Tambah Photo"), message: Text("Pilih Sumber"), buttons: [
                                 .default(Text("Galeri Foto")) {

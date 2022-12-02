@@ -45,6 +45,7 @@ struct RowItemProductList: View {
                     .padding(.vertical)
                 .padding(.leading)
                 .padding(.trailing,5)
+                .shadow(color: Color("brigray"), radius: 2, x: 0, y: 0)
             }
             
             VStack(alignment: .leading) {

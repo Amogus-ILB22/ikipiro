@@ -117,7 +117,7 @@ class ProductViewModel: ObservableObject {
         }
         
         if !self.searchKeyword.isEmpty {
-            self.products = self.products.filter{ ($0.nama?.contains(self.searchKeyword))!}
+            self.products = self.products.filter{ ($0.nama?.lowercased().contains(self.searchKeyword.lowercased()))!}
         }
     }
     

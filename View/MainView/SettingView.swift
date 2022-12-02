@@ -77,7 +77,7 @@ struct SettingView: View {
                             }
 
                             VStack(alignment: .leading){
-                                Text(productViewModel.currentToko?.namaToko ?? "Bu Jeki Sumatupang").font(.system(.title2, design: .rounded)).foregroundColor(Color("charcoal"))
+                                Text(productViewModel.currentToko?.namaToko ?? "").font(.system(.title2, design: .rounded)).foregroundColor(Color("charcoal"))
                                 //                                                    Text("Owner").font(.system(.callout, design: .rounded))
                             }.padding(.leading, 5)
 
@@ -184,7 +184,14 @@ struct SettingView: View {
                     StoreListView(showStoreList: $showStoreList)
                 })
                 .onAppear{
-                    productViewModel.currentToko = productViewModel.fetchTokoByObjectID()
+//                    productViewModel.currentToko = productViewModel.fetchTokoByObjectID()
+                    if productViewModel.getCurrentTokoIDFromUserDefault() == nil {
+                        productViewModel.setCurrentTokoForFirst()
+                        productViewModel.setCurrentTokoToUserDefault()
+                    }else{
+                        let objectTokoId = productViewModel.getCurrentTokoIDFromUserDefault()
+                        productViewModel.setCurrentTokoById(objectIDString: objectTokoId!)
+                    }
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -202,6 +209,7 @@ struct SettingView: View {
         }.onReceive(NotificationCenter.default.storeDidChangePublisher) { notification in
             processStoreChangeNotification(notification)
         }
+
         
         .navigationViewStyle(.stack)
         .sheet(item: $shareSheet, onDismiss: sheetOnDismiss) { item in

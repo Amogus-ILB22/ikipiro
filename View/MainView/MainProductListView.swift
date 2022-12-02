@@ -134,7 +134,15 @@ struct MainProductListView: View {
                         //                            }
                         HStack{
                             VStack{
-                                Text("Toko").font(.system(.caption, design: .rounded)).fontWeight(.bold).foregroundColor(Color.gray).frame(maxWidth: .infinity, alignment: .leading)
+                                HStack(spacing: 0) {
+                                    Text("Toko").font(.system(.caption, design: .rounded)).fontWeight(.bold).foregroundColor(Color.gray)
+                                    Image(systemName: "arrowtriangle.down.fill")
+                                        .font(.system(size: 8))
+                                        .foregroundColor(.gray)
+                                    Spacer()
+                                }
+                                
+                                
                                 
                                 Text(productViewModel.currentToko?.namaToko ?? "Nama Toko")
                                     .font(.system(.callout, design: .rounded)).fontWeight(.bold)
@@ -158,23 +166,33 @@ struct MainProductListView: View {
             .searchable(text: self.$searchText)
             .navigationBarTitleDisplayMode(.inline)
             .onChange(of: self.searchText){ keyword in
-                productViewModel.fetchProductFromCurrentToko(searchKey: keyword)
+                withAnimation{
+                    productViewModel.fetchProductFromCurrentToko(searchKey: keyword)
+                }
             }
             .onChange(of: self.showDetailProduct){ _ in
-                productViewModel.fetchProductFromCurrentToko()
+                withAnimation{
+                    productViewModel.fetchProductFromCurrentToko()
+                }
             }
             .onChange(of: self.productViewModel.products){ _ in
-                productViewModel.fetchProductFromCurrentToko()
+                withAnimation{
+                    productViewModel.fetchProductFromCurrentToko()
+                }
             }
             .onChange(of: self.showStoreList){ new_value in
                 if(!new_value){
-                    productViewModel.fetchProductFromCurrentToko()
+                    withAnimation{
+                        productViewModel.fetchProductFromCurrentToko()
+                    }
                 }
                 
             }
             .onReceive(NotificationCenter.default.storeDidChangePublisher) { notification in
                 processStoreChangeNotification(notification)
-                productViewModel.fetchProductFromCurrentToko()
+                withAnimation{
+                    productViewModel.fetchProductFromCurrentToko()
+                }
             }
             
         }.navigationViewStyle(.stack)
