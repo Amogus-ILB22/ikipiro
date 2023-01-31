@@ -108,7 +108,7 @@ struct EditProductView: View {
                         
                         TextEditor(text: self.$productDescription)
                             .padding()
-                            .frame(height: 100)
+                            .frame(height: 130)
                             .colorMultiply(Color("cultured"))
                         
                         Divider()
@@ -121,7 +121,7 @@ struct EditProductView: View {
                         }, label: {
                             if image == nil {
                                 VStack{
-                                    Image(systemName: "camera_add")
+                                    Image("camera_add")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(height: 60)

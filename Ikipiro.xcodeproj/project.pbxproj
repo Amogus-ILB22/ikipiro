@@ -10,13 +10,6 @@
 		403177D82742F4F70048F2DC /* SwiftUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403177D72742F4F70048F2DC /* SwiftUIHelper.swift */; };
 		40744289270FAFB3009CABC7 /* ParticipantView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40744288270FAFB3009CABC7 /* ParticipantView.swift */; };
 		4074428B270FB2B5009CABC7 /* PersistenceController+Share.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4074428A270FB2B5009CABC7 /* PersistenceController+Share.swift */; };
-		407A0CDE2707D0CD00F481C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6A2704334400D2BA90 /* SceneDelegate.swift */; };
-		407A0CE02707D0CD00F481C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6C2704335A00D2BA90 /* AppDelegate.swift */; };
-		407A0CE12707D0CD00F481C5 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D0027024F5D00D2BA90 /* PersistenceController.swift */; };
-		407A0CEA2707D0CD00F481C5 /* CoreDataCloudKitShare.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 407D7CF627024EBE00D2BA90 /* CoreDataCloudKitShare.xcdatamodeld */; };
-		407A0CED2707D0CD00F481C5 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 407D7D092702502400D2BA90 /* CloudKit.framework */; };
-		407A0CEF2707D0CD00F481C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407D7CF227024EBE00D2BA90 /* Preview Assets.xcassets */; };
-		407A0CF02707D0CD00F481C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407D7CEF27024EBE00D2BA90 /* Assets.xcassets */; };
 		407D7CEC27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7CEB27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift */; };
 		407D7CF027024EBE00D2BA90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407D7CEF27024EBE00D2BA90 /* Assets.xcassets */; };
 		407D7CF327024EBE00D2BA90 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 407D7CF227024EBE00D2BA90 /* Preview Assets.xcassets */; };
@@ -27,7 +20,6 @@
 		407D7D6D2704335A00D2BA90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7D6C2704335A00D2BA90 /* AppDelegate.swift */; };
 		408BD4DC2713F0F400294A81 /* ManagingSharesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408BD4DB2713F0F400294A81 /* ManagingSharesView.swift */; };
 		40AE53F12719F98C00B978CA /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AE53F02719F98C00B978CA /* CoreDataHelper.swift */; };
-		40BF6728273B0B7400ED9D2D /* CoreDataCloudKitShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407D7CEB27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift */; };
 		40BF672F273B17A900ED9D2D /* PersistenceController+History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BF672C273B17A200ED9D2D /* PersistenceController+History.swift */; };
 		40C6211E2755AFB500015301 /* SharePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40C6211D2755AFB500015301 /* SharePickerView.swift */; };
 		40D68E942719101A00FB9B78 /* PersistenceController+Deduplicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D68E932719101A00FB9B78 /* PersistenceController+Deduplicate.swift */; };
@@ -66,16 +58,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		407A0CF12707D0CD00F481C5 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		407D7D2E2702556900D2BA90 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -92,7 +74,6 @@
 		403177D72742F4F70048F2DC /* SwiftUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHelper.swift; sourceTree = "<group>"; };
 		40744288270FAFB3009CABC7 /* ParticipantView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantView.swift; sourceTree = "<group>"; };
 		4074428A270FB2B5009CABC7 /* PersistenceController+Share.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersistenceController+Share.swift"; sourceTree = "<group>"; };
-		407A0CF62707D0CD00F481C5 /* InitializeCloudKitSchema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InitializeCloudKitSchema.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		407D7CE827024EBD00D2BA90 /* Ikipiro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ikipiro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		407D7CEB27024EBD00D2BA90 /* CoreDataCloudKitShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCloudKitShareApp.swift; sourceTree = "<group>"; };
 		407D7CEF27024EBE00D2BA90 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,14 +128,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		407A0CEC2707D0CD00F481C5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				407A0CED2707D0CD00F481C5 /* CloudKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		407D7CE527024EBD00D2BA90 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				407D7CE827024EBD00D2BA90 /* Ikipiro.app */,
-				407A0CF62707D0CD00F481C5 /* InitializeCloudKitSchema.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,24 +323,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		407A0CD92707D0CD00F481C5 /* InitializeCloudKitSchema */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 407A0CF32707D0CD00F481C5 /* Build configuration list for PBXNativeTarget "InitializeCloudKitSchema" */;
-			buildPhases = (
-				407A0CDC2707D0CD00F481C5 /* Sources */,
-				407A0CEC2707D0CD00F481C5 /* Frameworks */,
-				407A0CEE2707D0CD00F481C5 /* Resources */,
-				407A0CF12707D0CD00F481C5 /* Embed Watch Content */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = InitializeCloudKitSchema;
-			productName = CoreDataCloudKitShare;
-			productReference = 407A0CF62707D0CD00F481C5 /* InitializeCloudKitSchema.app */;
-			productType = "com.apple.product-type.application";
-		};
 		407D7CE727024EBD00D2BA90 /* Ikipiro */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 407D7CFB27024EBE00D2BA90 /* Build configuration list for PBXNativeTarget "Ikipiro" */;
@@ -423,21 +377,11 @@
 			projectRoot = "";
 			targets = (
 				407D7CE727024EBD00D2BA90 /* Ikipiro */,
-				407A0CD92707D0CD00F481C5 /* InitializeCloudKitSchema */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		407A0CEE2707D0CD00F481C5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				407A0CEF2707D0CD00F481C5 /* Preview Assets.xcassets in Resources */,
-				407A0CF02707D0CD00F481C5 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		407D7CE627024EBD00D2BA90 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -450,18 +394,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		407A0CDC2707D0CD00F481C5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				407A0CDE2707D0CD00F481C5 /* SceneDelegate.swift in Sources */,
-				407A0CE02707D0CD00F481C5 /* AppDelegate.swift in Sources */,
-				407A0CE12707D0CD00F481C5 /* PersistenceController.swift in Sources */,
-				407A0CEA2707D0CD00F481C5 /* CoreDataCloudKitShare.xcdatamodeld in Sources */,
-				40BF6728273B0B7400ED9D2D /* CoreDataCloudKitShareApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		407D7CE427024EBD00D2BA90 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -516,83 +448,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		407A0CF42707D0CD00F481C5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CoreDataCloudKitShare/CoreDataCloudKitShare.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CoreDataCloudKitShare/Preview Content\"";
-				DEVELOPMENT_TEAM = 3F8C4P2T95;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "CoreDataCloudKitShare/InitializeCloudKitSchema-Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amogus.ikipiro;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG InitializeCloudKitSchema";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		407A0CF52707D0CD00F481C5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CoreDataCloudKitShare/CoreDataCloudKitShare.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CoreDataCloudKitShare/Preview Content\"";
-				DEVELOPMENT_TEAM = 3F8C4P2T95;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "CoreDataCloudKitShare/InitializeCloudKitSchema-Info.plist";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amogus.ikipiro;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
 		407D7CF927024EBE00D2BA90 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 987F6E8525D5DA6A6A97A01E /* SampleCode.xcconfig */;
@@ -796,15 +651,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		407A0CF32707D0CD00F481C5 /* Build configuration list for PBXNativeTarget "InitializeCloudKitSchema" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				407A0CF42707D0CD00F481C5 /* Debug */,
-				407A0CF52707D0CD00F481C5 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		407D7CE327024EBD00D2BA90 /* Build configuration list for PBXProject "Ikipiro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

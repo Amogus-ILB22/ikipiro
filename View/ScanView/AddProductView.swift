@@ -154,7 +154,7 @@ struct AddProductView: View {
                         
                         TextEditor(text: self.$productDescription)
                             .padding()
-                            .frame(height: 100)
+                            .frame(height: 130)
                             .colorMultiply(Color("cultured"))
                         
                         Divider()
@@ -241,8 +241,8 @@ struct AddProductView: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button(action: {
-                            if(!productBarcode.isEmpty && !productDescription.isEmpty && !productName.isEmpty && !productPrice.isEmpty){
-                                productViewModel.addProduct(nama: productName, satuan: productUnit, harga: Double(productPrice) ?? 0, kode: Int64(productBarcode) ?? 0, deskripsi: productDescription, image: productViewModel.convertImageToData(image: image))
+                            if(!productBarcode.isEmpty && !productName.isEmpty && !productPrice.isEmpty){
+                                productViewModel.addProduct(nama: productName, satuan: productUnit, harga: Double(productPrice) ?? 0, kode: Int64(productBarcode) ?? 0, deskripsi: productDescription == "Deskripsi Produk" ? "-" : productDescription, image: productViewModel.convertImageToData(image: image))
                                 self.showAddProductView.toggle()
                                 
                                 productViewModel.fetchProductFromCurrentToko()
